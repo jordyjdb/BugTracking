@@ -10,22 +10,23 @@ using System.Windows.Forms;
 
 namespace BugTracking
 {
-    public partial class Form1 : Form
+    public partial class frmBugList : Form
     {
-        public Form1()
+        public frmBugList()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //sasaxsaxsa
-            //abc123
-            //123abcdoreime
-            //abcdef
 
-            //attempttoSave31
+			List<Bug> bugList = Bug.get();
+			grdBug.AutoGenerateColumns = true;
+			grdBug.DataSource = bugList;
+			grdBug.Refresh();
+			grdBug.Update();
+			
 
-        }
+		}
     }
 }
