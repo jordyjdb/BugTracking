@@ -12,7 +12,7 @@ namespace BugTracking
 	{
 		public  String Title { get; set; }
 		public String Comment { get; set; }
-		private long Id { get; set; }
+		public long Id { get; set; }
 	public long previousBugId { get; set; }
 
 	#region initialize Bug
@@ -29,6 +29,21 @@ namespace BugTracking
 			this.Comment = Comment;
 			this.Id = Id;
 			this.previousBugId = 0;
+		}
+		public Bug(String Title, String Comment)
+		{
+			this.Title = Title;
+			this.Comment = Comment;
+			this.Id = 0;
+			this.previousBugId = 0;
+		}
+
+		public Bug(String Title, String Comment, long previousBugId)
+		{
+			this.Title = Title;
+			this.Comment = Comment;
+			this.Id = 0;
+			this.previousBugId = previousBugId;
 		}
 
 		public Bug(long Id,String Title, String Comment, Bug PreviousBug)
