@@ -8,7 +8,7 @@
         Title="MainWindow" Height="289.583" Width="548.042">
     <Grid>
         <TabControl x:Name="tabControl" Margin="0,0,289,58">
-            <TabItem Header="1. Bug" Margin="-2,-2,-15,0">
+            <TabItem Header="1. Bug" Margin="0,0,0,-2" Width="75">
                 <Grid Background="#FFE5E5E5">
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="65" Margin="86,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149"/>
                     <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="22" Margin="86,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149"/>
@@ -16,24 +16,32 @@
                     <Label x:Name="label4" Content="Comments:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="2. Application" Height="38" VerticalAlignment="Top" Margin="12,-2,-12,0">
+            <TabItem Header="2. Application" Height="38" VerticalAlignment="Top" Margin="0" Width="89" >
                 <Grid Background="#FFE5E5E5">
 
                     <ComboBox x:Name="cboControl" HorizontalAlignment="Left" Margin="102,45,0,0" VerticalAlignment="Top" Width="140"/>
-                    <ComboBox x:Name="cboPriority" HorizontalAlignment="Left" Margin="102,76,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="1.116,1.239"/>
                     <ComboBox x:Name="cboApplication" HorizontalAlignment="Left" Margin="123,14,0,0" VerticalAlignment="Top" Width="119"/>
                     <Label x:Name="label" Content="Application Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label1" Content="Control Name:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label2" Content="Priority:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="3. Developer" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Margin="0" Width="82">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox x:Name="cboPriority" HorizontalAlignment="Left" Margin="102,14,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="1.116,1.239"/>
+                    <Label x:Name="label2" Content="Priority:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="cboAssignedUser" HorizontalAlignment="Left" Margin="102,45,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="1.116,1.239"/>
+                    <Label x:Name="label2_Copy" Content="Assigned User:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnAddLink" Content="Relate Bug" HorizontalAlignment="Left" Margin="156,125,0,0" VerticalAlignment="Top" Width="79"/>
+                </Grid>
+            </TabItem>
+
         </TabControl>
         <DockPanel HorizontalAlignment="Left" LastChildFill="False" Width="251" Margin="0,201,0,0">
-            <Button x:Name="btnReport" Content="ReportBug" Height="58" VerticalAlignment="Top" Width="125" Click="btnReport_Click"/>
+            <Button x:Name="btnReport" Content="Report Bug" Height="58" VerticalAlignment="Top" Width="125" Click="btnReport_Click"/>
             <Button x:Name="btnCLose" Content="Cancel" Height="58" VerticalAlignment="Top" Width="125
                     " Click="button_Click"/>
         </DockPanel>
-        <Grid HorizontalAlignment="Left" Height="239" Margin="256,10,0,0" VerticalAlignment="Top" Width="274"/>
+        <Grid HorizontalAlignment="Left" Margin="251,0,0,0" Width="289"/>
 
     </Grid>
 </Window>

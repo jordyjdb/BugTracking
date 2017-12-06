@@ -1,0 +1,20 @@
+﻿<Window x:Class="BugManager.frmBugCommentManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BugManager"
+        mc:Ignorable="d"
+        Title="frmBugCommentManager" Height="300" Width="258.035">
+    <Grid Margin="0,0,2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DockPanel LastChildFill="False" Margin="0,209,0,0" Grid.ColumnSpan="2" Height="60" VerticalAlignment="Top">
+            <Button x:Name="btnReport" Content="Report Bug" Height="58" VerticalAlignment="Top" Width="125" Click="btnReport_Click"/>
+            <Button x:Name="btnCLose" Content="Cancel" Height="58" VerticalAlignment="Top" Width="125
+                    " Click="button_Click"/>
+        </DockPanel>
+    </Grid>
+</Window>

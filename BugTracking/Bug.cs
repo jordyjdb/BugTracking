@@ -21,6 +21,11 @@ namespace BugTracking
 		/// </summary>
 		public String Comment { get; set; }
 
+
+
+
+
+
 		/// <summary>
 		/// Location the bug was found/set off from
 		/// </summary>
