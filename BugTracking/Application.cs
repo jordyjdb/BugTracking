@@ -10,6 +10,10 @@ namespace BugTracking
 	{
 		public String name { get; private set; }
 
+		/// <summary>
+		/// user that is assigned to look into this problem by default!
+		/// </summary>
+		public User defaultUser;
 
 
 	}

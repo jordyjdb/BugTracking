@@ -10,12 +10,38 @@ namespace BugTracking
 {
 	class Bug
 	{
+
+		/// <summary>
+		/// Summary of the bug
+		/// </summary>
 		public  String Title { get; set; }
+
+		/// <summary>
+		/// what is the outcome of this bug, give an overview of the what went wrong! and what you think it should have done
+		/// </summary>
 		public String Comment { get; set; }
 
+		/// <summary>
+		/// Location the bug was found/set off from
+		/// </summary>
 		public BugLocation location;
 
+		/// <summary>
+		/// developer/user who is assigned to this bug
+		/// </summary>
+		public User assignedUser;
+
+		/// <summary>
+		/// Assigned priority of the bug by a developer or a manager
+		/// </summary>
+		public String Priority;
+
+
 		public long Id { get; set; }
+
+
+
+
 	public long previousBugId { get; set; }
 
 	#region initialize Bug
@@ -147,7 +173,10 @@ namespace BugTracking
 
 
 
-
+		/// <summary>
+		/// saves bug to database
+		/// </summary>
+		/// <returns>ID of new row in table buglist</returns>
 		public long save()
 		{
 			//if ID == 0 
