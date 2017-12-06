@@ -10,7 +10,7 @@ namespace BugTracking
 {
 	class Bug
 	{
-
+	public long Id { get; set; }
 		/// <summary>
 		/// Summary of the bug
 		/// </summary>
@@ -37,7 +37,7 @@ namespace BugTracking
 		public String Priority;
 
 
-		public long Id { get; set; }
+	
 
 
 		/// <summary>

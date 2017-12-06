@@ -12,7 +12,7 @@ namespace BugTracking
 	{
 
 
-		public long id { get; private set; }
+		public long Id { get; private set; }
 		/// <summary>
 		/// The application the bug resides on
 		/// </summary>
@@ -48,11 +48,7 @@ namespace BugTracking
 
 
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		
 		public Boolean get(long id)
 		{
 			//retreives information about bug with ID
@@ -77,7 +73,7 @@ namespace BugTracking
 
 			if (ds.Tables[0].Rows.Count == 1)
 			{
-				this.lineNumber = (long) ds.Tables[0].Rows[0]["Title"];
+				lineNumber = (long) ds.Tables[0].Rows[0]["lineNumber"];
 				
 
 				long applicationID = (long)ds.Tables[0].Rows[0]["applicationID"];

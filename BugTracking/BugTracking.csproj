@@ -73,21 +73,15 @@
       <DependentUpon>BugTrackingDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Client.cs" />
+    <Compile Include="ContractedApplication.cs" />
     <Compile Include="Control.cs" />
     <Compile Include="Developer.cs" />
     <Compile Include="Form.cs" />
-    <Compile Include="frmBugList.cs" />
-    <Compile Include="frmBugList.Designer.cs">
-      <DependentUpon>frmBugList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Manager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="WhiteBoxUser.cs" />
-    <EmbeddedResource Include="frmBugList.resx">
-      <DependentUpon>frmBugList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

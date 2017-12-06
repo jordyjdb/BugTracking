@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BugTracking
 {
@@ -25,6 +26,7 @@ namespace BugTracking
 		/// if this is currently active in the application
 		/// </summary>
 		public Boolean active { get; private set; }
+		public Action<object, FormClosedEventArgs> FormClosed { get; internal set; }
 		#region controls
 		//controls on the form
 		public List<Control> controls()

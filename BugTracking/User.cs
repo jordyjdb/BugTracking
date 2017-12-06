@@ -8,8 +8,10 @@ namespace BugTracking
 {
 	class User
 	{
-		public String firstName { get; private set; }
-		public String lastName { get; private set; }
+
+		public long Id { get; private set; }
+		public String FirstName { get; private set; }
+		public String LastName { get; private set; }
 
 		public DateTime AccountCreationDate { get; private set; }
 
