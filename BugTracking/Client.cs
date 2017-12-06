@@ -35,15 +35,15 @@ namespace BugTracking
 		/// <summary>
 		/// applications that the client can choose when filling in bug information
 		/// </summary>
-		public List<Application> GetOwnedApps()
+		public List<Client> GetOwnedApps()
 		{
 
 		
 			{
-				List<Application> applications = new List<Application();
+				List<Application> applications = new List<Application>();
 				DataSet ds = new DataSet();
 				SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
-				SqlCommand sqlCom = new SqlCommand("Select * From ", sqlCon);
+				SqlCommand sqlCom = new SqlCommand("Select * From Application", sqlCon);
 
 				try
 				{
@@ -65,13 +65,11 @@ namespace BugTracking
 					foreach (DataRow row in ds.Tables[0].Rows)
 					{
 						long Id = (int)row["Id"];
-						String Title = (String)row["Title"];
-						String Comment = (String)row["Comment"];
-						long previousBugId = (int)row["previousBugId"];
+						String name = (String)row["name"];
 
 
-						Bug newBug = new Bug(Id, Title, Comment, previousBugId);
-						BugList.Add(newBug);
+						Application newApplication = new Application();
+						applications.Add(newApplication);
 					}
 				}
 
@@ -123,12 +121,49 @@ namespace BugTracking
 		}
 
 
+		public List<Client> get()
+		{
+			{
+				List<Client> clientList = new List<Client>();
+				DataSet ds = new DataSet();
+				SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+				SqlCommand sqlCom = new SqlCommand("Select * From Client", sqlCon);
+
+				try
+				{
+					sqlCon.Open();
+
+					SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+					sqlDa.Fill(ds);
+
+				}
+				finally
+				{
+					sqlCon.Close();
+				}
+
+
+				if (ds.Tables[0].Rows.Count > 0)
+				{
+					foreach (DataRow row in ds.Tables[0].Rows)
+					{
+						long Id = (int)row["Id"];
+						String name = (String)row["name"];
+						long ClientConnectionID = (long)row["ClientConnectionID"];
 
 
 
+						Client newClient = new Client();
 
 
+						clientList.Add(newClient);
+					}
+				}
 
-
+				return BugList;
+			}
+			return null;
+		}
 	}
 }

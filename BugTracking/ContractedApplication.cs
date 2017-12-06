@@ -12,10 +12,9 @@ namespace BugTracking
 		/// <summary>
 		/// id occosiated with a row in table ContractedApplication
 		/// </summary>
-		public long 
+		public Client client;
 
-
-
-
+		public DateTime StartDate;
+		public DateTime EndDate;
 	}
 }
