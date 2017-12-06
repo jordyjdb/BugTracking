@@ -13,10 +13,10 @@ namespace BugTracking
 
 		public DateTime AccountCreationDate { get; private set; }
 
+		public String Usertype;
 
 
-
-
+		
 
 	}
 }

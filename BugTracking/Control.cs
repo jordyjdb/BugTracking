@@ -27,6 +27,10 @@ namespace BugTracking
 		/// </summary>
 		public String controlType { get; private set; }
 
+		/// <summary>
+		/// if this is currently active in the application
+		/// </summary>
+		public Boolean active { get; private set; }
 
 	}
 

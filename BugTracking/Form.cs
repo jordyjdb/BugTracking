@@ -21,13 +21,41 @@ namespace BugTracking
 		/// </summary>
 		public long name { get; private set; }
 
-		public List<Control> controls;
+		/// <summary>
+		/// if this is currently active in the application
+		/// </summary>
+		public Boolean active { get; private set; }
+		#region controls
+		//controls on the form
+		public List<Control> controls()
+		{
+			return null;
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns>returns controlID</returns>
+		public int addControl(Control control)
+		{
+
+			return - 1;
+		}
+
+		public int removeControl(Control control)
+		{
+
+			return -1;
+		}
+
+		#endregion
 
 		//methods in form
 		public List<String> methods;
 
 		//methods in form
 		public List<String> parameters;
+
 
 
 	}

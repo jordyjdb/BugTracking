@@ -40,11 +40,36 @@ namespace BugTracking
 		public long Id { get; set; }
 
 
+		/// <summary>
+		/// if the bug is open then it can be added to
+		/// </summary>
+		public Boolean open { get; private set; }
 
+		
+			
+		public long previousBugId { get;private set; }
 
-	public long previousBugId { get; set; }
+		/// <summary>
+		/// gets the previous bug in the chain
+		/// </summary>
+		/// <returns>NoPreviousBugException is thrown if no previous bug is found, else return object of type type Bug</returns>
+		private Bug getPreviousBug() 
+		{
+			Bug previousBug = new Bug();
 
-	#region initialize Bug
+			//if bug 
+			if (previousBugId != 0 && previousBug.get(previousBugId) == true) {
+				return previousBug;
+			} else
+			{
+				throw new NoPreviousBugException(string.Format("no previous Bug. Bug by id {0} is the first bug in the chain", Id));
+			}
+			
+		}
+
+		#region initialize Bug
+		public Bug() {  }
+		
 	public Bug(long Id, String Title, String Comment, long previousBugId)
 		{
 			this.Title = Title;
@@ -95,7 +120,7 @@ namespace BugTracking
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
-			SqlCommand sqlCom = new SqlCommand("Select * From BugList where Id = @ID", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("Select * From Bugs where Id = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
 
 			try
@@ -136,7 +161,7 @@ namespace BugTracking
 			List<Bug> BugList = new List<Bug>();
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
-			SqlCommand sqlCom = new SqlCommand("Select * From BugList", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("Select * From Bugs", sqlCon);
 
 			try
 			{
@@ -187,7 +212,7 @@ namespace BugTracking
 
 
 			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
-			SqlCommand sqlCom = new SqlCommand("Insert into buglist(Title, Comment, previousBugId) values (@Title, @Comment, @previousBugId", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("Insert into Bugs(Title, Comment, previousBugId) values (@Title, @Comment, @previousBugId", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@Title", Title));
 			sqlCom.Parameters.Add(new SqlParameter("@Comment", Comment));
 			sqlCom.Parameters.Add(new SqlParameter("@previousBugId", Id));
@@ -215,11 +240,27 @@ namespace BugTracking
 
 		}
 
-		
 
-	
+		/// <summary>
+		///thrown when no previous bug
+		/// </summary>
+		public class NoPreviousBugException : Exception
+		{
+			public NoPreviousBugException(string message)
+			   : base(message)
+			{
+			}
+		}
+
 
 
 
 	}
+
+
+
+
+
+	
+
 }
