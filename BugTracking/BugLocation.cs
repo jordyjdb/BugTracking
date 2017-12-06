@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +45,81 @@ namespace BugTracking
 
 
 		public long lineNumber { get; private set; }
+
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public Boolean get(long id)
+		{
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+			SqlCommand sqlCom = new SqlCommand("Select * From BugLocation where Id = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
+
+			try
+			{
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+			if (ds.Tables[0].Rows.Count == 1)
+			{
+				this.lineNumber = (long) ds.Tables[0].Rows[0]["Title"];
+				
+
+				long applicationID = (long)ds.Tables[0].Rows[0]["applicationID"];
+
+				long formID = (long)ds.Tables[0].Rows[0]["formID"];
+
+				long controlID = (long)ds.Tables[0].Rows[0]["controlID"];
+
+				 action = (String)ds.Tables[0].Rows[0]["action"];
+
+				 relatedMethod = (String)ds.Tables[0].Rows[0]["relatedMethod"];
+
+				 relatedParameter = (String) ds.Tables[0].Rows[0]["relatedParameter"];
+				
+
+
+				return true;
+			}
+			else {
+				return false;
+			}
+
+
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	}
