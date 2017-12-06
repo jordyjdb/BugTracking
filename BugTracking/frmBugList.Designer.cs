@@ -50,7 +50,7 @@
 			this.grdBug.Location = new System.Drawing.Point(342, 6);
 			this.grdBug.Name = "grdBug";
 			this.grdBug.ReadOnly = true;
-			this.grdBug.Size = new System.Drawing.Size(316, 237);
+			this.grdBug.Size = new System.Drawing.Size(316, 169);
 			this.grdBug.TabIndex = 0;
 			// 
 			// txtTitle
@@ -117,7 +117,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(670, 249);
+			this.ClientSize = new System.Drawing.Size(670, 181);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);

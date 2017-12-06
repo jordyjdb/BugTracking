@@ -12,6 +12,9 @@ namespace BugTracking
 	{
 		public  String Title { get; set; }
 		public String Comment { get; set; }
+
+		public BugLocation location;
+
 		public long Id { get; set; }
 	public long previousBugId { get; set; }
 
@@ -145,7 +148,7 @@ namespace BugTracking
 
 
 
-		public void save()
+		public long save()
 		{
 			//if ID == 0 
 			//new bug with no previous link
@@ -153,12 +156,39 @@ namespace BugTracking
 			//if ID != 0 
 			//ID = previuosBugID and create new bug with link
 
+
+			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+			SqlCommand sqlCom = new SqlCommand("Insert into buglist(Title, Comment, previousBugId) values (@Title, @Comment, @previousBugId", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@Title", Title));
+			sqlCom.Parameters.Add(new SqlParameter("@Comment", Comment));
+			sqlCom.Parameters.Add(new SqlParameter("@previousBugId", Id));
+
+
+			try
+			{
+				sqlCon.Open();
+
+			 Id = (int)sqlCom.ExecuteScalar();
+
+
+			}
+			catch (SqlException ex)
+			{
+			
+			}
+			finally
+			{
+				sqlCon.Close();
+			
+			}
+	return Id;
+
+
 		}
 
 		
 
-
-
+	
 
 
 
