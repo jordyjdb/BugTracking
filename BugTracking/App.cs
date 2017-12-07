@@ -95,8 +95,8 @@ namespace BugTracking
 
 					App application = new App
 					{
-						Name = (String)ds.Tables[0].Rows[0]["name"],
-						Id = (long)ds.Tables[0].Rows[0]["Id"]
+						Name = (String)row["name"],
+						Id = (long)row["Id"]
 					};
 
 					applications.Add(application);

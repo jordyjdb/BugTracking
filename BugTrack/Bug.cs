@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BugTracking
-{
+namespace BugTrack
+{ 
+
 	public class Bug
 	{
 	public long Id { get; set; }

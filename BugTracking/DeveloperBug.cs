@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BugTracking
 {
-	class DeveloperBug :Bug
+	public class DeveloperBug :Bug
 	{
+
+
 		/// <summary>
 		/// Last historical bug save.
 		/// </summary>
 		public long PreviousBugId { get; private set; }
-
-
 
 		/// <summary>
 		/// The bug the developer is reacting to.
@@ -30,16 +31,74 @@ namespace BugTracking
 		/// </summary>
 		public List<User> AlertList;
 
-
-
 		/// <summary>
 		/// if the bug is open then it can be added to
 		/// </summary>
-		public Boolean Open { get; private set; }
+		public Boolean BugOpen { get; private set; }
 
-		public Bug getLatestBug()
+		private DeveloperBug(long Id,String title, String comment, BugLocation location, long PreviousBugId, String Priority, Boolean BugOpen):this(title, comment, location, PreviousBugId, Priority, BugOpen)
 		{
-			//TODO Select top(1) * from Bug where 
+			this.Id = Id;
+		}		
+
+		public DeveloperBug( String title, String comment, BugLocation location, long PreviousBugId, String Priority, Boolean BugOpen) : base(title, comment, location)
+		{
+
+			this.PreviousBugId = PreviousBugId;
+			this.Priority = Priority;
+			this.BugOpen = BugOpen;
+		}
+
+		public new long Save()
+		{
+
+
+
+			 SaveBug();
+			
+
+			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+			String insertDeveloperBug = "INSERT INTO DEVELOPERBUG(Id,PreviousBugId,Priority,BugOpen) VALUES (@Id,@PreviousBugId,@Priority,@BugOpen)";
+			SqlCommand sqlCom = new SqlCommand(insertDeveloperBug, sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
+			sqlCom.Parameters.Add(new SqlParameter("@PreviousBugId", PreviousBugId));
+			sqlCom.Parameters.Add(new SqlParameter("@Priority", Priority));
+			sqlCom.Parameters.Add(new SqlParameter("@BugOpen", BugOpen));
+
+
+
+			try
+			{
+				sqlCon.Open();
+
+				Id = (int)sqlCom.ExecuteScalar();
+
+
+			}
+			catch (SqlException ex)
+			{
+
+			}
+			finally
+			{
+				sqlCon.Close();
+
+			}
+			return Id;
+		}
+
+		public List<DeveloperBug> Get()
+		{
+
+
+			return null;
+		}
+
+
+
+		public Bug GetLatestBug()
+		{
+			//TODO Select top(1) * from Bug where PreviousBug = 
 
 
 
@@ -49,7 +108,7 @@ namespace BugTracking
 
 
 
-		public Bug getNextBug()
+		public Bug GetNextBug()
 		{
 			//TODO Select top(1) * from Bug where CreationDate > @CreationDate order by CreationDate ASC
 
@@ -58,7 +117,7 @@ namespace BugTracking
 			return null;
 		}
 
-		public Bug getFirstBug()
+		public Bug GetFirstBug()
 		{
 			//TODO Select top(1) * from Bug where firstBugID = @FirstbugID ish order by CreationDate DESC
 

@@ -55,7 +55,12 @@ namespace BugTracking
 
 		}
 
-	
+		public Bug(string Title, string Comment, BugLocation location) : this(Title, Comment)
+		{
+			Location = location;
+		}
+
+
 
 		#endregion
 
@@ -168,7 +173,13 @@ namespace BugTracking
 		/// saves bug to database
 		/// </summary>
 		/// <returns>ID of new row in table buglist</returns>
-		public long save()
+		public long Save()
+		{
+			return SaveBug();
+
+		}
+
+		protected long SaveBug()
 		{
 			//if ID == 0 
 			//new bug with no previous link
@@ -188,24 +199,22 @@ namespace BugTracking
 			{
 				sqlCon.Open();
 
-			 Id = (int)sqlCom.ExecuteScalar();
+				Id = (int)sqlCom.ExecuteScalar();
 
 
 			}
 			catch (SqlException ex)
 			{
-			
+
 			}
 			finally
 			{
 				sqlCon.Close();
-			
-			}
-	return Id;
 
+			}
+			return Id;
 
 		}
-
 
 		/// <summary>
 		///thrown when no previous bug

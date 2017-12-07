@@ -22,13 +22,13 @@ namespace BugManager
 	public partial class MainWindow : Window
 	{
 
-		public BugTracking.Bug bug;
+		public BugTracking.Bug Bug;
 
 		public MainWindow(BugTracking.Bug bug)
 		{
 			InitializeComponent();
 
-			this.bug = bug;
+			this.Bug = bug;
 
 			txtTitle.Text = bug.Title;
 			txtComment.Text = bug.Comment;
@@ -52,6 +52,13 @@ namespace BugManager
 
 		private void btnReport_Click(object sender, RoutedEventArgs e)
 		{
+			if (Bug.Id == 0)
+			{
+
+			}
+
+
+
 
 		}
 

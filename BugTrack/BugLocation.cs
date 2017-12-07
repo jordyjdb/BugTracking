@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace BugTracking
+namespace BugTrack
 {
-	public class BugLocation
-	{
+    class BugLocation
+    {
 		public long Id { get; private set; }
 		/// <summary>
 		/// The application the bug resides on
@@ -40,20 +40,7 @@ namespace BugTracking
 		/// Optional, parameter relating to bug
 		/// </summary>
 		public String relatedParameter;
-		private long applicationID;
-		private long formID;
-		private long controlID;
 
-		public BugLocation(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
-		{
-			this.applicationID = applicationID;
-			this.formID = formID;
-			this.controlID = controlID;
-			this.action = action;
-			this.relatedMethod = relatedMethod;
-			this.relatedParameter = relatedParameter;
-			this.lineNumber = lineNumber;
-		}
 
 		public long lineNumber { get; private set; }
 
@@ -63,7 +50,7 @@ namespace BugTracking
 		public Boolean get(long id)
 		{
 			//retreives information about bug with ID
-			DataSet ds = new DataSet();
+			System.Data.DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand("Select * From BugLocation where Id = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
@@ -112,39 +99,5 @@ namespace BugTracking
 
 		}
 
-		public long Save()
-		{
-			String insertLocation = "INSERT INTO BUGLOCATIONS(applicationID,formID,controlID,action,relatedMethod,relatedParameter,lineNumber) values (@applicationID,@formID,@controlID,@action,@relatedMethod,@relatedParameter,@LineNumber)";
-			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand(insertLocation, sqlCon);
-			sqlCom.Parameters.Add(new SqlParameter("@applicationID", applicationID));
-			sqlCom.Parameters.Add(new SqlParameter("@formID", formID));
-			sqlCom.Parameters.Add(new SqlParameter("@controlID", controlID));
-			sqlCom.Parameters.Add(new SqlParameter("@action", action));
-			sqlCom.Parameters.Add(new SqlParameter("@relatedMethod", relatedMethod));
-			sqlCom.Parameters.Add(new SqlParameter("@relatedParameter", relatedParameter));
-			sqlCom.Parameters.Add(new SqlParameter("@lineNumber", lineNumber));
-
-
-			try
-			{
-				sqlCon.Open();
-
-			Id = (int)sqlCom.ExecuteScalar();
-			}
-			catch (SqlException ex)
-			{
-
-			}
-			finally
-			{
-				sqlCon.Close();
-
-			}
-			return Id;
-
-
-		}
-	
 	}
 }
