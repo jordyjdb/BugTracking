@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracking", "BugTracking\BugTracking.csproj", "{33F32F2D-78D1-4E13-B20E-E99F49D57D94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugManager", "BugManager\BugManager.csproj", "{F9E749F0-B2DA-4DD0-83C8-8B24E0DB0544}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugManagerWPF", "BugManager\BugManagerWPF.csproj", "{F9E749F0-B2DA-4DD0-83C8-8B24E0DB0544}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugManagerForm", "BugManagerForm\BugManagerForm.csproj", "{C6178920-0406-4140-9197-69F34B47848D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F9E749F0-B2DA-4DD0-83C8-8B24E0DB0544}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9E749F0-B2DA-4DD0-83C8-8B24E0DB0544}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9E749F0-B2DA-4DD0-83C8-8B24E0DB0544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6178920-0406-4140-9197-69F34B47848D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6178920-0406-4140-9197-69F34B47848D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6178920-0406-4140-9197-69F34B47848D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6178920-0406-4140-9197-69F34B47848D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

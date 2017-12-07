@@ -23,5 +23,15 @@ namespace BugManager
 		{
 			InitializeComponent();
 		}
+
+		private void btnReport_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void button_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

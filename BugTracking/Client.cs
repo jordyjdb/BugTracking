@@ -35,11 +35,9 @@ namespace BugTracking
 		/// <summary>
 		/// applications that the client can choose when filling in bug information
 		/// </summary>
-		public List<Client> GetOwnedApps()
+		public List<Application> GetOwnedApps()
 		{
 
-		
-			{
 				List<Application> applications = new List<Application>();
 				DataSet ds = new DataSet();
 				SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
@@ -73,9 +71,8 @@ namespace BugTracking
 					}
 				}
 
-				return BugList;
-			}
-			return null;
+				return applications;
+			
 		}
 
 
@@ -123,7 +120,7 @@ namespace BugTracking
 
 		public List<Client> get()
 		{
-			{
+
 				List<Client> clientList = new List<Client>();
 				DataSet ds = new DataSet();
 				SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
@@ -161,9 +158,8 @@ namespace BugTracking
 					}
 				}
 
-				return BugList;
-			}
-			return null;
+				return clientList;
+	
 		}
 	}
 }

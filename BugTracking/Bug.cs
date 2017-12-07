@@ -20,100 +20,58 @@ namespace BugTracking
 		/// what is the outcome of this bug, give an overview of the what went wrong! and what you think it should have done
 		/// </summary>
 		public String Comment { get; set; }
-
-
-
-
-
+		
 
 		/// <summary>
 		/// Location the bug was found/set off from
 		/// </summary>
-		public BugLocation location;
+		public BugLocation Location;
 
-		/// <summary>
-		/// developer/user who is assigned to this bug
-		/// </summary>
-		public User assignedUser;
-
-		/// <summary>
-		/// Assigned priority of the bug by a developer or a manager
-		/// </summary>
-		public String Priority;
-
-
-	
-
-
-		/// <summary>
-		/// if the bug is open then it can be added to
-		/// </summary>
-		public Boolean open { get; private set; }
-
+		public DateTime CreationDate;
 		
-			
-		public long previousBugId { get;private set; }
-
-		/// <summary>
-		/// gets the previous bug in the chain
-		/// </summary>
-		/// <returns>NoPreviousBugException is thrown if no previous bug is found, else return object of type type Bug</returns>
-		private Bug getPreviousBug() 
-		{
-			Bug previousBug = new Bug();
-
-			//if bug 
-			if (previousBugId != 0 && previousBug.get(previousBugId) == true) {
-				return previousBug;
-			} else
-			{
-				throw new NoPreviousBugException(string.Format("no previous Bug. Bug by id {0} is the first bug in the chain", Id));
-			}
-			
-		}
 
 		#region initialize Bug
 		public Bug() {  }
 		
-	public Bug(long Id, String Title, String Comment, long previousBugId)
+	private Bug(long Id, String Title, String Comment, BugLocation location)
 		{
 			this.Title = Title;
 			this.Comment = Comment;
 			this.Id = Id;
-			this.previousBugId = previousBugId;
+			this.Location = location;
 		}
-		public Bug(long Id, String Title, String Comment)
+		private Bug(long Id, String Title, String Comment)
 		{
 			this.Title = Title;
 			this.Comment = Comment;
 			this.Id = Id;
-			this.previousBugId = 0;
+
 		}
 		public Bug(String Title, String Comment)
 		{
 			this.Title = Title;
 			this.Comment = Comment;
 			this.Id = 0;
-			this.previousBugId = 0;
+
 		}
 
-		public Bug(String Title, String Comment, long previousBugId)
-		{
-			this.Title = Title;
-			this.Comment = Comment;
-			this.Id = 0;
-			this.previousBugId = previousBugId;
-		}
-
-		public Bug(long Id,String Title, String Comment, Bug PreviousBug)
-		{
-			this.Title = Title;
-			this.Comment = Comment;
-			this.Id = Id;
-			this.previousBugId = PreviousBug.Id;
-		}
+	
 
 		#endregion
+
+
+
+		/// <summary>
+		/// gets defaulted user based on location
+		/// </summary>
+		/// <returns>defaulted user to attend this bug</returns>
+		public static User GetDefaultedUser(BugLocation location)
+		{
+			
+			return null;
+
+		}
+
 
 		/// <summary>
 		/// 
@@ -193,7 +151,7 @@ namespace BugTracking
 					long previousBugId = (int) row["previousBugId"];
 
 
-					Bug newBug = new Bug(Id, Title, Comment, previousBugId);
+					Bug newBug = new Bug(Id, Title, Comment);
 					BugList.Add(newBug);
 				}
 		}
