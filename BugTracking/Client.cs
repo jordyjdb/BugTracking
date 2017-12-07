@@ -35,12 +35,12 @@ namespace BugTracking
 		/// <summary>
 		/// applications that the client can choose when filling in bug information
 		/// </summary>
-		public List<Application> GetOwnedApps()
+		public List<Apps> GetOwnedApps()
 		{
 
-				List<Application> applications = new List<Application>();
+				List<Apps> applications = new List<Apps>();
 				DataSet ds = new DataSet();
-				SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+				SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.AzureBugTrackingConnectionString);
 				SqlCommand sqlCom = new SqlCommand("Select * From Application", sqlCon);
 
 				try
@@ -66,7 +66,7 @@ namespace BugTracking
 						String name = (String)row["name"];
 
 
-						Application newApplication = new Application();
+						Apps newApplication = new Apps();
 						applications.Add(newApplication);
 					}
 				}

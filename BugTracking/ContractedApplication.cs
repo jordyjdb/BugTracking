@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BugTracking
 {
-	class ContractedApplication : Application
+	class ContractedApplication : Apps
 	{
 
 		/// <summary>

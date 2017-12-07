@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,6 +66,12 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Bug.cs" />
+    <Compile Include="BugDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BugDetails.Designer.cs">
+      <DependentUpon>BugDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="BugLocation.cs" />
     <Compile Include="BugTrackingDataSet.cs">
       <DependentUpon>BugTrackingDataSet.xsd</DependentUpon>
@@ -79,11 +88,13 @@
     <Compile Include="DeveloperBug.cs" />
     <Compile Include="Form.cs" />
     <Compile Include="Manager.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserBug.cs" />
     <Compile Include="WhiteBoxUser.cs" />
+    <EmbeddedResource Include="BugDetails.resx">
+      <DependentUpon>BugDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -92,6 +103,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="BugTrackingDataSet.xsc">
       <DependentUpon>BugTrackingDataSet.xsd</DependentUpon>
@@ -125,6 +137,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>BugTracking.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\ellipsis.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

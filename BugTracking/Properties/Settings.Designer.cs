@@ -28,7 +28,7 @@ namespace BugTracking.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\BugTracking.m" +
             "df;Integrated Security=True;Connect Timeout=30")]
-        public string BugTrackingConnectionString {
+        public string AzureBugTrackingConnectionString {
             get {
                 return ((string)(this["BugTrackingConnectionString"]));
             }

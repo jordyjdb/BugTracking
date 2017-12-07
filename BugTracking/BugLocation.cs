@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BugTracking
 {
-	class BugLocation
+	public class BugLocation
 	{
 
 
@@ -16,7 +16,7 @@ namespace BugTracking
 		/// <summary>
 		/// The application the bug resides on
 		/// </summary>
-		public Application application;
+		public Apps application;
 
 		/// <summary>
 		/// the form were the bug occurs
@@ -53,7 +53,7 @@ namespace BugTracking
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
-			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+			SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand("Select * From BugLocation where Id = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
 

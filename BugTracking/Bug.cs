@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BugTracking
 {
-	class Bug
+	public class Bug
 	{
 	public long Id { get; set; }
 		/// <summary>
@@ -82,7 +82,7 @@ namespace BugTracking
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
-			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+			SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand("Select * From Bugs where Id = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
 
@@ -154,7 +154,10 @@ namespace BugTracking
 					Bug newBug = new Bug(Id, Title, Comment);
 					BugList.Add(newBug);
 				}
-		}
+		} else{
+				//throw exeption
+				return null;
+			}
 
 			return BugList;
 		}

@@ -15,15 +15,40 @@ using System.Windows.Shapes;
 
 namespace BugManager
 {
+	
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+
+		public BugTracking.Bug bug;
+
+		public MainWindow(BugTracking.Bug bug)
 		{
 			InitializeComponent();
+
+			this.bug = bug;
+
+			txtTitle.Text = bug.Title;
+			txtComment.Text = bug.Comment;
+
+
+			List< BugTracking.Apps> AppList = BugTracking.Apps.get();
+
+			foreach (BugTracking.Apps app in AppList)
+			{
+				cboApplication.Items.Add(app);
+			}
+			
+
+
+
+
 		}
+
+
+
 
 		private void btnReport_Click(object sender, RoutedEventArgs e)
 		{
@@ -31,6 +56,11 @@ namespace BugManager
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 
 		}

@@ -12,7 +12,7 @@ namespace BugTracking
 		/// <summary>
 		/// A list of developers assigned to this manager
 		/// </summary>
-		public List<Developer> Team;
+		public List<Developer> Team = null;
 
 
 		/// <summary>

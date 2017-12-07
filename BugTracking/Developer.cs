@@ -24,7 +24,7 @@ namespace BugTracking
 		/// gets a list of applications assigned to this developer
 		/// </summary>
 		/// <returns></returns>
-		public List<Application> getAssignedApplicationList()
+		public List<Apps> getAssignedApplicationList()
 		{
 			return null;
 		}

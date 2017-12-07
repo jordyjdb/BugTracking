@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BugTracking
 {
-	class User
+	public class User
 	{
 
 		public long Id { get; private set; }

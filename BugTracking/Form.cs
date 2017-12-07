@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BugTracking
 {
-	class Form
+	public class Form
 	{
 		public long id { get; private set; }
 
