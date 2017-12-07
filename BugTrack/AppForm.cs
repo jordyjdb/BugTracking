@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BugTracking;
+using System;
 using System.Collections.Generic;
 
 namespace BugTrack
@@ -34,13 +35,13 @@ namespace BugTrack
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns>returns controlID</returns>
-		public int addControl(Control control)
+		public int addControl(FormControl control)
 		{
 
 			return -1;
 		}
 
-		public int removeControl(Control control)
+		public int removeControl(FormControl control)
 		{
 
 			return -1;
