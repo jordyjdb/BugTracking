@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BugTracking
 {
@@ -21,7 +22,7 @@ namespace BugTracking
 		/// <summary>
 		/// the form were the bug occurs
 		/// </summary>
-		public Form form;
+		public System.Windows.Forms.Form form;
 
 		/// <summary>
 		/// the control interacted with by the user when the bug occurs

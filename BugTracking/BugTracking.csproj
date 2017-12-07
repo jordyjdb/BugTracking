@@ -86,8 +86,15 @@
     <Compile Include="Control.cs" />
     <Compile Include="Developer.cs" />
     <Compile Include="DeveloperBug.cs" />
-    <Compile Include="Form.cs" />
+    <Compile Include="AppForm.cs" />
+    <Compile Include="frmBugList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBugList.Designer.cs">
+      <DependentUpon>frmBugList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manager.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserBug.cs" />
