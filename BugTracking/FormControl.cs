@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BugTracking
 {
-	public class Control
+	public class FormControl
 	{
 		public long Id { get; private set; }
 

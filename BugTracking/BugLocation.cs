@@ -1,33 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace BugTracking
 {
 	public class BugLocation
 	{
-
-
 		public long Id { get; private set; }
 		/// <summary>
 		/// The application the bug resides on
 		/// </summary>
-		public Apps application;
+		public App application;
 
 		/// <summary>
 		/// the form were the bug occurs
 		/// </summary>
-		public System.Windows.Forms.Form form;
+		public AppForm form;
 
 		/// <summary>
 		/// the control interacted with by the user when the bug occurs
 		/// </summary>
-		public Control control;
+		public FormControl control;
 
 		/// <summary>
 		/// a quick description of the action performed by the user bug occured
@@ -49,12 +46,12 @@ namespace BugTracking
 
 
 
-		
+
 		public Boolean get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
-			SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.AzureBugTrackingConnectionString);
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand("Select * From BugLocation where Id = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
 
@@ -74,8 +71,8 @@ namespace BugTracking
 
 			if (ds.Tables[0].Rows.Count == 1)
 			{
-				lineNumber = (long) ds.Tables[0].Rows[0]["lineNumber"];
-				
+				lineNumber = (long)ds.Tables[0].Rows[0]["lineNumber"];
+
 
 				long applicationID = (long)ds.Tables[0].Rows[0]["applicationID"];
 
@@ -83,41 +80,24 @@ namespace BugTracking
 
 				long controlID = (long)ds.Tables[0].Rows[0]["controlID"];
 
-				 action = (String)ds.Tables[0].Rows[0]["action"];
+				action = (String)ds.Tables[0].Rows[0]["action"];
 
-				 relatedMethod = (String)ds.Tables[0].Rows[0]["relatedMethod"];
+				relatedMethod = (String)ds.Tables[0].Rows[0]["relatedMethod"];
 
-				 relatedParameter = (String) ds.Tables[0].Rows[0]["relatedParameter"];
-				
+				relatedParameter = (String)ds.Tables[0].Rows[0]["relatedParameter"];
+
 
 
 				return true;
 			}
-			else {
+			else
+			{
 				return false;
 			}
 
 
 
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	}
 }

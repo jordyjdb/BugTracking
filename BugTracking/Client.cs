@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using BugTracking;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -35,12 +36,12 @@ namespace BugTracking
 		/// <summary>
 		/// applications that the client can choose when filling in bug information
 		/// </summary>
-		public List<Apps> GetOwnedApps()
+		public List<App> GetOwnedApps()
 		{
 
-				List<Apps> applications = new List<Apps>();
+				List<App> applications = new List<App>();
 				DataSet ds = new DataSet();
-				SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.AzureBugTrackingConnectionString);
+				SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 				SqlCommand sqlCom = new SqlCommand("Select * From Application", sqlCon);
 
 				try
@@ -66,7 +67,7 @@ namespace BugTracking
 						String name = (String)row["name"];
 
 
-						Apps newApplication = new Apps();
+						App newApplication = new App();
 						applications.Add(newApplication);
 					}
 				}

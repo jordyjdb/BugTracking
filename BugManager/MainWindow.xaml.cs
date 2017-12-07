@@ -34,9 +34,9 @@ namespace BugManager
 			txtComment.Text = bug.Comment;
 
 
-			List< BugTracking.Apps> AppList = BugTracking.Apps.get();
+			List<BugTracking.App> AppList = BugTracking.App.get();
 
-			foreach (BugTracking.Apps app in AppList)
+			foreach (BugTracking.App app in AppList)
 			{
 				cboApplication.Items.Add(app);
 			}

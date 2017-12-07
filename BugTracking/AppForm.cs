@@ -1,9 +1,9 @@
+
+﻿using BugTracking;
+using System;
+
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BugTracking
 {
@@ -26,10 +26,10 @@ namespace BugTracking
 		/// if this is currently active in the application
 		/// </summary>
 		public Boolean active { get; private set; }
-		public Action<object, FormClosedEventArgs> FormClosed { get; internal set; }
+
 		#region controls
 		//controls on the form
-		public List<Control> controls()
+		public List<FormControl> controls()
 		{
 			return null;
 		}
@@ -38,17 +38,19 @@ namespace BugTracking
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns>returns controlID</returns>
-		public int addControl(Control control)
-		{
 
-			return - 1;
-		}
-
-		public int removeControl(Control control)
+		public int addControl(FormControl control)
 		{
 
 			return -1;
 		}
+
+
+		public int removeControl(FormControl control)
+		{
+			return -1;
+		}
+
 
 		#endregion
 

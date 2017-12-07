@@ -1,4 +1,5 @@
 ﻿using System;
+using BugTrack;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace BugTracking
 		/// gets a list of applications assigned to this developer
 		/// </summary>
 		/// <returns></returns>
-		public List<Apps> getAssignedApplicationList()
+		public List<App> getAssignedApplicationList()
 		{
 			return null;
 		}

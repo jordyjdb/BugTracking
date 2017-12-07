@@ -135,9 +135,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BugTrack\BugTrack.csproj">
-      <Project>{40335cb4-39a2-418f-a9e4-b99dc289e8f3}</Project>
-      <Name>BugTrack</Name>
+    <ProjectReference Include="..\BugTracking\BugTracking.csproj">
+      <Project>{02c783f6-70a8-4459-a261-111fe5c46635}</Project>
+      <Name>BugTracking</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

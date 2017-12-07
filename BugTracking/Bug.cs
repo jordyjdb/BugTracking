@@ -82,7 +82,7 @@ namespace BugTracking
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
-			SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.AzureBugTrackingConnectionString);
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand("Select * From Bugs where Id = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
 

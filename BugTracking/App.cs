@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BugTracking;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace BugTracking
 {
-	public class Apps
+	public class App
 	{
 		public long Id { get; private set; }
-	
+
 		public String Name { get; private set; }
-	
+
 
 
 
@@ -26,7 +27,7 @@ namespace BugTracking
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
-			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand("Select * From Application where Id = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
 
@@ -51,7 +52,8 @@ namespace BugTracking
 
 				return true;
 			}
-			else {
+			else
+			{
 				return false;
 			}
 
@@ -63,13 +65,13 @@ namespace BugTracking
 		/// returns list of all applications
 		/// </summary>
 		/// <returns></returns>
-		public static List<Apps> get()
+		public static List<App> get()
 		{
-			List<Apps> applications = new List<Apps>();
+			List<App> applications = new List<App>();
 
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
-			SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.AzureBugTrackingConnectionString);
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand("Select * From Application", sqlCon);
 
 			try
@@ -91,7 +93,7 @@ namespace BugTracking
 				foreach (DataRow row in ds.Tables[0].Rows)
 				{
 
-					Apps application = new Apps
+					App application = new App
 					{
 						Name = (String)ds.Tables[0].Rows[0]["name"],
 						Id = (long)ds.Tables[0].Rows[0]["Id"]
