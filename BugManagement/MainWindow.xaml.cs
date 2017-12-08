@@ -24,7 +24,7 @@ namespace BugManagement
 	public partial class MainWindow : Window
 	{
 
-	
+	//Todo add Help button?
 
 		public BugTracking.Bug Bug{ get; private set; }
 		

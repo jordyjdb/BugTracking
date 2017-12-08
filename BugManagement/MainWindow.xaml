@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BugManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="328.667" Width="565">
+        Title="MainWindow" Height="328.667" Width="705.267">
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TabControl x:Name="tabControl" Margin="0,0,289,0" Grid.ColumnSpan="2" SelectionChanged="tabControl_SelectionChanged">
+        <TabControl x:Name="tabControl" Margin="0,0,432,0" Grid.ColumnSpan="2" SelectionChanged="tabControl_SelectionChanged">
             <TabItem Header="Bug Details">
                 <Grid Background="#FFE5E5E5">
                     <TextBox x:Name="txtComment" Margin="91,42,5,5" TextWrapping="Wrap"/>
@@ -50,11 +51,11 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <DockPanel LastChildFill="False" Grid.Column="1" HorizontalAlignment="Right" Width="289" Height="58" VerticalAlignment="Bottom">
-            <Button x:Name="btnReport" Content="Commit Changes" Height="58" VerticalAlignment="Top" Width="145" Click="btnReport_Click"/>
-            <Button x:Name="btnCLose" Content="Cancel" Height="58" VerticalAlignment="Top" Width="145" Click="button_Click"/>
+        <DockPanel LastChildFill="False" Grid.Column="1" HorizontalAlignment="Right" Width="427" Height="58" VerticalAlignment="Bottom">
+            <Button x:Name="btnReport" Content="Commit Changes" Height="58" VerticalAlignment="Top" Width="214" Click="btnReport_Click"/>
+            <Button x:Name="btnCLose" Content="Cancel" Height="58" VerticalAlignment="Top" Width="213" Click="button_Click"/>
         </DockPanel>
-        <DataGrid x:Name="grdBugs" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="289" Margin="0,0,0,58"  DataContextChanged="grdBugs_DataContextChanged" SelectionChanged="grdBugs_SelectionChanged">
+        <DataGrid x:Name="grdBugs" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="427" Margin="0,0,0,58"  DataContextChanged="grdBugs_DataContextChanged" SelectionChanged="grdBugs_SelectionChanged">
            
         </DataGrid>
 
