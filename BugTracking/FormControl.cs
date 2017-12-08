@@ -66,14 +66,17 @@ namespace BugTracking
 
 					bool Active;
 
-					if ((int) row["Active"] == 1)
+					
+					if ((long)row["Active"] == 1)
 					{
 						Active = true;
 					}
 					else
 					{
 						Active = false;
-							}
+					}
+						//Active = (bool)row["Active"];
+					
 
 
 
@@ -89,13 +92,9 @@ namespace BugTracking
 
 					formControls.Add(formControl);
 				}
-				return formControls;
+				
 			}
-			else
-			{
-				//throw exeption
-				return null;
-			}
+			return formControls;
 		}
 	}
 

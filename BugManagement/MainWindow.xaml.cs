@@ -35,6 +35,19 @@ namespace BugManagement
 
 			populateBugDetails();
 
+			refreshGrid();
+		}
+
+
+		public void refreshGrid()
+		{
+
+
+		List< DeveloperBug> developerBugs =   DeveloperBug.Get();
+
+
+			grdBugs.DataContext = developerBugs;
+
 
 		}
 
@@ -52,16 +65,14 @@ namespace BugManagement
 
 			}
 			populateAppList();
-			populateFormList();
-			populateControlList();
+	
+			
 			populateActionList();
 		}
 
 		public void populateAppList()
 		{
-
-
-
+			
 			cboApplication.DisplayMemberPath = "Name";
 			cboApplication.SelectedValuePath = "Id";
 
@@ -74,12 +85,12 @@ namespace BugManagement
 			}
 		}
 
-		public void populateControlList()
+		public void populateControlList(long AppID)
 		{
-			cboApplication.DisplayMemberPath = "Name";
-			cboApplication.SelectedValuePath = "Id";
+			cboControl.DisplayMemberPath = "Label";
+			cboControl.SelectedValuePath = "Id";
 
-			List<BugTracking.FormControl> AppList = BugTracking.FormControl.get();
+			List<BugTracking.FormControl> AppList = BugTracking.FormControl.get(AppID);
 
 			foreach (BugTracking.FormControl app in AppList)
 			{
@@ -87,11 +98,11 @@ namespace BugManagement
 			}
 		}
 
-		public void populateFormList()
+		public void populateFormList(long AppID)
 		{
-			cboForm.DisplayMemberPath = "Name";
-			cboForm.SelectedValuePath = "Id";
-			List<BugTracking.AppForm> AppFormList = BugTracking.AppForm.get();
+			cboForm.DisplayMemberPath = "label";
+			cboForm.SelectedValuePath = "id";
+			List<BugTracking.AppForm> AppFormList = BugTracking.AppForm.Get(AppID);
 
 			foreach (BugTracking.AppForm app in AppFormList)
 			{
@@ -101,6 +112,8 @@ namespace BugManagement
 
 		public void populateActionList()
 		{
+			cboActions.DisplayMemberPath = "Name";
+			cboActions.SelectedValuePath = "Id";
 			List<BugTracking.Action> ActionList = BugTracking.Action.Get();
 
 			foreach (BugTracking.Action action in ActionList)
@@ -124,7 +137,7 @@ namespace BugManagement
 				formID = (long) cboApplication.SelectedValue;
 				controlID = (long) cboApplication.SelectedValue;
 				lineNumber = (long) Convert.ToDouble(txtLineNumber.Text);
-				action = (String) cboActions.SelectedValue;
+			action = (String)	cboActions.Text ;
 				relatedMethod = (String) txtRelatedMethod.Text;
 			relatedParameter = (String)txtRelatedParameter.Text;
 			check = (bool) chkSolutionFound.IsChecked;
@@ -158,6 +171,17 @@ namespace BugManagement
 
 		}
 		private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+
+		private void cboApplication_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			populateControlList((long)cboApplication.SelectedValue);
+			populateFormList((long)cboApplication.SelectedValue);
+		}
+
+		private void cboForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 
 		}

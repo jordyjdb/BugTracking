@@ -124,11 +124,11 @@ namespace BugTracking
 		/// <summary>
 		/// gets all bugs
 		/// </summary>
-		public static List<Bug> get()
+		public static List<Bug> Get()
 		{
 			List<Bug> BugList = new List<Bug>();
 			DataSet ds = new DataSet();
-			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand("Select * From Bugs", sqlCon);
 
 			try
@@ -188,8 +188,8 @@ namespace BugTracking
 			//ID = previuosBugID and create new bug with link
 
 
-			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
-			SqlCommand sqlCom = new SqlCommand("Insert into Bugs(Title, Comment, previousBugId) values (@Title, @Comment, @previousBugId", sqlCon);
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("Insert into Bugs(Title, Comment, previousBugId) values (@Title, @Comment, @previousBugId);SELECT SCOPE_IDENTITY() ", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@Title", Title));
 			sqlCom.Parameters.Add(new SqlParameter("@Comment", Comment));
 			sqlCom.Parameters.Add(new SqlParameter("@previousBugId", Id));
@@ -199,7 +199,10 @@ namespace BugTracking
 			{
 				sqlCon.Open();
 
-				Id = (int)sqlCom.ExecuteScalar();
+				decimal id = (decimal)sqlCom.ExecuteScalar();
+
+
+				Id = (long)id;
 
 
 			}

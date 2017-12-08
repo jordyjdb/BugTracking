@@ -44,6 +44,11 @@ namespace BugTracking
 		private long formID;
 		private long controlID;
 
+		public BugLocation(long id)
+		{
+			this.Id = id;
+		}
+	
 		public BugLocation(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
 		{
 			this.applicationID = applicationID;
@@ -58,9 +63,12 @@ namespace BugTracking
 		public long lineNumber { get; private set; }
 
 
+		public Boolean get()
+		{
+			return get(Id);
+		}
 
-
-		public Boolean get(long id)
+			public Boolean get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
@@ -114,7 +122,7 @@ namespace BugTracking
 
 		public long Save()
 		{
-			String insertLocation = "INSERT INTO BUGLOCATIONS(applicationID,formID,controlID,action,relatedMethod,relatedParameter,lineNumber) values (@applicationID,@formID,@controlID,@action,@relatedMethod,@relatedParameter,@LineNumber)";
+			String insertLocation = "INSERT INTO BUGLOCATIONS(applicationID,formID,controlID,action,relatedMethod,relatedParameter,lineNumber) values (@applicationID,@formID,@controlID,@action,@relatedMethod,@relatedParameter,@LineNumber); SELECT SCOPE_IDENTITY()";
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand(insertLocation, sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@applicationID", applicationID));
@@ -130,7 +138,11 @@ namespace BugTracking
 			{
 				sqlCon.Open();
 
-			Id = (int)sqlCom.ExecuteScalar();
+			decimal id = (decimal) sqlCom.ExecuteScalar();
+
+
+				Id = (long) id;
+
 			}
 			catch (SqlException ex)
 			{

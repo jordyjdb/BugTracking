@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -57,8 +58,9 @@ namespace BugTracking
 			 SaveBug();
 			
 
-			SqlConnection sqlCon = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='F:\\visual Studio\\BugTracking\\BugTracking\\BugTracking.mdf';Integrated Security=True;Connect Timeout=30");
-			String insertDeveloperBug = "INSERT INTO DEVELOPERBUG(Id,PreviousBugId,Priority,BugOpen) VALUES (@Id,@PreviousBugId,@Priority,@BugOpen)";
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			String insertDeveloperBug = "INSERT INTO DEVELOPERBUG(BugId,PreviousBugId,Priority,BugOpen) VALUES (@Id,@PreviousBugId,@Priority,@BugOpen) SELECT SCOPE_IDENTITY()";
+			String UpdatePreviousBug = "UPDATE DEVELOPERBUG(Archived,NextBugId) values (1,@NextId) where BugId = @Id; SELECT @@Rowcount";
 			SqlCommand sqlCom = new SqlCommand(insertDeveloperBug, sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
 			sqlCom.Parameters.Add(new SqlParameter("@PreviousBugId", PreviousBugId));
@@ -71,7 +73,24 @@ namespace BugTracking
 			{
 				sqlCon.Open();
 
-				Id = (int)sqlCom.ExecuteScalar();
+				decimal id = (decimal)sqlCom.ExecuteScalar();
+
+
+			
+
+				Id = (long)id;
+
+				if (PreviousBugId != 0)
+				{
+					sqlCom.CommandText = UpdatePreviousBug;
+					sqlCom.Parameters.Add(new SqlParameter("@NextId", Id));
+					sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
+					sqlCom.ExecuteNonQuery();
+				}
+				
+
+
+
 
 
 			}
@@ -87,11 +106,67 @@ namespace BugTracking
 			return Id;
 		}
 
-		public List<DeveloperBug> Get()
+		public static new List<DeveloperBug> Get()
 		{
+			
+				List<DeveloperBug> BugList = new List<DeveloperBug>();
+				DataSet ds = new DataSet();
+				SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+				SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.DeveloperBug.BugOpen, dbo.DeveloperBug.Archived, dbo.DeveloperBug.NextBugId, dbo.DeveloperBug.Priority, dbo.DeveloperBug.PreviousBugId, dbo.Bugs.id FROM dbo.DeveloperBug INNER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id", sqlCon);
+
+				try
+				{
+					sqlCon.Open();
+
+					SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+					sqlDa.Fill(ds);
+
+				}
+				finally
+				{
+					sqlCon.Close();
+				}
 
 
-			return null;
+				if (ds.Tables[0].Rows.Count > 0)
+				{
+					foreach (DataRow row in ds.Tables[0].Rows)
+					{
+						long Id = (long)row["Id"];
+						String Title = (String)row["Title"];
+						String Comment = (String)row["Comment"];
+						long previousBugId = (long)Settings.iif(Convert.IsDBNull(row["previousBugId"]), 0, (long)row["previousBugId"]);
+						long locationID = (long) Settings.iif(Convert.IsDBNull(row["locationID"]), (long)row["locationID"],(long) 0);
+						BugLocation bugLocation = new BugLocation(locationID);
+
+					bool BugOpen;
+
+					if ((long)row["BugOpen"] == 1)
+					{
+						BugOpen = true;
+					}
+					else
+					{
+						BugOpen = false;
+					}
+					bugLocation.get();
+
+						String priority = (String)row["priority"];
+
+
+					DeveloperBug newBug = new DeveloperBug(Id, Title, Comment, bugLocation,previousBugId, priority,BugOpen);
+						BugList.Add(newBug);
+					}
+				}
+				else
+				{
+					//throw exeption
+					return null;
+				}
+
+				return BugList;
+	
 		}
 
 
