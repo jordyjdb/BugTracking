@@ -1,4 +1,5 @@
-﻿using BugTracking;
+﻿using BugManagement.Properties;
+using BugTracking;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -46,8 +47,8 @@ namespace BugManagement
 		List< DeveloperBug> developerBugs =   DeveloperBug.Get();
 
 
-			grdBugs.DataContext = developerBugs;
-
+			grdBugs.ItemsSource = developerBugs;
+	
 
 		}
 
@@ -182,6 +183,47 @@ namespace BugManagement
 		}
 
 		private void cboForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+
+
+
+
+
+		private void grdBugs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (grdBugs.Items.Count >= 1)
+			{
+				if (Settings.Default.Developer == true)
+				{
+					grdBugs.Columns[0].Visibility = Visibility.Collapsed;
+				}
+				else
+				{
+					grdBugs.Columns[0].Visibility = Visibility.Hidden;
+				}
+
+			}
+		}
+
+		private void grdBugs_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			if (grdBugs.Items.Count >= 1)
+			{
+				if (Settings.Default.Developer == true)
+				{
+					grdBugs.Columns[0].Visibility = Visibility.Collapsed;
+				}
+				else
+				{
+					grdBugs.Columns[0].Visibility = Visibility.Hidden;
+				}
+
+			}
+		}
+
+		private void grdBugs_DataContextChanged_1(object sender, DependencyPropertyChangedEventArgs e)
 		{
 
 		}

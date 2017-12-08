@@ -142,7 +142,7 @@ namespace BugTracking
 
 					bool BugOpen;
 
-					if ((long)row["BugOpen"] == 1)
+					if ((bool)row["BugOpen"] == true)
 					{
 						BugOpen = true;
 					}

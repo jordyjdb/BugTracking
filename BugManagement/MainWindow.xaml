@@ -54,7 +54,7 @@
             <Button x:Name="btnReport" Content="Commit Changes" Height="58" VerticalAlignment="Top" Width="145" Click="btnReport_Click"/>
             <Button x:Name="btnCLose" Content="Cancel" Height="58" VerticalAlignment="Top" Width="145" Click="button_Click"/>
         </DockPanel>
-        <DataGrid x:Name="grdBugs" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="289" Margin="0,0,0,58">
+        <DataGrid x:Name="grdBugs" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="289" Margin="0,0,0,58"  DataContextChanged="grdBugs_DataContextChanged" SelectionChanged="grdBugs_SelectionChanged">
            
         </DataGrid>
 
