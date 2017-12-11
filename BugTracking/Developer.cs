@@ -9,6 +9,15 @@ namespace BugTracking
 {
 	class Developer : User
 	{
+	
+
+
+
+		public Developer(long Id, String FirstName, String LastName,long Usertype) : base(Id, FirstName,LastName,Usertype)
+		{
+
+		}
+
 
 
 		/// <summary>

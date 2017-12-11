@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BugManagerForm
+namespace BugManager
 {
 	static class Program
 	{
@@ -16,7 +16,11 @@ namespace BugManagerForm
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+			//Application.Run(new FrmLogin());
+
+			FrmLogin frmLogin = new FrmLogin();
+			frmLogin.Show();
+			Application.Run();
 		}
 	}
 }

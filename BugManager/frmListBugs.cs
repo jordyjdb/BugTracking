@@ -8,13 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BugManagerForm
+namespace BugManager
 {
-	public partial class Form1 : Form
+	public partial class frmListBugs : Form
 	{
-		public Form1()
+		public frmListBugs()
 		{
 			InitializeComponent();
+		}
+
+		private void frmListBugs_Load(object sender, EventArgs e)
+		{
+
+
+			List<BugTracking.Bug> bugs = BugTracking.Bug.Get();
+
+			grdBugs.DataSource = bugs;
+
+
+
 		}
 	}
 }

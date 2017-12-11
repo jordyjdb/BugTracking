@@ -8,6 +8,12 @@ namespace BugTracking
 {
 	class Manager : Developer
 	{
+		public Manager(long Id, String FirstName, String LastName, long Usertype) : base(Id, FirstName, LastName, Usertype)
+		{
+
+		}
+
+
 
 		/// <summary>
 		/// A list of developers assigned to this manager

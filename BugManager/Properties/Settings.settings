@@ -2,8 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BugManager.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="SQLConnection" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=jbailey6874.database.windows.net;Initial Catalog=BugTrackingDataSet;Integrated Security=False;User ID=jordyjdb;Password=Jordyjune26;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False</Value>
+    <Setting Name="LoggedInID" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

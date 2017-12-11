@@ -25,13 +25,13 @@ namespace BugManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"Data Source=jbailey6874.database.windows.net;Initial Catalog=BugTrackingDataSet;Integrated Security=False;User ID=jordyjdb;Password=Jordyjune26;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")]
-        public string SQLConnection {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long LoggedInID {
             get {
-                return ((string)(this["SQLConnection"]));
+                return ((long)(this["LoggedInID"]));
             }
             set {
-                this["SQLConnection"] = value;
+                this["LoggedInID"] = value;
             }
         }
     }

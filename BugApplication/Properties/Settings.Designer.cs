@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BugManagerForm.Properties
+namespace BugApplication.Properties
 {
 
 

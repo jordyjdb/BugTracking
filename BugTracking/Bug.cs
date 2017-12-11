@@ -150,10 +150,10 @@ namespace BugTracking
 			{
 				foreach (DataRow row in ds.Tables[0].Rows)
 				{
-					long Id = (int) row["Id"];
+					long Id = (long) row["Id"];
 					String Title = (String) row["Title"];
 					String Comment = (String) row["Comment"];
-					long previousBugId = (int) row["previousBugId"];
+					long previousBugId = (long) row["previousBugId"];
 
 
 					Bug newBug = new Bug(Id, Title, Comment);

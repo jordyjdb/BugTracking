@@ -48,6 +48,7 @@
                     <Label x:Name="label2_Copy" Content="Assigned User:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="btnAddLink" Content="Relate Bug" Margin="0,0,10,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="86"/>
                     <CheckBox x:Name="chkSolutionFound" Content="Solution Found" HorizontalAlignment="Left" Margin="102,72,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnNewBug" Content="New Bug" Margin="0,0,141,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="86"/>
                 </Grid>
             </TabItem>
         </TabControl>
