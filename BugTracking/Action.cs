@@ -13,15 +13,17 @@ namespace BugTracking
 		public long Id { get; private set; }
 		public String Name { get; set; }
 
-		public static List<BugTracking.Action> Get()
+
+        //TODO add ApplicationID to table
+        public static List<BugTracking.Action> Get(long AppID)
 		{
 			List<Action> formControls = new List<Action>();
 
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("SELECT * from Actions", sqlCon);
-
+			SqlCommand sqlCom = new SqlCommand("SELECT * from Actions where ApplicationID = @ApplicationID", sqlCon);
+            sqlCom.Parameters.Add(new SqlParameter("@ApplicationID", AppID));
 
 
 			try

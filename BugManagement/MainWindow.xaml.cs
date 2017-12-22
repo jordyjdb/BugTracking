@@ -78,7 +78,7 @@ namespace BugManagement
 			cboApplication.SelectedValuePath = "Id";
 
 
-			List<BugTracking.App> AppList = BugTracking.App.get();
+			List<BugTracking.App> AppList = BugTracking.App.Get();
 
 			foreach (BugTracking.App app in AppList)
 			{

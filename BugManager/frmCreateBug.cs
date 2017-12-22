@@ -34,8 +34,8 @@ namespace BugManager
 		{
 
 
-			BugTracking.App.get();
-			cboApplication.DataSource = BugTracking.App.get();
+			BugTracking.App.Get();
+			cboApplication.DataSource = BugTracking.App.Get();
 
 		
 
@@ -49,16 +49,16 @@ namespace BugManager
 
 			cboControlName.DisplayMember = "Label";
 			cboControlName.ValueMember = "Id";
-			cboControlName.DataSource = BugTracking.FormControl.get((long) cboApplication.SelectedValue);
+			cboControlName.DataSource = BugTracking.FormControl.Get((long) cboApplication.SelectedValue);
 
 			cboFormName.DisplayMember = "Name";
 			cboFormName.ValueMember = "Id";
-			cboFormName.DataSource = BugTracking.App.get();
+			cboFormName.DataSource = BugTracking.AppForm.Get((long)cboApplication.SelectedValue);
 
 
 			cboAction.DisplayMember = "Name";
 			cboAction.ValueMember = "Id";
-			cboAction.DataSource = BugTracking.Action.Get();
+			cboAction.DataSource = BugTracking.Action.Get((long)cboApplication.SelectedValue);
 
 		}
 	}

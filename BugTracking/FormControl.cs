@@ -34,7 +34,7 @@ namespace BugTracking
 		/// </summary>
 		public Boolean Active { get; private set; }
 
-		public static List<FormControl> get(long AppID)
+		public static List<FormControl> Get(long AppID)
 		{
 			List<FormControl> formControls = new List<FormControl>();
 

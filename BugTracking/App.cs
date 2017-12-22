@@ -23,7 +23,61 @@ namespace BugTracking
 		/// </summary>
 		public User DefaultUser;
 
-		public Boolean get(long id)
+        public App(long Id,string Name) : this(Name)
+        {
+            this.Id = Id;
+        }
+
+
+        public App(string Name)
+        {
+            this.Name = Name;
+        }
+
+        public long Save()
+        {
+
+     
+                //if ID == 0 
+                //new bug with no previous link
+
+                //if ID != 0 
+                //ID = previuosBugID and create new bug with link
+
+
+                SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+                SqlCommand sqlCom = new SqlCommand("Insert into Application(name, defaultUserID) values (@name, @defaultUserId);SELECT SCOPE_IDENTITY() ", sqlCon);
+                sqlCom.Parameters.Add(new SqlParameter("@name", Name));
+                sqlCom.Parameters.Add(new SqlParameter("@defaultUserId", DefaultUser.Id));
+            
+
+
+                try
+                {
+                    sqlCon.Open();
+
+                    decimal id = (decimal)sqlCom.ExecuteScalar();
+
+
+                    Id = (long)id;
+
+
+                }
+                catch (SqlException ex)
+                {
+
+                }
+                finally
+                {
+                    sqlCon.Close();
+
+                }
+                return Id;
+
+            
+        }
+
+        public Boolean get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
@@ -65,7 +119,7 @@ namespace BugTracking
 		/// returns list of all applications
 		/// </summary>
 		/// <returns></returns>
-		public static List<App> get()
+		public static List<App> Get()
 		{
 			List<App> applications = new List<App>();
 
@@ -93,11 +147,8 @@ namespace BugTracking
 				foreach (DataRow row in ds.Tables[0].Rows)
 				{
 
-					App application = new App
-					{
-						Name = (String)row["name"],
-						Id = (long)row["Id"]
-					};
+                    App application = new App( (long)row["Id"], (String)row["name"]);
+				
 
 					applications.Add(application);
 				}

@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmApplicationManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmApplicationManager.Designer.cs">
+      <DependentUpon>frmApplicationManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCreateBug.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmApplicationManager.resx">
+      <DependentUpon>frmApplicationManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCreateBug.resx">
       <DependentUpon>frmCreateBug.cs</DependentUpon>
     </EmbeddedResource>
