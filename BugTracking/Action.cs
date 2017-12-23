@@ -10,12 +10,61 @@ namespace BugTracking
 {
 	public class Action
 	{
-		public long Id { get; private set; }
-		public String Name { get; set; }
+        public Action(string name, String Description, long ApplicationId)
+        {
+            Name = name;
+            this.Description = Description;
+            this.ApplicationId = ApplicationId;
+        }
+        
+        public Action(long Id, string name,String Description, long ApplicationId) :this(name,Description,ApplicationId)
+        {
+            this.Id = Id;
+        }
+        public long Id { get; private set; }
+        public String Name { get; set; }
+        public String Description { get; set; }
+        public long ApplicationId { get; private set; }
 
 
-        //TODO add ApplicationID to table
-        public static List<BugTracking.Action> Get(long AppID)
+        public long Save()
+        {
+            SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+            SqlCommand sqlCom = new SqlCommand("Insert into Form(name,Description, ApplicationID) values (@label, @name,@active,@ApplicationID);SELECT SCOPE_IDENTITY() ", sqlCon);
+            sqlCom.Parameters.Add(new SqlParameter("@label", Description));
+            sqlCom.Parameters.Add(new SqlParameter("@name", Name));
+            sqlCom.Parameters.Add(new SqlParameter("@ApplicationID", ApplicationId));
+
+
+
+            try
+            {
+                sqlCon.Open();
+
+                decimal id = (decimal)sqlCom.ExecuteScalar();
+
+
+                Id = (long)id;
+
+
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            finally
+            {
+                sqlCon.Close();
+
+            }
+            return Id;
+        }
+    
+
+
+
+    //TODO add ApplicationID to table
+    public static List<BugTracking.Action> Get(long AppID)
 		{
 			List<Action> formControls = new List<Action>();
 
@@ -44,16 +93,9 @@ namespace BugTracking
 			{
 				foreach (DataRow row in ds.Tables[0].Rows)
 				{
-
-			
-
-
-					Action action = new Action
-					{
-						Name = (String)row["name"],
-						Id = (long)row["Id"],
-						
-					};
+                    
+                    Action action = new Action((long)row["Id"], (String)row["name"], (String)row["Description"], AppID);
+				
 
 					formControls.Add(action);
 				}

@@ -51,6 +51,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnApplicationSave = new System.Windows.Forms.Button();
+            this.txtActionDescription = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.grpApplication.SuspendLayout();
             this.grpFormDetails.SuspendLayout();
             this.grpControlDetails.SuspendLayout();
@@ -79,9 +81,9 @@
             this.cboApplication.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboApplication.FormattingEnabled = true;
-            this.cboApplication.Location = new System.Drawing.Point(129, 19);
+            this.cboApplication.Location = new System.Drawing.Point(132, 19);
             this.cboApplication.Name = "cboApplication";
-            this.cboApplication.Size = new System.Drawing.Size(171, 24);
+            this.cboApplication.Size = new System.Drawing.Size(168, 24);
             this.cboApplication.TabIndex = 1;
             this.cboApplication.SelectedValueChanged += new System.EventHandler(this.cboApplication_SelectedValueChanged);
             this.cboApplication.TextChanged += new System.EventHandler(this.cboApplication_TextChanged);
@@ -96,7 +98,7 @@
             this.grpFormDetails.Controls.Add(this.label2);
             this.grpFormDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpFormDetails.Enabled = false;
-            this.grpFormDetails.Location = new System.Drawing.Point(3, 70);
+            this.grpFormDetails.Location = new System.Drawing.Point(3, 49);
             this.grpFormDetails.Name = "grpFormDetails";
             this.grpFormDetails.Size = new System.Drawing.Size(302, 127);
             this.grpFormDetails.TabIndex = 1;
@@ -181,7 +183,7 @@
             this.grpControlDetails.Controls.Add(this.label3);
             this.grpControlDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpControlDetails.Enabled = false;
-            this.grpControlDetails.Location = new System.Drawing.Point(3, 197);
+            this.grpControlDetails.Location = new System.Drawing.Point(3, 176);
             this.grpControlDetails.Name = "grpControlDetails";
             this.grpControlDetails.Size = new System.Drawing.Size(302, 129);
             this.grpControlDetails.TabIndex = 2;
@@ -249,14 +251,16 @@
             // 
             // grpActionDetails
             // 
+            this.grpActionDetails.Controls.Add(this.txtActionDescription);
+            this.grpActionDetails.Controls.Add(this.label7);
             this.grpActionDetails.Controls.Add(this.btnActionDetails);
             this.grpActionDetails.Controls.Add(this.cboActionName);
             this.grpActionDetails.Controls.Add(this.label4);
             this.grpActionDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpActionDetails.Enabled = false;
-            this.grpActionDetails.Location = new System.Drawing.Point(3, 326);
+            this.grpActionDetails.Location = new System.Drawing.Point(3, 305);
             this.grpActionDetails.Name = "grpActionDetails";
-            this.grpActionDetails.Size = new System.Drawing.Size(302, 93);
+            this.grpActionDetails.Size = new System.Drawing.Size(302, 114);
             this.grpActionDetails.TabIndex = 3;
             this.grpActionDetails.TabStop = false;
             this.grpActionDetails.Text = "Action Details";
@@ -264,7 +268,7 @@
             // btnActionDetails
             // 
             this.btnActionDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActionDetails.Location = new System.Drawing.Point(221, 64);
+            this.btnActionDetails.Location = new System.Drawing.Point(221, 85);
             this.btnActionDetails.Name = "btnActionDetails";
             this.btnActionDetails.Size = new System.Drawing.Size(75, 23);
             this.btnActionDetails.TabIndex = 5;
@@ -313,6 +317,24 @@
             this.btnApplicationSave.UseVisualStyleBackColor = true;
             this.btnApplicationSave.Click += new System.EventHandler(this.btnApplicationSave_Click);
             // 
+            // txtActionDescription
+            // 
+            this.txtActionDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtActionDescription.Location = new System.Drawing.Point(129, 54);
+            this.txtActionDescription.Name = "txtActionDescription";
+            this.txtActionDescription.Size = new System.Drawing.Size(167, 22);
+            this.txtActionDescription.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 57);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(122, 17);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Action Description";
+            // 
             // frmApplicationManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -360,5 +382,7 @@
         private System.Windows.Forms.CheckBox chkFormActive;
         private System.Windows.Forms.CheckBox chkControlActive;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtActionDescription;
+        private System.Windows.Forms.Label label7;
     }
 }

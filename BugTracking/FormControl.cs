@@ -10,7 +10,19 @@ namespace BugTracking
 {
 	public class FormControl
 	{
-		public long Id { get; private set; }
+        private FormControl(long Id, string label, string name, bool active, long applicationId) : this(label, name, active, applicationId) { #
+            this.Id = Id;
+        }
+
+        public FormControl(string label, string name, bool active, long applicationId)
+        {
+            this.ApplicationID = applicationId;
+            Label = label;
+            Name = name;
+            Active = active;
+        }
+
+        public long Id { get; private set; }
 
 		/// <summary>
 		/// optional, what text the control has if any
@@ -34,14 +46,16 @@ namespace BugTracking
 		/// </summary>
 		public Boolean Active { get; private set; }
 
-		public static List<FormControl> Get(long AppID)
+        public long ApplicationID { get; private set; }
+
+        public static List<FormControl> Get(long AppID)
 		{
 			List<FormControl> formControls = new List<FormControl>();
 
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("SELECT dbo.ControlType.Type AS ControlType, dbo.Controls.label, dbo.Controls.name, dbo.Controls.id, dbo.Controls.active FROM dbo.ApplicationControls INNER JOIN dbo.Controls ON dbo.ApplicationControls.ControlID = dbo.Controls.id INNER JOIN dbo.ControlType ON dbo.Controls.controlTypeId = dbo.ControlType.id WHERE(dbo.ApplicationControls.Applicationid = @ID)", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("SELECT * FROM controls where Applicationid = @ID)", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", AppID));
 
 
@@ -81,22 +95,51 @@ namespace BugTracking
 
 
 
-					FormControl formControl = new FormControl
-					{
-						Name = (String)row["name"],
-						Id = (long)row["Id"],
-						Label = (String)row["Label"],
-						ControlType = (String)row["ControlType"],
-						Active = Active
-					}; 
+					FormControl formControl = new FormControl((long)row["Id"], (String)row["Label"], (String)row["name"],Active, AppID);
 
-					formControls.Add(formControl);
+
+
+                    formControls.Add(formControl);
 				}
 				
 			}
 			return formControls;
 		}
-	}
+
+        public long Save()
+        {
+            SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+            SqlCommand sqlCom = new SqlCommand("Insert into Form(label, name,active, ApplicationID) values (@label, @name,@active,@ApplicationID);SELECT SCOPE_IDENTITY() ", sqlCon);
+            sqlCom.Parameters.Add(new SqlParameter("@label", Label));
+            sqlCom.Parameters.Add(new SqlParameter("@name", Name));
+            sqlCom.Parameters.Add(new SqlParameter("@active", Active));
+            sqlCom.Parameters.Add(new SqlParameter("@ApplicationID", ApplicationID));
+
+
+
+            try
+            {
+                sqlCon.Open();
+
+                decimal id = (decimal)sqlCom.ExecuteScalar();
+
+
+                Id = (long)id;
+
+
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            finally
+            {
+                sqlCon.Close();
+
+            }
+            return Id;
+        }
+    }
 
 
 

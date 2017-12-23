@@ -16,6 +16,8 @@ namespace BugManager
         List<BugTracking.App> AppList;
         List<BugTracking.AppForm> FormList;
         List<BugTracking.FormControl> ControlList;
+        List<BugTracking.Action> ActionList;
+
 
         public frmApplicationManager()
 		{
@@ -34,6 +36,29 @@ namespace BugManager
 
                 AppList.Add(newApp);
 
+                foreach(BugTracking.AppForm form in FormList)
+                {
+                    if (form.Id == 0)
+                    {
+                        form.ApplicationID = newApp.Id;
+                        form.Save();
+                    }
+                }
+                foreach (BugTracking.FormControl control in ControlList)
+                {
+                    if (control.Id == 0)
+                    {
+                        control.Save();
+                    }
+                }
+                foreach (BugTracking.Action action in ActionList)
+                {
+                    if (action.Id == 0)
+                    {
+                        
+                        action.Save();
+                    }
+                }
             }
         }
 
@@ -125,21 +150,28 @@ namespace BugManager
         {
             if (cboFormName.SelectedValue != null)
             {
-
-               // BugTracking.AppForm newApp = new BugTracking.AppForm();
-              //  FormList.Add();
+                BugTracking.AppForm newApp = new BugTracking.AppForm(txtFormLabel.Text,cboFormName.Text,chkFormActive.Checked,(long) cboApplication.SelectedValue);
+                FormList.Add(newApp);
             }
         }
 
         private void btnControlDetails_Click(object sender, EventArgs e)
         {
-
+            if (cboControlName.SelectedValue != null)
+            {
+                BugTracking.FormControl newControl = new BugTracking.FormControl(txtFormLabel.Text, cboFormName.Text, chkFormActive.Checked, (long) cboApplication.SelectedValue);
+                ControlList.Add(newControl);
+            }
         }
 
 
         private void btnActionDetails_Click(object sender, EventArgs e)
         {
-
+            if (cboActionName.SelectedValue != null)
+            {
+                BugTracking.Action newAction = new BugTracking.Action(cboActionName.Text, txtActionDescription.Text,(long)cboApplication.SelectedValue);
+                ActionList.Add(newAction);
+            }
         }
     }
 }

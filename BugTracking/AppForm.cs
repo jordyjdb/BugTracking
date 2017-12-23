@@ -11,7 +11,7 @@ namespace BugTracking
 {
 	public class AppForm
 	{
-		public long id { get; private set; }
+		public long Id { get; private set; }
 
 		/// <summary>
 		/// what the form displays on its header
@@ -29,7 +29,7 @@ namespace BugTracking
 		/// </summary>
 		public Boolean active { get; private set; }
 
-		public long ApplicationID { get; private set; }
+		public long ApplicationID { get; set; }
 
 
 
@@ -59,11 +59,56 @@ namespace BugTracking
 			return -1;
 		}
 
+        public long Save()
+        {
+          
 
-		#endregion
 
-		//methods in form
-		public List<String> methods;
+                //if ID == 0 
+                //new bug with no previous link
+
+                //if ID != 0 
+                //ID = previuosBugID and create new bug with link
+
+
+                SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+                SqlCommand sqlCom = new SqlCommand("Insert into Form(label, name,active, ApplicationID) values (@label, @name,@active,@ApplicationID);SELECT SCOPE_IDENTITY() ", sqlCon);
+                sqlCom.Parameters.Add(new SqlParameter("@label", label));
+                sqlCom.Parameters.Add(new SqlParameter("@name", name));
+                sqlCom.Parameters.Add(new SqlParameter("@active", active));
+                sqlCom.Parameters.Add(new SqlParameter("@ApplicationID", ApplicationID));
+
+
+
+                try
+                {
+                    sqlCon.Open();
+
+                    decimal id = (decimal)sqlCom.ExecuteScalar();
+
+
+                    Id = (long)id;
+
+
+                }
+                catch (SqlException ex)
+                {
+
+                }
+                finally
+                {
+                    sqlCon.Close();
+
+                }
+                return Id;
+
+        }
+
+
+        #endregion
+
+        //methods in form
+        public List<String> methods;
 
 		//methods in form
 		public List<String> parameters;
@@ -79,7 +124,7 @@ namespace BugTracking
 
         public AppForm(long id, string label, string name, bool active, long applicationID) : this( label, name, active, applicationID)
         {
-            this.id = id;
+            this.Id = id;
         }
 
         /// <summary>
