@@ -67,7 +67,7 @@ namespace BugTracking
 						String name = (String)row["name"];
 
 
-						App newApplication = new App();
+						App newApplication = new App(Id,name);
 						applications.Add(newApplication);
 					}
 				}

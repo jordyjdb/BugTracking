@@ -32,6 +32,9 @@ namespace BugTracking
 		public long ApplicationID { get; private set; }
 
 
+
+        
+
 		#region controls
 		//controls on the form
 		public List<FormControl> controls()
@@ -65,11 +68,25 @@ namespace BugTracking
 		//methods in form
 		public List<String> parameters;
 
-		/// <summary>
-		/// returns list of all applications
-		/// </summary>
-		/// <returns></returns>
-		public static List<AppForm> Get(long ApplicationID)
+        public AppForm( string label, string name, bool active, long applicationID)
+        {
+          
+            this.label = label ?? throw new ArgumentNullException(nameof(label));
+            this.name = name ?? throw new ArgumentNullException(nameof(name));
+            this.active = active;
+            this.ApplicationID = applicationID;
+        }
+
+        public AppForm(long id, string label, string name, bool active, long applicationID) : this( label, name, active, applicationID)
+        {
+            this.id = id;
+        }
+
+        /// <summary>
+        /// returns list of all applications
+        /// </summary>
+        /// <returns></returns>
+        public static List<AppForm> Get(long ApplicationID)
 		{
 			List<AppForm> AppForm = new List<AppForm>();
 
@@ -109,14 +126,8 @@ namespace BugTracking
 					{
 						Active = false;
 					}
-					AppForm appForm = new AppForm
-					{
-						id = (long)row["ID"],
-						label = (String)row["label"],
-						name = (String)row["name"],
-						active = Active,
-						ApplicationID = (long)row["ApplicationID"]
-					};
+					AppForm appForm = new AppForm((long)row["ID"], (String)row["label"], (String)row["name"], Active, (long)row["ApplicationID"]);
+				
 
 
 					AppForm.Add(appForm);

@@ -9,10 +9,16 @@ namespace BugTracking
 	class ContractedApplication : BugTracking.App
 	{
 
-		/// <summary>
-		/// id occosiated with a row in table ContractedApplication
-		/// </summary>
-		public Client client;
+        public ContractedApplication(long Id, string Name) : base(Id,Name)
+        {
+           
+        }
+
+
+        /// <summary>
+        /// id occosiated with a row in table ContractedApplication
+        /// </summary>
+        public Client Client;
 
 		public DateTime StartDate;
 		public DateTime EndDate;

@@ -28,65 +28,71 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.grdBugs = new System.Windows.Forms.DataGridView();
-			this.btnCreateBug = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.grdBugs)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// grdBugs
-			// 
-			this.grdBugs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.grdBugs = new System.Windows.Forms.DataGridView();
+            this.btnCreateBug = new System.Windows.Forms.Button();
+            this.btnApplication = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBugs)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // grdBugs
+            // 
+            this.grdBugs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.grdBugs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.grdBugs.Location = new System.Drawing.Point(168, 12);
-			this.grdBugs.Name = "grdBugs";
-			this.grdBugs.Size = new System.Drawing.Size(660, 307);
-			this.grdBugs.TabIndex = 0;
-			// 
-			// btnCreateBug
-			// 
-			this.btnCreateBug.Location = new System.Drawing.Point(12, 12);
-			this.btnCreateBug.Name = "btnCreateBug";
-			this.btnCreateBug.Size = new System.Drawing.Size(91, 23);
-			this.btnCreateBug.TabIndex = 1;
-			this.btnCreateBug.Text = "Create Bug";
-			this.btnCreateBug.UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(12, 41);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 2;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(12, 70);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(75, 23);
-			this.button3.TabIndex = 3;
-			this.button3.Text = "button3";
-			this.button3.UseVisualStyleBackColor = true;
-			// 
-			// frmListBugs
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(840, 331);
-			this.Controls.Add(this.button3);
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.btnCreateBug);
-			this.Controls.Add(this.grdBugs);
-			this.Name = "frmListBugs";
-			this.Text = "frmListBugs";
-			this.Load += new System.EventHandler(this.frmListBugs_Load);
-			((System.ComponentModel.ISupportInitialize)(this.grdBugs)).EndInit();
-			this.ResumeLayout(false);
+            this.grdBugs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdBugs.Location = new System.Drawing.Point(224, 15);
+            this.grdBugs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdBugs.Name = "grdBugs";
+            this.grdBugs.Size = new System.Drawing.Size(880, 378);
+            this.grdBugs.TabIndex = 0;
+            // 
+            // btnCreateBug
+            // 
+            this.btnCreateBug.Location = new System.Drawing.Point(16, 15);
+            this.btnCreateBug.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateBug.Name = "btnCreateBug";
+            this.btnCreateBug.Size = new System.Drawing.Size(200, 28);
+            this.btnCreateBug.TabIndex = 1;
+            this.btnCreateBug.Text = "Create Bug";
+            this.btnCreateBug.UseVisualStyleBackColor = true;
+            // 
+            // btnApplication
+            // 
+            this.btnApplication.Location = new System.Drawing.Point(16, 50);
+            this.btnApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnApplication.Name = "btnApplication";
+            this.btnApplication.Size = new System.Drawing.Size(200, 28);
+            this.btnApplication.TabIndex = 2;
+            this.btnApplication.Text = "Manage Applications";
+            this.btnApplication.UseVisualStyleBackColor = true;
+            this.btnApplication.Click += new System.EventHandler(this.btnApplication_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(16, 86);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 28);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // frmListBugs
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1120, 407);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnApplication);
+            this.Controls.Add(this.btnCreateBug);
+            this.Controls.Add(this.grdBugs);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "frmListBugs";
+            this.Text = "frmListBugs";
+            this.Load += new System.EventHandler(this.frmListBugs_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grdBugs)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 
@@ -94,7 +100,7 @@
 
 		private System.Windows.Forms.DataGridView grdBugs;
 		private System.Windows.Forms.Button btnCreateBug;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button btnApplication;
 		private System.Windows.Forms.Button button3;
 	}
 }

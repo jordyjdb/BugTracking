@@ -123,7 +123,12 @@ namespace BugManager
 
         private void btnFormDetails_Click(object sender, EventArgs e)
         {
+            if (cboFormName.SelectedValue != null)
+            {
 
+               // BugTracking.AppForm newApp = new BugTracking.AppForm();
+              //  FormList.Add();
+            }
         }
 
         private void btnControlDetails_Click(object sender, EventArgs e)

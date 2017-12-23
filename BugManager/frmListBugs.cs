@@ -28,5 +28,12 @@ namespace BugManager
 
 
 		}
-	}
+
+        private void btnApplication_Click(object sender, EventArgs e)
+        {
+            frmApplicationManager frmApplicationManager = new frmApplicationManager();
+            frmApplicationManager.Show();
+            Close();
+        }
+    }
 }
