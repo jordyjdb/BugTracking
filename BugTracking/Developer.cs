@@ -13,7 +13,7 @@ namespace BugTracking
 
 
 
-		public Developer(long Id, String FirstName, String LastName,long Usertype) : base(Id, FirstName,LastName,Usertype)
+		public Developer(long Id, String FirstName, String LastName,String Usertype) : base(Id, FirstName,LastName,Usertype)
 		{
 
 		}

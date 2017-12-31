@@ -32,16 +32,41 @@ namespace BugManager
 
 		private void frmCreateBug_Load(object sender, EventArgs e)
 		{
+            long LoggedInID = Properties.Settings.Default.LoggedInID;
+
+            BugTracking.User LoggedInUser = BugTracking.User.Get(LoggedInID);
+
+            switch (LoggedInUser.Usertype)
+            {
+                case "White Box Tester":
+                    grpBugdetails.Enabled = true;
+                    grpCodeDetails.Enabled = false;
+                    grpManagement.Enabled = false;
+                    break;
+                case "Black Box Tester":
+                    grpBugdetails.Enabled = true;
+                    grpCodeDetails.Enabled = true;
+                    grpManagement.Enabled = false;
+                    break;
+                case "Developer":
+                    grpManagement.Enabled = true;
+                    grpCodeDetails.Enabled = true;
+                    grpManagement.Enabled = true;
+                    break;
+                default:
+                    grpBugdetails.Enabled = false;
+                    grpCodeDetails.Enabled = false;
+                    grpManagement.Enabled = false;
 
 
-			BugTracking.App.Get();
-			cboApplication.DataSource = BugTracking.App.Get();
+                    break;
+            }
 
-		
-
-		
-
-
+            BugTracking.App.Get();
+            cboApplication.ValueMember = "Id";
+            cboApplication.DisplayMember = "Name";
+            cboApplication.DataSource = BugTracking.App.Get();
+            
 		}
 
 		private void cboApplication_SelectedIndexChanged(object sender, EventArgs e)

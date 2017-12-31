@@ -10,7 +10,8 @@ namespace BugTracking
 {
 	public class FormControl
 	{
-        private FormControl(long Id, string label, string name, bool active, long applicationId) : this(label, name, active, applicationId) { #
+        private FormControl(long Id, string label, string name, bool active, long applicationId) : this(label, name, active, applicationId) { 
+
             this.Id = Id;
         }
 
@@ -55,7 +56,7 @@ namespace BugTracking
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("SELECT * FROM controls where Applicationid = @ID)", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("SELECT * FROM controls where Applicationid = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", AppID));
 
 

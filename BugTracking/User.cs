@@ -15,18 +15,18 @@ namespace BugTracking
 
 		public String FullName { get; private set; }
 
-		public String FirstName { get; private set; }
-		public String LastName { get; private set; }
+		public String FirstName { get;  set; }
+		public String LastName { get;  set; }
 
 		public DateTime AccountCreationDate { get; private set; }
 
-		public long Usertype;
+		public String Usertype;
 
-		protected User(long Id, String FirstName, String LastName, long Usertype) :this(FirstName,  LastName,  Usertype)
+		protected User(long Id, String FirstName, String LastName, String Usertype) :this(FirstName,  LastName,  Usertype)
 		{
 			this.Id = Id;
 		}
-		public User(String FirstName, String LastName, long Usertype)
+		public User(String FirstName, String LastName, String Usertype)
 		{
 			this.FirstName = FirstName;
 			this.LastName = LastName;
@@ -59,7 +59,7 @@ namespace BugTracking
 				sqlCon.Close();
 			}
 
-			if (ds.Tables[0].Rows.Count == 0)
+			if (ds.Tables[0].Rows.Count >= 1)
 			{
 				this.Id = (long)ds.Tables[0].Rows[0]["Id"];
 				this.FirstName = (String) ds.Tables[0].Rows[0]["FirstName"];
@@ -67,7 +67,7 @@ namespace BugTracking
 
 				FullName = FirstName + " " + LastName;
 				
-				this.Usertype = (long) ds.Tables[0].Rows[0]["Usertype"];
+				this.Usertype = (String) ds.Tables[0].Rows[0]["Usertype"];
 				return true;
 			}
 			else
@@ -79,16 +79,61 @@ namespace BugTracking
 
 		}
 
-		/// <summary>
-		/// applications that the client can choose when filling in bug information
-		/// </summary>
-		public static List<User> Get()
+        public static User Get(long id)
+        {
+            //retreives information about bug with ID
+            DataSet ds = new DataSet();
+            SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+            SqlCommand sqlCom = new SqlCommand("Select Users.*, UserTypes.Type From Users inner join UserTypes on Users.typeId = UserTypes.Id where Users.Id = @ID", sqlCon);
+            sqlCom.Parameters.Add(new SqlParameter("@ID", id));
+
+            try
+            {
+                sqlCon.Open();
+
+                SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+                sqlDa.Fill(ds);
+
+            }
+            finally
+            {
+                sqlCon.Close();
+            }
+
+            if (ds.Tables[0].Rows.Count >= 1)
+            {
+                User user = new User((long)ds.Tables[0].Rows[0]["Id"], (String)ds.Tables[0].Rows[0]["FirstName"], (String)ds.Tables[0].Rows[0]["LastName"], (String)ds.Tables[0].Rows[0]["type"]);
+
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+
+
+
+        }
+
+        public void save()
+        {
+
+
+
+
+        }
+
+        /// <summary>
+        /// applications that the client can choose when filling in bug information
+        /// </summary>
+        public static List<User> Get()
 		{
 
 			List<User> Users = new List<User>();
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("Select * From Users", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("Select Users.*, UserTypes.Type From Users inner join UserTypes on Users.typeId = UserTypes.Id", sqlCon);
 
 			try
 			{
@@ -113,7 +158,7 @@ namespace BugTracking
 
 					String FirstName = (String)row["FirstName"];
 					String LastName = (String)row["LastName"];
-					long typeID = (long)row["typeID"];
+					String typeID = (String)row["type"];
 
 					User newUser = new User(Id, FirstName, LastName, typeID);
 					Users.Add(newUser);
@@ -123,6 +168,57 @@ namespace BugTracking
 			return Users;
 
 		}
+
+        public void Save()
+        {
+            SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+
+            String sqlCommand;
+            SqlCommand sqlCom;
+            //if existing User
+            if (Id!= 0)
+            {
+                sqlCommand = "Update Users set(FirstName = @FirstName, LastName = @LastName, UserTypeID = (Select id from UserTypes where Type =  @Usertype)) where Id = @Id";
+
+                sqlCom = new SqlCommand(sqlCommand, sqlCon);
+                sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
+
+
+            }
+            else //if new User
+            {
+                sqlCommand = "Insert into Users(FirstName, LastName, UserTypeID) values (@FirstName, @LastName,Select id from UserTypes where Type =  @Usertype);SELECT SCOPE_IDENTITY()";
+                sqlCom = new SqlCommand(sqlCommand, sqlCon);
+
+            }
+           
+            sqlCom.Parameters.Add(new SqlParameter("@FirstName", FirstName));
+            sqlCom.Parameters.Add(new SqlParameter("@LastName", LastName));
+            sqlCom.Parameters.Add(new SqlParameter("@Usertype", Usertype));
+
+
+            try
+            {
+                sqlCon.Open();
+
+                decimal id = (decimal)sqlCom.ExecuteScalar();
+
+
+                Id = (long)id;
+
+
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            finally
+            {
+                sqlCon.Close();
+
+            }
+            return Id;
+        }
 
 
 	}

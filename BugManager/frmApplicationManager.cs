@@ -26,21 +26,26 @@ namespace BugManager
 
         private void btnApplicationSave_Click(object sender, EventArgs e)
         {
-
+            BugTracking.App selectedApp;
             //if application name is new
             if (cboApplication.SelectedValue == null)
             {
-            
-                BugTracking.App newApp = new BugTracking.App(cboApplication.SelectedText);
-                newApp.Save();
 
-                AppList.Add(newApp);
+                selectedApp = new BugTracking.App(cboApplication.SelectedText);
+                selectedApp.Save();
 
+                AppList.Add(selectedApp);
+
+            }
+            else
+            {
+                selectedApp = (BugTracking.App)cboApplication.SelectedItem;
+            }
                 foreach(BugTracking.AppForm form in FormList)
                 {
                     if (form.Id == 0)
                     {
-                        form.ApplicationID = newApp.Id;
+                        form.ApplicationID = selectedApp.Id;
                         form.Save();
                     }
                 }
@@ -59,7 +64,7 @@ namespace BugManager
                         action.Save();
                     }
                 }
-            }
+            
         }
 
         private void frmApplicationManager_Load(object sender, EventArgs e)
@@ -78,8 +83,16 @@ namespace BugManager
             cboFormName.DisplayMember = "Name";
             //cboFormName.DataSource = FormList;
 
+            cboActionName.ValueMember = "Id";
+            cboActionName.DisplayMember = "Description";
 
 
+            cboDefaultUser.ValueMember = "Id";
+            cboDefaultUser.DisplayMember = "Full Name";
+
+            List<BugTracking.DeveloperBug> userList = BugTracking.DeveloperBug.Get();
+
+            cboDefaultUser.DataSource = userList;
 
         }
 
@@ -102,27 +115,46 @@ namespace BugManager
             {
                 FormList = BugTracking.AppForm.Get((long)cboApplication.SelectedValue);
                 ControlList = BugTracking.FormControl.Get((long)cboApplication.SelectedValue);
+                ActionList  = BugTracking.Action.Get((long)cboApplication.SelectedValue);
+
+                cboDefaultUser.SelectedValue = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
 
             } else
             {
                 FormList = new List<BugTracking.AppForm>();
                 ControlList = new List<BugTracking.FormControl>();
+                ActionList = new List<BugTracking.Action>();
             }
+
+            cboFormName.DataSource = FormList;
+            cboControlName.DataSource = ControlList;
+            cboActionName.DataSource = ControlList;
 
         }
 
         private void cboFormName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboFormName.SelectedValue != null)
+            
+        }
+
+       // private long FormSelectedValue = 0;
+        private void cboFormName_TextChanged(object sender, EventArgs e)
+        {
+            if (cboFormName.SelectedValue != null)
             {
-                txtFormLabel.Text =((BugTracking.AppForm) cboFormName.SelectedItem).label;
+                txtFormLabel.Text = ((BugTracking.AppForm)cboFormName.SelectedItem).label;
                 chkFormActive.Enabled = ((BugTracking.AppForm)cboFormName.SelectedItem).active;
-            } else
+            }
+            else
             {
                 txtFormLabel.Text = "";
                 chkFormActive.Enabled = true;
             }
+
+            // FormSelectedValue = (long)cboFormName.SelectedValue;
         }
+
+  
 
         private void cboControlName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -142,36 +174,50 @@ namespace BugManager
             // not needed?
             if (cboActionName.SelectedValue != null)
             {
-                
+                txtActionDescription.Text = ((BugTracking.Action)cboControlName.SelectedItem).Description;
+            }
+            else
+            {
+                txtActionDescription.Text = "";
             }
         }
 
         private void btnFormDetails_Click(object sender, EventArgs e)
         {
-            if (cboFormName.SelectedValue != null)
+            if (cboFormName.SelectedValue == null)
             {
                 BugTracking.AppForm newApp = new BugTracking.AppForm(txtFormLabel.Text,cboFormName.Text,chkFormActive.Checked,(long) cboApplication.SelectedValue);
                 FormList.Add(newApp);
+
+                cboFormName.DataSource = FormList;
+                    
             }
         }
 
         private void btnControlDetails_Click(object sender, EventArgs e)
         {
-            if (cboControlName.SelectedValue != null)
+            if (cboControlName.SelectedValue == null)
             {
                 BugTracking.FormControl newControl = new BugTracking.FormControl(txtFormLabel.Text, cboFormName.Text, chkFormActive.Checked, (long) cboApplication.SelectedValue);
                 ControlList.Add(newControl);
+
+                cboControlName.DataSource = ControlList;
+
             }
         }
 
 
         private void btnActionDetails_Click(object sender, EventArgs e)
         {
-            if (cboActionName.SelectedValue != null)
+            if (cboActionName.SelectedValue == null)
             {
                 BugTracking.Action newAction = new BugTracking.Action(cboActionName.Text, txtActionDescription.Text,(long)cboApplication.SelectedValue);
                 ActionList.Add(newAction);
+
+                cboActionName.DataSource = ActionList;
             }
         }
+
+       
     }
 }

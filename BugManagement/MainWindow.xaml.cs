@@ -68,7 +68,7 @@ namespace BugManagement
 			populateAppList();
 	
 			
-			populateActionList();
+			//populateActionList();
 		}
 
 		public void populateAppList()
@@ -91,7 +91,7 @@ namespace BugManagement
 			cboControl.DisplayMemberPath = "Label";
 			cboControl.SelectedValuePath = "Id";
 
-			List<BugTracking.FormControl> AppList = BugTracking.FormControl.get(AppID);
+			List<BugTracking.FormControl> AppList = BugTracking.FormControl.Get(AppID);
 
 			foreach (BugTracking.FormControl app in AppList)
 			{
@@ -111,11 +111,11 @@ namespace BugManagement
 			}
 		}
 
-		public void populateActionList()
+		public void populateActionList(long AppID)
 		{
 			cboActions.DisplayMemberPath = "Name";
 			cboActions.SelectedValuePath = "Id";
-			List<BugTracking.Action> ActionList = BugTracking.Action.Get();
+			List<BugTracking.Action> ActionList = BugTracking.Action.Get(AppID);
 
 			foreach (BugTracking.Action action in ActionList)
 			{

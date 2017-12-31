@@ -41,31 +41,13 @@ namespace BugManager
 				Properties.Settings.Default.Save();
 			}
 
-			//opens 
+            //opens 
 
+            frmListBugs listBugs = new frmListBugs();
 
+            listBugs.Show();
 
-			switch (((BugTracking.User)cboUsers.SelectedItem).Usertype)
-			{
-				case 0:
-
-					
-					break;
-				case 1:
-frmListBugs listBugs = new frmListBugs();
-
-					listBugs.Show();
-					break;
-				case 2:
-
-					break;
-				default:
-
-					break;
-			}
-
-
-			this.Close();
+            this.Close();
 
 		}
 	}

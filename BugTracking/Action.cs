@@ -99,14 +99,10 @@ namespace BugTracking
 
 					formControls.Add(action);
 				}
-				return formControls;
+				
 			}
-			else
-			{
-				//throw exeption
-				return null;
-			}
-		}
+            return formControls;
+        }
 
 	}
 }

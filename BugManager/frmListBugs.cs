@@ -32,8 +32,43 @@ namespace BugManager
         private void btnApplication_Click(object sender, EventArgs e)
         {
             frmApplicationManager frmApplicationManager = new frmApplicationManager();
-            frmApplicationManager.Show();
-            Close();
+            frmApplicationManager.ShowDialog();
+
+        }
+
+        private void btnCreateBug_Click(object sender, EventArgs e)
+        {
+            frmCreateBug frmCreateBug = new frmCreateBug();
+            frmCreateBug.ShowDialog();
+        }
+
+
+        private void btnUpdateSelected_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Exit();
+        }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            frmUserManagement frmUserManagement = new frmUserManagement();
+            frmUserManagement.ShowDialog();
+
         }
     }
 }

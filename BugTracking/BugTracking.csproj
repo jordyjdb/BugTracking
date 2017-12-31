@@ -80,6 +80,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserBug.cs" />
+    <Compile Include="UserType.cs" />
     <Compile Include="WhiteBoxUser.cs" />
   </ItemGroup>
   <ItemGroup>
