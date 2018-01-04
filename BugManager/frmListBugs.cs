@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BugManager
 {
-	public partial class frmListBugs : Form
+	public partial class FrmListBugs : Form
 	{
-		public frmListBugs()
+		public FrmListBugs()
 		{
 			InitializeComponent();
 		}
@@ -31,22 +31,24 @@ namespace BugManager
 
         private void btnApplication_Click(object sender, EventArgs e)
         {
-            frmApplicationManager frmApplicationManager = new frmApplicationManager();
+            FrmApplicationManager frmApplicationManager = new FrmApplicationManager();
             frmApplicationManager.ShowDialog();
 
         }
 
         private void btnCreateBug_Click(object sender, EventArgs e)
         {
-            frmCreateBug frmCreateBug = new frmCreateBug();
+            FrmCreateBug frmCreateBug = new FrmCreateBug();
             frmCreateBug.ShowDialog();
         }
 
 
         private void btnUpdateSelected_Click(object sender, EventArgs e)
         {
-
-        }
+			FrmCreateBug frmCreateBug = new FrmCreateBug();
+			frmCreateBug.BugID = (long) grdBugs.SelectedRows[0].Cells["Id"].Value;
+			frmCreateBug.ShowDialog();
+		}
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -66,7 +68,7 @@ namespace BugManager
 
         private void btnUser_Click(object sender, EventArgs e)
         {
-            frmUserManagement frmUserManagement = new frmUserManagement();
+            FrmUserManagement frmUserManagement = new FrmUserManagement();
             frmUserManagement.ShowDialog();
 
         }

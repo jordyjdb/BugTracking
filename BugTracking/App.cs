@@ -23,7 +23,12 @@ namespace BugTracking
 		/// </summary>
 		public User DefaultUser;
 
-        public App(long Id,string Name) : this(Name)
+		public App(long Id) {
+			this.Id = Id;
+			Get(Id);
+		}
+
+		public App(long Id,string Name) : this(Name)
         {
             this.Id = Id;
         }
@@ -77,7 +82,7 @@ namespace BugTracking
             
         }
 
-        public Boolean get(long id)
+        public Boolean Get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();

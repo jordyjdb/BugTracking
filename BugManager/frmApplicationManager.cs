@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BugManager
 {
-	public partial class frmApplicationManager : Form
+	public partial class FrmApplicationManager : Form
 	{
 
         List<BugTracking.App> AppList;
@@ -19,7 +19,7 @@ namespace BugManager
         List<BugTracking.Action> ActionList;
 
 
-        public frmApplicationManager()
+        public FrmApplicationManager()
 		{
 			InitializeComponent();
 		}
@@ -142,8 +142,8 @@ namespace BugManager
         {
             if (cboFormName.SelectedValue != null)
             {
-                txtFormLabel.Text = ((BugTracking.AppForm)cboFormName.SelectedItem).label;
-                chkFormActive.Enabled = ((BugTracking.AppForm)cboFormName.SelectedItem).active;
+                txtFormLabel.Text = ((BugTracking.AppForm)cboFormName.SelectedItem).Label;
+                chkFormActive.Enabled = ((BugTracking.AppForm)cboFormName.SelectedItem).Active;
             }
             else
             {
@@ -160,8 +160,8 @@ namespace BugManager
         {
             if (cboControlName.SelectedValue != null)
             {
-                txtControlLabel.Text = ((BugTracking.AppForm)cboControlName.SelectedItem).label;
-                chkControlActive.Enabled = ((BugTracking.AppForm)cboControlName.SelectedItem).active;
+                txtControlLabel.Text = ((BugTracking.AppForm)cboControlName.SelectedItem).Label;
+                chkControlActive.Enabled = ((BugTracking.AppForm)cboControlName.SelectedItem).Active;
             }else
             {
                 txtControlLabel.Text = "";
@@ -218,6 +218,9 @@ namespace BugManager
             }
         }
 
-       
-    }
+		private void btnClose_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+	}
 }

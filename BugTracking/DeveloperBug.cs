@@ -40,8 +40,8 @@ namespace BugTracking
 		private DeveloperBug(long Id,String title, String comment, BugLocation location, long PreviousBugId, String Priority, Boolean BugOpen):this(title, comment, location, PreviousBugId, Priority, BugOpen)
 		{
 			this.Id = Id;
-		}		
-
+		}
+		public DeveloperBug() { }
 		public DeveloperBug( String title, String comment, BugLocation location, long PreviousBugId, String Priority, Boolean BugOpen) : base(title, comment, location)
 		{
 
@@ -50,12 +50,11 @@ namespace BugTracking
 			this.BugOpen = BugOpen;
 		}
 
-		public new long Save()
+		public new long Save() 
 		{
 
+			base.Save();
 
-
-			 SaveBug();
 			
 
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
@@ -150,7 +149,7 @@ namespace BugTracking
 					{
 						BugOpen = false;
 					}
-					bugLocation.get();
+					bugLocation.Get();
 
 						String priority = (String)row["priority"];
 
@@ -211,7 +210,7 @@ namespace BugTracking
 			Bug previousBug = new Bug();
 
 			//if bug 
-			if (PreviousBugId != 0 && previousBug.get(PreviousBugId) == true)
+			if (PreviousBugId != 0 && previousBug.Get(PreviousBugId) == true)
 			{
 				return previousBug;
 			}

@@ -43,7 +43,7 @@ namespace BugManager
 
             //opens 
 
-            frmListBugs listBugs = new frmListBugs();
+            FrmListBugs listBugs = new FrmListBugs();
 
             listBugs.Show();
 

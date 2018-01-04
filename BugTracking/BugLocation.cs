@@ -47,6 +47,7 @@ namespace BugTracking
 		public BugLocation(long id)
 		{
 			this.Id = id;
+			Get();
 		}
 	
 		public BugLocation(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
@@ -63,12 +64,12 @@ namespace BugTracking
 		public long lineNumber { get; private set; }
 
 
-		public Boolean get()
+		public Boolean Get()
 		{
-			return get(Id);
+			return Get(Id);
 		}
 
-			public Boolean get(long id)
+			public Boolean Get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
@@ -92,14 +93,14 @@ namespace BugTracking
 
 			if (ds.Tables[0].Rows.Count == 1)
 			{
-				lineNumber = (long)ds.Tables[0].Rows[0]["lineNumber"];
+				lineNumber = (int)ds.Tables[0].Rows[0]["lineNumber"];
 
 
-				long applicationID = (long)ds.Tables[0].Rows[0]["applicationID"];
+				long applicationID = (int)ds.Tables[0].Rows[0]["applicationID"];
 
-				long formID = (long)ds.Tables[0].Rows[0]["formID"];
+				long formID = (int)ds.Tables[0].Rows[0]["formID"];
 
-				long controlID = (long)ds.Tables[0].Rows[0]["controlID"];
+				long controlID = (int)ds.Tables[0].Rows[0]["controlID"];
 
 				action = (String)ds.Tables[0].Rows[0]["action"];
 
@@ -107,7 +108,11 @@ namespace BugTracking
 
 				relatedParameter = (String)ds.Tables[0].Rows[0]["relatedParameter"];
 
+				application = new App(applicationID);
+				
+				form = new AppForm(formID);
 
+				control = new FormControl(controlID);
 
 				return true;
 			}

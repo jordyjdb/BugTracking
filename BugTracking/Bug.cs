@@ -83,7 +83,7 @@ namespace BugTracking
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public Boolean get(long id)
+		public Boolean Get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
@@ -105,12 +105,17 @@ namespace BugTracking
 				sqlCon.Close();
 			}
 
-			if (ds.Tables[0].Rows.Count == 0)
+			if (ds.Tables[0].Rows.Count > 0)
 			{
 				this.Id = id;
 				this.Title = (String)ds.Tables[0].Rows[0]["Title"];
 				this.Comment = (String)ds.Tables[0].Rows[0]["Comment"];
-				this.Comment = (String)ds.Tables[0].Rows[0]["previousBugId"];
+				//this. = (String)ds.Tables[0].Rows[0]["previousBugId"];
+
+				this.Location = new BugLocation((long)ds.Tables[0].Rows[0]["LocationID"]);
+
+			
+
 
 				return true;
 			}else {
@@ -120,6 +125,8 @@ namespace BugTracking
 
 
 		}
+
+	
 
 		/// <summary>
 		/// gets all bugs
@@ -175,7 +182,9 @@ namespace BugTracking
 		/// <returns>ID of new row in table buglist</returns>
 		public long Save()
 		{
-			return SaveBug();
+
+			Id = SaveBug();
+			return Id;
 
 		}
 

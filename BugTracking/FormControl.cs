@@ -10,7 +10,17 @@ namespace BugTracking
 {
 	public class FormControl
 	{
-        private FormControl(long Id, string label, string name, bool active, long applicationId) : this(label, name, active, applicationId) { 
+
+		public FormControl(long Id)
+		{
+			this.Id = Id;
+
+			Get();
+		}
+
+
+
+		private FormControl(long Id, string label, string name, bool active, long applicationId) : this(label, name, active, applicationId) { 
 
             this.Id = Id;
         }
@@ -49,7 +59,67 @@ namespace BugTracking
 
         public long ApplicationID { get; private set; }
 
-        public static List<FormControl> Get(long AppID)
+		public Boolean Get()
+		{
+			List<AppForm> AppForm = new List<AppForm>();
+
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("Select * From Form where ID = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
+
+
+			try
+			{
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+
+				bool Active;
+
+
+				if ((long)(ds.Tables[0].Rows[0]["Active"]) == 1)
+				{
+					Active = true;
+				}
+				else
+				{
+					Active = false;
+				}
+
+				Id = Id;
+				Label = (String)ds.Tables[0].Rows[0]["label"];
+				Name = (String)ds.Tables[0].Rows[0]["name"];
+				this.Active = Active;
+				ApplicationID = (long)ds.Tables[0].Rows[0]["ApplicationID"];
+
+
+
+				return true;
+
+
+			}
+			else
+			{
+				return false;
+			}
+
+
+
+		}
+		public static List<FormControl> Get(long AppID)
 		{
 			List<FormControl> formControls = new List<FormControl>();
 

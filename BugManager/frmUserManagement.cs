@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace BugManager
 {
-    public partial class frmUserManagement : Form
+    public partial class FrmUserManagement : Form
     {
         List<BugTracking.User> userList = new List<BugTracking.User>();
 
         List<BugTracking.UserType> userTypeList = new List<BugTracking.UserType>();
-        public frmUserManagement()
+        public FrmUserManagement()
         {
             InitializeComponent();
         }
@@ -30,7 +30,17 @@ namespace BugManager
 
                 txtFirstName.Text = selectedUser.FirstName;
                 txtLastName.Text = selectedUser.LastName;
-                //cboUserType.SelectedText = selectedUser.Usertype;
+
+				foreach (BugTracking.UserType userType in userTypeList)
+				{
+					if (userType.Description == selectedUser.Usertype)
+					{
+						cboUserType.SelectedItem = userType;
+						break;
+					}
+				}
+
+                
 
 
             } else
@@ -98,7 +108,7 @@ namespace BugManager
                 savedUser = new BugTracking.User(txtFirstName.Text,txtLastName.Text,cboUserType.Text);
             }
 
-            savedUser.save();
+            savedUser.Save();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

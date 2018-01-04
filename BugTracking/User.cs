@@ -116,13 +116,6 @@ namespace BugTracking
 
         }
 
-        public void save()
-        {
-
-
-
-
-        }
 
         /// <summary>
         /// applications that the client can choose when filling in bug information
@@ -172,13 +165,14 @@ namespace BugTracking
         public void Save()
         {
             SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			DataSet ds = new DataSet();
 
-            String sqlCommand;
+			String sqlCommand;
             SqlCommand sqlCom;
             //if existing User
             if (Id!= 0)
             {
-                sqlCommand = "Update Users set(FirstName = @FirstName, LastName = @LastName, UserTypeID = (Select id from UserTypes where Type =  @Usertype)) where Id = @Id";
+                sqlCommand = "Update Users set(FirstName = @FirstName, LastName = @LastName, TypeID = (Select id from UserTypes where Type =  @Usertype)) where Id = @Id";
 
                 sqlCom = new SqlCommand(sqlCommand, sqlCon);
                 sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
@@ -187,7 +181,7 @@ namespace BugTracking
             }
             else //if new User
             {
-                sqlCommand = "Insert into Users(FirstName, LastName, UserTypeID) values (@FirstName, @LastName,Select id from UserTypes where Type =  @Usertype);SELECT SCOPE_IDENTITY()";
+                sqlCommand = "Insert into Users(FirstName, LastName, TypeID) values (@FirstName, @LastName,(Select id from UserTypes where Type =  @Usertype));SELECT SCOPE_IDENTITY()";
                 sqlCom = new SqlCommand(sqlCommand, sqlCon);
 
             }
@@ -199,15 +193,21 @@ namespace BugTracking
 
             try
             {
-                sqlCon.Open();
+				//sqlCon.Open();
 
-                decimal id = (decimal)sqlCom.ExecuteScalar();
-
-
-                Id = (long)id;
+				//decimal id = (decimal)sqlCom.ExecuteScalar();
 
 
-            }
+				//Id = (long)id;
+
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+
+			}
             catch (SqlException ex)
             {
 
@@ -217,7 +217,12 @@ namespace BugTracking
                 sqlCon.Close();
 
             }
-            return Id;
+       
+
+			if (ds != null)
+			{
+				Id = System.Decimal.ToInt64((decimal) ((DataRow)ds.Tables[0].Rows[0])[0]);
+			}
         }
 
 

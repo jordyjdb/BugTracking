@@ -60,52 +60,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmApplicationManager.cs">
+    <Compile Include="FrmApplicationManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmApplicationManager.Designer.cs">
-      <DependentUpon>frmApplicationManager.cs</DependentUpon>
+    <Compile Include="FrmApplicationManager.Designer.cs">
+      <DependentUpon>FrmApplicationManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCreateBug.cs">
+    <Compile Include="FrmCreateBug.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCreateBug.Designer.cs">
-      <DependentUpon>frmCreateBug.cs</DependentUpon>
+    <Compile Include="FrmCreateBug.Designer.cs">
+      <DependentUpon>FrmCreateBug.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmListBugs.cs">
+    <Compile Include="FrmListBugs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmListBugs.Designer.cs">
-      <DependentUpon>frmListBugs.cs</DependentUpon>
+    <Compile Include="FrmListBugs.Designer.cs">
+      <DependentUpon>FrmListBugs.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.cs">
+    <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
-      <DependentUpon>frmLogin.cs</DependentUpon>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUserManagement.cs">
+    <Compile Include="FrmUserManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUserManagement.Designer.cs">
-      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    <Compile Include="FrmUserManagement.Designer.cs">
+      <DependentUpon>FrmUserManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmApplicationManager.resx">
-      <DependentUpon>frmApplicationManager.cs</DependentUpon>
+    <EmbeddedResource Include="FrmApplicationManager.resx">
+      <DependentUpon>FrmApplicationManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCreateBug.resx">
-      <DependentUpon>frmCreateBug.cs</DependentUpon>
+    <EmbeddedResource Include="FrmCreateBug.resx">
+      <DependentUpon>FrmCreateBug.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmListBugs.resx">
-      <DependentUpon>frmListBugs.cs</DependentUpon>
+    <EmbeddedResource Include="FrmListBugs.resx">
+      <DependentUpon>FrmListBugs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
-      <DependentUpon>frmLogin.cs</DependentUpon>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUserManagement.resx">
-      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserManagement.resx">
+      <DependentUpon>FrmUserManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -115,6 +115,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -146,6 +147,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

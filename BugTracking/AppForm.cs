@@ -16,18 +16,18 @@ namespace BugTracking
 		/// <summary>
 		/// what the form displays on its header
 		/// </summary>
-		public String label { get; private set; }
+		public String Label { get; private set; }
 
 		/// <summary>
 		/// what is the form name called programatically
 		/// Can only be set if set by an inhouse user
 		/// </summary>
-		public String name { get; private set; }
+		public String Name { get; private set; }
 
 		/// <summary>
 		/// if this is currently active in the application
 		/// </summary>
-		public Boolean active { get; private set; }
+		public Boolean Active { get; private set; }
 
 		public long ApplicationID { get; set; }
 
@@ -73,9 +73,9 @@ namespace BugTracking
 
                 SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
                 SqlCommand sqlCom = new SqlCommand("Insert into Form(label, name,active, ApplicationID) values (@label, @name,@active,@ApplicationID);SELECT SCOPE_IDENTITY() ", sqlCon);
-                sqlCom.Parameters.Add(new SqlParameter("@label", label));
-                sqlCom.Parameters.Add(new SqlParameter("@name", name));
-                sqlCom.Parameters.Add(new SqlParameter("@active", active));
+                sqlCom.Parameters.Add(new SqlParameter("@label", Label));
+                sqlCom.Parameters.Add(new SqlParameter("@name", Name));
+                sqlCom.Parameters.Add(new SqlParameter("@active", Active));
                 sqlCom.Parameters.Add(new SqlParameter("@ApplicationID", ApplicationID));
 
 
@@ -113,12 +113,19 @@ namespace BugTracking
 		//methods in form
 		public List<String> parameters;
 
-        public AppForm( string label, string name, bool active, long applicationID)
+		public AppForm(long Id)
+		{
+			this.Id = Id;
+			Get();
+		}
+
+
+		public AppForm( string label, string name, bool active, long applicationID)
         {
           
-            this.label = label ?? throw new ArgumentNullException(nameof(label));
-            this.name = name ?? throw new ArgumentNullException(nameof(name));
-            this.active = active;
+            this.Label = label ?? throw new ArgumentNullException(nameof(label));
+            this.Name = name ?? throw new ArgumentNullException(nameof(name));
+            this.Active = active;
             this.ApplicationID = applicationID;
         }
 
@@ -127,11 +134,72 @@ namespace BugTracking
             this.Id = id;
         }
 
-        /// <summary>
-        /// returns list of all applications
-        /// </summary>
-        /// <returns></returns>
-        public static List<AppForm> Get(long ApplicationID)
+		public Boolean Get()
+		{
+			List<AppForm> AppForm = new List<AppForm>();
+
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("Select * From Form where ID = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
+
+
+			try
+			{
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+			if (ds.Tables[0].Rows.Count >0)
+			{
+				
+					bool Active;
+
+
+					if ((long)(ds.Tables[0].Rows[0]["Active"]) == 1)
+					{
+						Active = true;
+					}
+					else
+					{
+						Active = false;
+					}
+
+				Id = Id;
+				Label = (String)ds.Tables[0].Rows[0]["label"];
+				Name = (String)ds.Tables[0].Rows[0]["name"];
+				this.Active = Active;
+				ApplicationID = (long)ds.Tables[0].Rows[0]["ApplicationID"];
+
+
+
+
+				return true;
+				
+				
+			}
+			else
+			{
+				return false;
+			}
+
+
+
+		}
+		/// <summary>
+		/// returns list of all applications
+		/// </summary>
+		/// <returns></returns>
+		public static List<AppForm> Get(long ApplicationID)
 		{
 			List<AppForm> AppForm = new List<AppForm>();
 
@@ -172,7 +240,7 @@ namespace BugTracking
 						Active = false;
 					}
 					AppForm appForm = new AppForm((long)row["ID"], (String)row["label"], (String)row["name"], Active, (long)row["ApplicationID"]);
-				
+
 
 
 					AppForm.Add(appForm);
@@ -189,4 +257,8 @@ namespace BugTracking
 
 		}
 	}
-}
+
+
+
+
+	}
