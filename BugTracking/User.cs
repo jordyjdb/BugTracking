@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BugTracking
 {
@@ -20,7 +17,22 @@ namespace BugTracking
 
 		public DateTime AccountCreationDate { get; private set; }
 
-		public String Usertype;
+		public String UserType;
+
+	
+		public User(long id)
+		{
+			User user = Get(id);
+
+			Id = user.Id;
+			FullName = user.FullName;
+			FirstName = user.FirstName;
+			LastName = user.LastName;
+			AccountCreationDate = user.AccountCreationDate;
+			UserType = user.UserType;
+			
+
+		}
 
 		protected User(long Id, String FirstName, String LastName, String Usertype) :this(FirstName,  LastName,  Usertype)
 		{
@@ -34,50 +46,50 @@ namespace BugTracking
 			FullName = FirstName + " " + LastName;
 				
 
-			this.Usertype = Usertype;
+			this.UserType = Usertype;
 		}
 
-		public Boolean get(long id)
-		{
-			//retreives information about bug with ID
-			DataSet ds = new DataSet();
-			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("Select * From Application where Id = @ID", sqlCon);
-			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
+		//public Boolean Get(long id)
+		//{
+		//	//retreives information about bug with ID
+		//	DataSet ds = new DataSet();
+		//	SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+		//	SqlCommand sqlCom = new SqlCommand("Select * From Application where Id = @ID", sqlCon);
+		//	sqlCom.Parameters.Add(new SqlParameter("@ID", id));
 
-			try
-			{
-				sqlCon.Open();
+		//	try
+		//	{
+		//		sqlCon.Open();
 
-				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+		//		SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
 
-				sqlDa.Fill(ds);
+		//		sqlDa.Fill(ds);
 
-			}
-			finally
-			{
-				sqlCon.Close();
-			}
+		//	}
+		//	finally
+		//	{
+		//		sqlCon.Close();
+		//	}
 
-			if (ds.Tables[0].Rows.Count >= 1)
-			{
-				this.Id = (long)ds.Tables[0].Rows[0]["Id"];
-				this.FirstName = (String) ds.Tables[0].Rows[0]["FirstName"];
-				this.LastName = (String) ds.Tables[0].Rows[0]["LastName"];
+		//	if (ds.Tables[0].Rows.Count >= 1)
+		//	{
+		//		this.Id = (long)ds.Tables[0].Rows[0]["Id"];
+		//		this.FirstName = (String) ds.Tables[0].Rows[0]["FirstName"];
+		//		this.LastName = (String) ds.Tables[0].Rows[0]["LastName"];
 
-				FullName = FirstName + " " + LastName;
+		//		FullName = FirstName + " " + LastName;
 				
-				this.Usertype = (String) ds.Tables[0].Rows[0]["Usertype"];
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+		//		this.Usertype = (String) ds.Tables[0].Rows[0]["Usertype"];
+		//		return true;
+		//	}
+		//	else
+		//	{
+		//		return false;
+		//	}
 
 
 
-		}
+		//}
 
         public static User Get(long id)
         {
@@ -188,7 +200,7 @@ namespace BugTracking
            
             sqlCom.Parameters.Add(new SqlParameter("@FirstName", FirstName));
             sqlCom.Parameters.Add(new SqlParameter("@LastName", LastName));
-            sqlCom.Parameters.Add(new SqlParameter("@Usertype", Usertype));
+            sqlCom.Parameters.Add(new SqlParameter("@Usertype", UserType));
 
 
             try

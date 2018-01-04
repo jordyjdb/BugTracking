@@ -12,6 +12,8 @@ namespace BugManager
 {
 	public partial class FrmListBugs : Form
 	{
+		BugTracking.User user;
+		Boolean RefreshingTable = false;
 		public FrmListBugs()
 		{
 			InitializeComponent();
@@ -19,15 +21,47 @@ namespace BugManager
 
 		private void frmListBugs_Load(object sender, EventArgs e)
 		{
+			user = new BugTracking.User(Properties.Settings.Default.LoggedInID);
+
+			switch (user.UserType)
+			{
+				case "White Box Tester":
+					grdBugs.Enabled = false;
+					break;
+				case "Black Box Tester":
+					grdBugs.Enabled = false;
+
+					break;
+				case "Developer":
 
 
-			List<BugTracking.Bug> bugs = BugTracking.Bug.Get();
+					RefreshingTable = true;
+					grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedBugs(user.Id, chkOpen.Checked);
+					RefreshingTable = false;
+					break;
+				default:
+					
 
-			grdBugs.DataSource = bugs;
+
+					break;
+			}
+
+
+
+
+
+			
+
+	
+
+
+
 
 
 
 		}
+
+
 
         private void btnApplication_Click(object sender, EventArgs e)
         {
@@ -72,5 +106,32 @@ namespace BugManager
             frmUserManagement.ShowDialog();
 
         }
-    }
+
+		private void chkOpen_CheckedChanged(object sender, EventArgs e)
+		{
+			if (RefreshingTable) { }
+			switch (user.UserType)
+			{
+				case "White Box Tester":
+					grdBugs.Enabled = false;
+					break;
+				case "Black Box Tester":
+					grdBugs.Enabled = false;
+
+					break;
+				case "Developer":
+
+
+
+					grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedBugs(user.Id, chkOpen.Checked);
+
+					break;
+				default:
+
+
+
+					break;
+			}
+		}
+	}
 }

@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ColorCode, Version=1.0.1.62759, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ColorCode.1.0.1\lib\ColorCode.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,6 +68,12 @@
     </Compile>
     <Compile Include="FrmApplicationManager.Designer.cs">
       <DependentUpon>FrmApplicationManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCode.Designer.cs">
+      <DependentUpon>frmCode.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmCreateBug.cs">
       <SubType>Form</SubType>
@@ -95,6 +104,9 @@
     <EmbeddedResource Include="FrmApplicationManager.resx">
       <DependentUpon>FrmApplicationManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCode.resx">
+      <DependentUpon>frmCode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCreateBug.resx">
       <DependentUpon>FrmCreateBug.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +129,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

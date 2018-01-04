@@ -38,6 +38,7 @@
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnUser = new System.Windows.Forms.Button();
+			this.chkOpen = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.grdBugs)).BeginInit();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -50,11 +51,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.grdBugs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.grdBugs.Location = new System.Drawing.Point(168, 26);
+			this.grdBugs.Location = new System.Drawing.Point(247, 26);
 			this.grdBugs.Name = "grdBugs";
 			this.grdBugs.ReadOnly = true;
 			this.grdBugs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.grdBugs.Size = new System.Drawing.Size(660, 293);
+			this.grdBugs.Size = new System.Drawing.Size(581, 293);
 			this.grdBugs.TabIndex = 0;
 			// 
 			// btnCreateBug
@@ -140,11 +141,25 @@
 			this.btnUser.UseVisualStyleBackColor = true;
 			this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
 			// 
+			// chkOpen
+			// 
+			this.chkOpen.AutoSize = true;
+			this.chkOpen.Checked = true;
+			this.chkOpen.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkOpen.Location = new System.Drawing.Point(167, 28);
+			this.chkOpen.Name = "chkOpen";
+			this.chkOpen.Size = new System.Drawing.Size(74, 17);
+			this.chkOpen.TabIndex = 6;
+			this.chkOpen.Text = "Only open";
+			this.chkOpen.UseVisualStyleBackColor = true;
+			this.chkOpen.CheckedChanged += new System.EventHandler(this.chkOpen_CheckedChanged);
+			// 
 			// FrmListBugs
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(840, 331);
+			this.Controls.Add(this.chkOpen);
 			this.Controls.Add(this.btnUser);
 			this.Controls.Add(this.btnUpdateSelected);
 			this.Controls.Add(this.btnApplication);
@@ -175,5 +190,6 @@
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button btnUser;
-    }
+		private System.Windows.Forms.CheckBox chkOpen;
+	}
 }

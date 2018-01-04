@@ -41,6 +41,7 @@
 			this.cboUsers.Name = "cboUsers";
 			this.cboUsers.Size = new System.Drawing.Size(120, 21);
 			this.cboUsers.TabIndex = 0;
+		
 			// 
 			// btnLogin
 			// 

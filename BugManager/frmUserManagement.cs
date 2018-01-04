@@ -33,7 +33,7 @@ namespace BugManager
 
 				foreach (BugTracking.UserType userType in userTypeList)
 				{
-					if (userType.Description == selectedUser.Usertype)
+					if (userType.Description == selectedUser.UserType)
 					{
 						cboUserType.SelectedItem = userType;
 						break;
@@ -101,7 +101,7 @@ namespace BugManager
                 savedUser = (BugTracking.User)cboUser.SelectedItem;
                 savedUser.FirstName = txtFirstName.Text;
                 savedUser.LastName = txtLastName.Text;
-                savedUser.Usertype = cboUserType.Text;
+                savedUser.UserType = cboUserType.Text;
             }
             else //new User
             {

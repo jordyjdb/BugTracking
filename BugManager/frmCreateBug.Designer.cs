@@ -58,11 +58,18 @@
 			this.grpManagement = new System.Windows.Forms.GroupBox();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.btnAddCode = new System.Windows.Forms.Button();
 			this.grpBugdetails.SuspendLayout();
 			this.grpCodeDetails.SuspendLayout();
 			this.grpManagement.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -87,7 +94,7 @@
 			// 
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(5, 118);
+			this.label3.Location = new System.Drawing.Point(5, 308);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(90, 13);
 			this.label3.TabIndex = 2;
@@ -97,7 +104,7 @@
 			// 
 			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(5, 144);
+			this.label4.Location = new System.Drawing.Point(5, 334);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(61, 13);
 			this.label4.TabIndex = 3;
@@ -107,7 +114,7 @@
 			// 
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(5, 170);
+			this.label5.Location = new System.Drawing.Point(5, 360);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(71, 13);
 			this.label5.TabIndex = 4;
@@ -117,7 +124,7 @@
 			// 
 			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(5, 196);
+			this.label6.Location = new System.Drawing.Point(5, 386);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(37, 13);
 			this.label6.TabIndex = 5;
@@ -181,7 +188,7 @@
 			// btnSave
 			// 
 			this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnSave.Location = new System.Drawing.Point(111, 8);
+			this.btnSave.Location = new System.Drawing.Point(111, 198);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(100, 23);
 			this.btnSave.TabIndex = 12;
@@ -195,18 +202,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtTitle.Location = new System.Drawing.Point(106, 14);
 			this.txtTitle.Name = "txtTitle";
-			this.txtTitle.Size = new System.Drawing.Size(131, 20);
+			this.txtTitle.Size = new System.Drawing.Size(448, 20);
 			this.txtTitle.TabIndex = 13;
 			// 
 			// txtComment
 			// 
-			this.txtComment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtComment.Location = new System.Drawing.Point(106, 40);
+			this.txtComment.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.txtComment.Location = new System.Drawing.Point(0, 0);
 			this.txtComment.Multiline = true;
 			this.txtComment.Name = "txtComment";
-			this.txtComment.Size = new System.Drawing.Size(131, 68);
+			this.txtComment.Size = new System.Drawing.Size(261, 257);
 			this.txtComment.TabIndex = 14;
 			// 
 			// comboBox2
@@ -221,7 +226,7 @@
 			// 
 			this.cboAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.cboAction.FormattingEnabled = true;
-			this.cboAction.Location = new System.Drawing.Point(106, 192);
+			this.cboAction.Location = new System.Drawing.Point(106, 382);
 			this.cboAction.Name = "cboAction";
 			this.cboAction.Size = new System.Drawing.Size(131, 21);
 			this.cboAction.TabIndex = 26;
@@ -250,7 +255,7 @@
 			// btnCancel
 			// 
 			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCancel.Location = new System.Drawing.Point(5, 8);
+			this.btnCancel.Location = new System.Drawing.Point(5, 198);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(97, 23);
 			this.btnCancel.TabIndex = 31;
@@ -262,7 +267,7 @@
 			// 
 			this.cboApplication.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.cboApplication.FormattingEnabled = true;
-			this.cboApplication.Location = new System.Drawing.Point(106, 114);
+			this.cboApplication.Location = new System.Drawing.Point(106, 304);
 			this.cboApplication.Name = "cboApplication";
 			this.cboApplication.Size = new System.Drawing.Size(131, 21);
 			this.cboApplication.TabIndex = 32;
@@ -272,7 +277,7 @@
 			// 
 			this.cboFormName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.cboFormName.FormattingEnabled = true;
-			this.cboFormName.Location = new System.Drawing.Point(106, 139);
+			this.cboFormName.Location = new System.Drawing.Point(106, 329);
 			this.cboFormName.Name = "cboFormName";
 			this.cboFormName.Size = new System.Drawing.Size(131, 21);
 			this.cboFormName.TabIndex = 33;
@@ -281,7 +286,7 @@
 			// 
 			this.cboControlName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.cboControlName.FormattingEnabled = true;
-			this.cboControlName.Location = new System.Drawing.Point(106, 166);
+			this.cboControlName.Location = new System.Drawing.Point(106, 356);
 			this.cboControlName.Name = "cboControlName";
 			this.cboControlName.Size = new System.Drawing.Size(131, 21);
 			this.cboControlName.TabIndex = 34;
@@ -295,6 +300,7 @@
 			// 
 			// grpBugdetails
 			// 
+			this.grpBugdetails.Controls.Add(this.splitContainer1);
 			this.grpBugdetails.Controls.Add(this.label1);
 			this.grpBugdetails.Controls.Add(this.label2);
 			this.grpBugdetails.Controls.Add(this.cboControlName);
@@ -305,14 +311,13 @@
 			this.grpBugdetails.Controls.Add(this.label5);
 			this.grpBugdetails.Controls.Add(this.label6);
 			this.grpBugdetails.Controls.Add(this.txtTitle);
-			this.grpBugdetails.Controls.Add(this.txtComment);
 			this.grpBugdetails.Controls.Add(this.cboAction);
 			this.grpBugdetails.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grpBugdetails.Location = new System.Drawing.Point(0, 0);
 			this.grpBugdetails.Margin = new System.Windows.Forms.Padding(2);
 			this.grpBugdetails.Name = "grpBugdetails";
 			this.grpBugdetails.Padding = new System.Windows.Forms.Padding(2);
-			this.grpBugdetails.Size = new System.Drawing.Size(462, 219);
+			this.grpBugdetails.Size = new System.Drawing.Size(779, 409);
 			this.grpBugdetails.TabIndex = 36;
 			this.grpBugdetails.TabStop = false;
 			this.grpBugdetails.Text = "BugDetails";
@@ -359,7 +364,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 183);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(214, 36);
+			this.panel1.Size = new System.Drawing.Size(214, 226);
 			this.panel1.TabIndex = 39;
 			// 
 			// panel2
@@ -368,16 +373,58 @@
 			this.panel2.Controls.Add(this.grpManagement);
 			this.panel2.Controls.Add(this.grpCodeDetails);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel2.Location = new System.Drawing.Point(248, 0);
+			this.panel2.Location = new System.Drawing.Point(565, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(214, 219);
+			this.panel2.Size = new System.Drawing.Size(214, 409);
 			this.panel2.TabIndex = 40;
+			// 
+			// webBrowser1
+			// 
+			this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.webBrowser1.Location = new System.Drawing.Point(2, 31);
+			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+			this.webBrowser1.Name = "webBrowser1";
+			this.webBrowser1.Size = new System.Drawing.Size(181, 226);
+			this.webBrowser1.TabIndex = 35;
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.splitContainer1.Location = new System.Drawing.Point(106, 40);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.txtComment);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.btnAddCode);
+			this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
+			this.splitContainer1.Size = new System.Drawing.Size(448, 257);
+			this.splitContainer1.SplitterDistance = 261;
+			this.splitContainer1.TabIndex = 36;
+			// 
+			// btnAddCode
+			// 
+			this.btnAddCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnAddCode.Location = new System.Drawing.Point(105, 5);
+			this.btnAddCode.Name = "btnAddCode";
+			this.btnAddCode.Size = new System.Drawing.Size(75, 23);
+			this.btnAddCode.TabIndex = 36;
+			this.btnAddCode.Text = "Add Code";
+			this.btnAddCode.UseVisualStyleBackColor = true;
+			this.btnAddCode.Click += new System.EventHandler(this.btnAddCode_Click);
 			// 
 			// FrmCreateBug
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(462, 219);
+			this.ClientSize = new System.Drawing.Size(779, 409);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.grpBugdetails);
 			this.MinimumSize = new System.Drawing.Size(478, 258);
@@ -392,6 +439,11 @@
 			this.grpManagement.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel1.PerformLayout();
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -428,5 +480,8 @@
         private System.Windows.Forms.GroupBox grpManagement;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.WebBrowser webBrowser1;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.Button btnAddCode;
 	}
 }

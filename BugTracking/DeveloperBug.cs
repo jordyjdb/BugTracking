@@ -25,7 +25,7 @@ namespace BugTracking
 		/// <summary>
 		/// Assigned priority of the bug by a developer or a manager
 		/// </summary>
-		public String Priority;
+		public long Priority;
 
 		/// <summary>
 		/// developers/user who are subscribed to this bug for updates.
@@ -37,12 +37,12 @@ namespace BugTracking
 		/// </summary>
 		public Boolean BugOpen { get; private set; }
 
-		private DeveloperBug(long Id,String title, String comment, BugLocation location, long PreviousBugId, String Priority, Boolean BugOpen):this(title, comment, location, PreviousBugId, Priority, BugOpen)
+		private DeveloperBug(long Id,String title, String comment, BugLocation location, long PreviousBugId, long Priority, Boolean BugOpen):this(title, comment, location, PreviousBugId, Priority, BugOpen)
 		{
 			this.Id = Id;
 		}
 		public DeveloperBug() { }
-		public DeveloperBug( String title, String comment, BugLocation location, long PreviousBugId, String Priority, Boolean BugOpen) : base(title, comment, location)
+		public DeveloperBug( String title, String comment, BugLocation location, long PreviousBugId, long Priority, Boolean BugOpen) : base(title, comment, location)
 		{
 
 			this.PreviousBugId = PreviousBugId;
@@ -111,7 +111,7 @@ namespace BugTracking
 				List<DeveloperBug> BugList = new List<DeveloperBug>();
 				DataSet ds = new DataSet();
 				SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-				SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.DeveloperBug.BugOpen, dbo.DeveloperBug.Archived, dbo.DeveloperBug.NextBugId, dbo.DeveloperBug.Priority, dbo.DeveloperBug.PreviousBugId, dbo.Bugs.id FROM dbo.DeveloperBug INNER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id", sqlCon);
+				SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.DeveloperBug.BugOpen, dbo.DeveloperBug.Archived, dbo.DeveloperBug.NextBugId, dbo.Bugs.CreatedById, dbo.Bugs.previousBugID, dbo.Bugs.Priority, dbo.Bugs.AssignedUserID FROM dbo.DeveloperBug LEFT OUTER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id", sqlCon);
 
 				try
 				{
@@ -138,6 +138,7 @@ namespace BugTracking
 						long previousBugId = (long)Settings.iif(Convert.IsDBNull(row["previousBugId"]), 0, (long)row["previousBugId"]);
 						long locationID = (long) Settings.iif(Convert.IsDBNull(row["locationID"]), (long)row["locationID"],(long) 0);
 						BugLocation bugLocation = new BugLocation(locationID);
+					
 
 					bool BugOpen;
 
@@ -151,10 +152,15 @@ namespace BugTracking
 					}
 					bugLocation.Get();
 
-						String priority = (String)row["priority"];
+						long priority = (long)row["priority"];
 
 
 					DeveloperBug newBug = new DeveloperBug(Id, Title, Comment, bugLocation,previousBugId, priority,BugOpen);
+
+					Developer developer = Developer.Get((long)row["CreatedById"]);
+
+
+
 						BugList.Add(newBug);
 					}
 				}
@@ -166,6 +172,83 @@ namespace BugTracking
 
 				return BugList;
 	
+		}
+
+		public static new List<DeveloperBug> GetAssignedBugs(long DeveloperID,Boolean openOnly)
+		{
+
+			List<DeveloperBug> BugList = new List<DeveloperBug>();
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.DeveloperBug.BugOpen, dbo.DeveloperBug.Archived, dbo.DeveloperBug.NextBugId, dbo.Bugs.CreatedById, dbo.Bugs.previousBugID, dbo.Bugs.Priority, dbo.Bugs.AssignedUserID FROM dbo.DeveloperBug LEFT OUTER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id where AssignedUserID = @Id", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@Id", DeveloperID));
+			if (openOnly == true)
+			{
+				sqlCom.Parameters.Add(new SqlParameter("@open", true));
+				sqlCom.CommandText += " AND BugOpen = @open";
+			}
+			
+
+
+			try
+			{
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				foreach (DataRow row in ds.Tables[0].Rows)
+				{
+					long Id = (long)row["Id"];
+					String Title = (String)row["Title"];
+					String Comment = (String)row["Comment"];
+					long previousBugId = (long)Settings.iif(Convert.IsDBNull(row["previousBugId"]), 0, (long)row["previousBugId"]);
+					long locationID = (long)Settings.iif(Convert.IsDBNull(row["locationID"]), (long)row["locationID"], (long)0);
+					BugLocation bugLocation = new BugLocation(locationID);
+
+
+					bool BugOpen;
+
+					if ((bool)row["BugOpen"] == true)
+					{
+						BugOpen = true;
+					}
+					else
+					{
+						BugOpen = false;
+					}
+					bugLocation.Get();
+
+					long priority = (long)row["priority"];
+
+
+					DeveloperBug newBug = new DeveloperBug(Id, Title, Comment, bugLocation, previousBugId, priority, BugOpen);
+
+					Developer developer = Developer.Get((long)row["CreatedById"]);
+
+
+
+					BugList.Add(newBug);
+				}
+			}
+			else
+			{
+				//throw exeption
+				return null;
+			}
+
+			return BugList;
+
 		}
 
 

@@ -16,6 +16,9 @@ namespace BugManager
 
 		public long BugID { get; set; } = 0;
 
+		public String Code;
+
+
 		public FrmCreateBug()
 		{
 			InitializeComponent();
@@ -23,7 +26,7 @@ namespace BugManager
 
 		private void btnSave_Click(object sender, EventArgs e)
 		{
-			switch (LoggedInUser.Usertype)
+			switch (LoggedInUser.UserType)
 			{
 				case "White Box Tester":
 					
@@ -35,7 +38,7 @@ namespace BugManager
 					//(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
 					BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.SelectedValue, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtLineNumber.Text));
 
-					BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(txtTitle.Text, txtComment.Text, location, (long)0, txtPriority.Text, chkOpen.Checked);
+					BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), chkOpen.Checked);
 
 
 					DeveloperBug.Save();
@@ -55,7 +58,7 @@ namespace BugManager
 
             LoggedInUser = BugTracking.User.Get(LoggedInID);
 
-            switch (LoggedInUser.Usertype)
+            switch (LoggedInUser.UserType)
             {
                 case "White Box Tester":
                     grpBugdetails.Enabled = true;
@@ -96,7 +99,7 @@ namespace BugManager
 				{
 					txtTitle.Text = newBug.Title;
 					txtComment.Text = newBug.Comment;
-					txtPriority.Text = newBug.Priority;
+					txtPriority.Text = newBug.Priority.ToString();
 
 
 
@@ -114,7 +117,7 @@ namespace BugManager
 
 					btnSave.Enabled = newBug.BugOpen;
 
-
+					getColourCode();
 				}
 				else
 				{
@@ -158,5 +161,42 @@ namespace BugManager
 		{
 			this.Close();
 		}
+
+
+
+
+		public void getColourCode()
+		{
+			String htmlColouredCode = new ColorCode.CodeColorizer().Colorize(Code, ColorCode.Languages.CSharp);
+			StringBuilder html = new StringBuilder();
+			html.AppendFormat("<!doctype html><head><meta charset=\"utf-8\"</head> <body>{1}</body></html>", htmlColouredCode);
+
+			webBrowser1.DocumentText = html.ToString();
+		}
+
+
+
+		private void btnAddCode_Click(object sender, EventArgs e)
+		{
+			frmCode frmCode = new frmCode(Code);
+
+			frmCode.ShowDialog();
+			//frmCode.FormClosed();
+
+			if (frmCode.commit == true)
+			{
+				Code = frmCode.rtfCode.Text;
+			}
+
+			getColourCode();
+		}
+
+
+		private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
+
+		{
+
+		}
+				
 	}
 }

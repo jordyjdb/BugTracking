@@ -50,5 +50,6 @@ namespace BugManager
             this.Close();
 
 		}
+
 	}
 }

@@ -138,7 +138,9 @@ namespace BugTracking
 
 				sqlDa.Fill(ds);
 
-			}
+			}catch(Exception e)
+			{
+				}
 			finally
 			{
 				sqlCon.Close();

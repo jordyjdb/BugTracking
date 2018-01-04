@@ -124,6 +124,57 @@ namespace BugTracking
 		/// returns list of all applications
 		/// </summary>
 		/// <returns></returns>
+		public static List<App> GetUserAssignedApps(Developer user)
+		{
+			List<App> applications = new List<App>();
+
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("Select * From Application where DEFAULTUSERID = @DefaultUserID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@DefaultUserID", user.Id));
+
+			try
+			{
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				foreach (DataRow row in ds.Tables[0].Rows)
+				{
+
+					App application = new App((long)row["Id"], (String)row["name"]);
+					
+					application.DefaultUser = user;
+
+					applications.Add(application);
+				}
+				return applications;
+			}
+			else
+			{
+				//throw exeption
+				return null;
+			}
+
+
+
+		}
+
+		/// <summary>
+		/// returns list of all applications
+		/// </summary>
+		/// <returns></returns>
 		public static List<App> Get()
 		{
 			List<App> applications = new List<App>();
@@ -152,8 +203,10 @@ namespace BugTracking
 				foreach (DataRow row in ds.Tables[0].Rows)
 				{
 
-                    App application = new App( (long)row["Id"], (String)row["name"]);
-				
+					App application = new App((long)row["Id"], (String)row["name"]);
+
+					Developer developer = Developer.Get((long)row["DEFAULTUSERID"]);
+					application.DefaultUser = developer;
 
 					applications.Add(application);
 				}

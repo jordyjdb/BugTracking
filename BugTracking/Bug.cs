@@ -173,7 +173,54 @@ namespace BugTracking
 
 			return BugList;
 		}
+		/// <summary>
+		/// gets all bugs
+		/// </summary>
+		public static List<Bug> GetCreatedBugs(long Id, Boolean open)
+		{
+			List<Bug> BugList = new List<Bug>();
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("Select * From Bugs where CreatedByID = @Id and open = @open", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
+			sqlCom.Parameters.Add(new SqlParameter("@open", open));
+			try
+			{
+				sqlCon.Open();
 
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				foreach (DataRow row in ds.Tables[0].Rows)
+				{
+					long id = (long)row["Id"];
+					String Title = (String)row["Title"];
+					String Comment = (String)row["Comment"];
+					long previousBugId = (long)row["previousBugId"];
+
+
+					Bug newBug = new Bug(id, Title, Comment);
+					BugList.Add(newBug);
+				}
+			}
+			else
+			{
+				//throw exeption
+				return null;
+			}
+
+			return BugList;
+		}
 
 
 		/// <summary>
