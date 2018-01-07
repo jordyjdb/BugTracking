@@ -15,10 +15,11 @@ namespace BugManager
 
 		public Boolean commit = false;
 		String initilCode;
-
-		public frmCode(String code)
+		FrmCreateBug FrmCreateBug;
+		public frmCode(String code, FrmCreateBug frmCreateBug)
 		{
 			InitializeComponent();
+			FrmCreateBug = frmCreateBug;
 
 			rtfCode.Text = code;
 			initilCode = rtfCode.Text;
@@ -26,7 +27,15 @@ namespace BugManager
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			
+
+			if (!rtfCode.Text.Equals(initilCode))
+			{
+				commit = true;
+			}
+
+			FrmCreateBug.CommitCode(commit, rtfCode.Text);
+
+			Close();
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)
@@ -58,11 +67,6 @@ namespace BugManager
 		private void frmCode_Load(object sender, EventArgs e)
 		{
 
-			if (!rtfCode.Text.Equals(initilCode))
-			{
-				commit = true;
-			}
-			Close();
 		}
 	}
 }

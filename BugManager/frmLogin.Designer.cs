@@ -41,7 +41,6 @@
 			this.cboUsers.Name = "cboUsers";
 			this.cboUsers.Size = new System.Drawing.Size(120, 21);
 			this.cboUsers.TabIndex = 0;
-		
 			// 
 			// btnLogin
 			// 
@@ -73,6 +72,7 @@
 			this.Controls.Add(this.cboUsers);
 			this.Name = "FrmLogin";
 			this.Text = "Login";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLogin_FormClosed);
 			this.Load += new System.EventHandler(this.frmLogin_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);

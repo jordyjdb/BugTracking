@@ -50,7 +50,7 @@ namespace BugTracking
 			Get();
 		}
 	
-		public BugLocation(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
+		public BugLocation(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long startLineNumber, long endlineNumber)
 		{
 			this.applicationID = applicationID;
 			this.formID = formID;
@@ -58,11 +58,13 @@ namespace BugTracking
 			this.action = action;
 			this.relatedMethod = relatedMethod;
 			this.relatedParameter = relatedParameter;
-			this.lineNumber = lineNumber;
+			this.EndlineNumber = endlineNumber;
+			this.StartlineNumber = startLineNumber;
 		}
 
-		public long lineNumber { get; private set; }
-
+		public long EndlineNumber { get; private set; }
+		public long StartlineNumber { get; private set; }
+		
 
 		public Boolean Get()
 		{
@@ -93,8 +95,25 @@ namespace BugTracking
 
 			if (ds.Tables[0].Rows.Count == 1)
 			{
-				lineNumber = (int)ds.Tables[0].Rows[0]["lineNumber"];
 
+
+
+	EndlineNumber = 0;
+
+				if (ds.Tables[0].Rows[0]["EndlineNumber"] != DBNull.Value)
+				{
+					EndlineNumber = (int)ds.Tables[0].Rows[0]["EndlineNumber"];
+				}
+
+			
+			
+
+				if (ds.Tables[0].Rows[0]["StartlineNumber"] != DBNull.Value)
+				{
+					StartlineNumber = (int)ds.Tables[0].Rows[0]["StartlineNumber"];
+				}
+
+				
 
 				long applicationID = (int)ds.Tables[0].Rows[0]["applicationID"];
 
@@ -127,7 +146,7 @@ namespace BugTracking
 
 		public long Save()
 		{
-			String insertLocation = "INSERT INTO BUGLOCATIONS(applicationID,formID,controlID,action,relatedMethod,relatedParameter,lineNumber) values (@applicationID,@formID,@controlID,@action,@relatedMethod,@relatedParameter,@LineNumber); SELECT SCOPE_IDENTITY()";
+			String insertLocation = "INSERT INTO BUGLOCATIONS(applicationID,formID,controlID,action,relatedMethod,relatedParameter,StartlineNumber,EndLineNumber) values (@applicationID,@formID,@controlID,@action,@relatedMethod,@relatedParameter,@StartLineNumber,@EndLineNumber); SELECT SCOPE_IDENTITY()";
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 			SqlCommand sqlCom = new SqlCommand(insertLocation, sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@applicationID", applicationID));
@@ -136,7 +155,8 @@ namespace BugTracking
 			sqlCom.Parameters.Add(new SqlParameter("@action", action));
 			sqlCom.Parameters.Add(new SqlParameter("@relatedMethod", relatedMethod));
 			sqlCom.Parameters.Add(new SqlParameter("@relatedParameter", relatedParameter));
-			sqlCom.Parameters.Add(new SqlParameter("@lineNumber", lineNumber));
+			sqlCom.Parameters.Add(new SqlParameter("@EndLineNumber", EndlineNumber));
+			sqlCom.Parameters.Add(new SqlParameter("@StartLineNumber", StartlineNumber));
 
 
 			try

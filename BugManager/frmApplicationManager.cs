@@ -53,17 +53,20 @@ namespace BugManager
                 {
                     if (control.Id == 0)
                     {
-                        control.Save();
+						control.ApplicationID = selectedApp.Id;
+					control.Save();
                     }
                 }
                 foreach (BugTracking.Action action in ActionList)
                 {
                     if (action.Id == 0)
                     {
-                        
-                        action.Save();
+					action.ApplicationId = selectedApp.Id;
+					action.Save();
                     }
                 }
+
+			this.Close();
             
         }
 
@@ -71,35 +74,20 @@ namespace BugManager
         {
             //Assigns Apps to combobox
             AppList = BugTracking.App.Get();
-            cboApplication.ValueMember = "Id";
-            cboApplication.DisplayMember = "Name";
-            cboApplication.DataSource = AppList;
 
-            cboControlName.ValueMember = "Id";
-            cboControlName.DisplayMember = "Name";
-            //cboControlName.DataSource = ControlList;
-
-            cboFormName.ValueMember = "Id";
-            cboFormName.DisplayMember = "Name";
-            //cboFormName.DataSource = FormList;
-
-            cboActionName.ValueMember = "Id";
-            cboActionName.DisplayMember = "Description";
+			ComboMembers();
 
 
-            cboDefaultUser.ValueMember = "Id";
-            cboDefaultUser.DisplayMember = "Full Name";
-
-            List<BugTracking.DeveloperBug> userList = BugTracking.DeveloperBug.Get();
-
-            cboDefaultUser.DataSource = userList;
+			List<BugTracking.Developer> userList = BugTracking.Developer.Get();
+			cboApplication.DataSource = AppList;
+			cboDefaultUser.DataSource = userList;
 
         }
 
         private void cboApplication_TextChanged(object sender, EventArgs e)
         {
            
-              btnApplicationSave.Enabled = (cboApplication.SelectedValue != null);
+              //btnApplicationSave.Enabled = (cboApplication.SelectedValue != null);
             
         }
 
@@ -126,11 +114,50 @@ namespace BugManager
                 ActionList = new List<BugTracking.Action>();
             }
 
-            cboFormName.DataSource = FormList;
+			cboFormName.DataSource = null;
+			txtFormLabel.Text = "";
+			chkFormActive.Checked = false;
+
+			cboControlName.DataSource = null;
+			txtControlLabel.Text = "";
+			chkControlActive.Checked = false;
+
+			cboActionName.DataSource = null;
+			txtActionDescription.Text = "";
+
+
+
+			ComboMembers();
+
+			cboFormName.DataSource = FormList;
             cboControlName.DataSource = ControlList;
-            cboActionName.DataSource = ControlList;
+            cboActionName.DataSource = ActionList;
 
         }
+
+		private void ComboMembers()
+		{
+
+			cboApplication.ValueMember = "Id";
+			cboApplication.DisplayMember = "Name";
+
+			cboControlName.ValueMember = "Id";
+			cboControlName.DisplayMember = "Name";
+
+			cboFormName.ValueMember = "Id";
+			cboFormName.DisplayMember = "Name";
+			//cboFormName.DataSource = FormList;
+
+			//cboActionName.ValueMember = "Id";
+			//cboActionName.DisplayMember = "Description";
+
+
+			cboDefaultUser.ValueMember = "Id";
+			cboDefaultUser.DisplayMember = "FullName";
+
+			cboActionName.ValueMember = "Id";
+			cboActionName.DisplayMember = "Name";
+		}
 
         private void cboFormName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -160,8 +187,8 @@ namespace BugManager
         {
             if (cboControlName.SelectedValue != null)
             {
-                txtControlLabel.Text = ((BugTracking.AppForm)cboControlName.SelectedItem).Label;
-                chkControlActive.Enabled = ((BugTracking.AppForm)cboControlName.SelectedItem).Active;
+                txtControlLabel.Text = ((BugTracking.FormControl)cboControlName.SelectedItem).Label;
+                chkControlActive.Enabled = ((BugTracking.FormControl)cboControlName.SelectedItem).Active;
             }else
             {
                 txtControlLabel.Text = "";
@@ -174,7 +201,7 @@ namespace BugManager
             // not needed?
             if (cboActionName.SelectedValue != null)
             {
-                txtActionDescription.Text = ((BugTracking.Action)cboControlName.SelectedItem).Description;
+                txtActionDescription.Text = ((BugTracking.Action)cboActionName.SelectedItem).Description;
             }
             else
             {
@@ -186,7 +213,7 @@ namespace BugManager
         {
             if (cboFormName.SelectedValue == null)
             {
-                BugTracking.AppForm newApp = new BugTracking.AppForm(txtFormLabel.Text,cboFormName.Text,chkFormActive.Checked,(long) cboApplication.SelectedValue);
+                BugTracking.AppForm newApp = new BugTracking.AppForm(cboFormName.Text, txtFormLabel.Text,chkFormActive.Checked,(long) cboApplication.SelectedValue);
                 FormList.Add(newApp);
 
                 cboFormName.DataSource = FormList;
@@ -198,10 +225,15 @@ namespace BugManager
         {
             if (cboControlName.SelectedValue == null)
             {
-                BugTracking.FormControl newControl = new BugTracking.FormControl(txtFormLabel.Text, cboFormName.Text, chkFormActive.Checked, (long) cboApplication.SelectedValue);
+                BugTracking.FormControl newControl = new BugTracking.FormControl( cboControlName.Text, txtControlLabel.Text, chkControlActive.Checked, (long) cboApplication.SelectedValue);
                 ControlList.Add(newControl);
 
-                cboControlName.DataSource = ControlList;
+				cboControlName.DataSource = null;
+
+				cboControlName.ValueMember = "Id";
+				cboControlName.DisplayMember = "Label";
+
+				cboControlName.DataSource = ControlList;
 
             }
         }
@@ -213,8 +245,11 @@ namespace BugManager
             {
                 BugTracking.Action newAction = new BugTracking.Action(cboActionName.Text, txtActionDescription.Text,(long)cboApplication.SelectedValue);
                 ActionList.Add(newAction);
+				cboActionName.DataSource = null;
 
-                cboActionName.DataSource = ActionList;
+				cboActionName.ValueMember = "Id";
+				cboActionName.DisplayMember = "Name";
+				cboActionName.DataSource = ActionList;
             }
         }
 

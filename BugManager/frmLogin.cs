@@ -51,5 +51,14 @@ namespace BugManager
 
 		}
 
+		private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			FormCollection fc = Application.OpenForms;
+
+			if (fc.Count == 0)
+			{
+				Application.Exit();
+			}
+		}
 	}
 }

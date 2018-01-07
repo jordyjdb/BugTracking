@@ -24,14 +24,14 @@ namespace BugTracking
         public long Id { get; private set; }
         public String Name { get; set; }
         public String Description { get; set; }
-        public long ApplicationId { get; private set; }
+        public long ApplicationId { get; set; }
 
 
         public long Save()
         {
             SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-            SqlCommand sqlCom = new SqlCommand("Insert into Form(name,Description, ApplicationID) values (@label, @name,@active,@ApplicationID);SELECT SCOPE_IDENTITY() ", sqlCon);
-            sqlCom.Parameters.Add(new SqlParameter("@label", Description));
+            SqlCommand sqlCom = new SqlCommand("Insert into Actions(name,Description, ApplicationID) values (@name,@Description,@ApplicationID);SELECT SCOPE_IDENTITY()", sqlCon);
+            sqlCom.Parameters.Add(new SqlParameter("@Description", Description));
             sqlCom.Parameters.Add(new SqlParameter("@name", Name));
             sqlCom.Parameters.Add(new SqlParameter("@ApplicationID", ApplicationId));
 

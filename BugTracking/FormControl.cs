@@ -57,7 +57,7 @@ namespace BugTracking
 		/// </summary>
 		public Boolean Active { get; private set; }
 
-        public long ApplicationID { get; private set; }
+        public long ApplicationID { get;  set; }
 
 		public Boolean Get()
 		{

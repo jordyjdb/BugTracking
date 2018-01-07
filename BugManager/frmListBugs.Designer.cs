@@ -169,6 +169,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "FrmListBugs";
 			this.Text = "frmListBugs";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmListBugs_FormClosed);
 			this.Load += new System.EventHandler(this.frmListBugs_Load);
 			((System.ComponentModel.ISupportInitialize)(this.grdBugs)).EndInit();
 			this.menuStrip1.ResumeLayout(false);

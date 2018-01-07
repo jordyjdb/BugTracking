@@ -20,6 +20,53 @@ namespace BugTracking
 
 		}
 
+
+		/// <summary>
+		/// applications that the client can choose when filling in bug information
+		/// </summary>
+		public static new List<Developer> Get()
+		{
+
+			List<Developer> Developers = new List<Developer>();
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("Select Users.*, UserTypes.Type From Users inner join UserTypes on Users.typeId = UserTypes.Id", sqlCon);
+
+			try
+			{
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				foreach (DataRow row in ds.Tables[0].Rows)
+				{
+					long Id = (long)row["Id"];
+
+					String FirstName = (String)row["FirstName"];
+					String LastName = (String)row["LastName"];
+					String typeID = (String)row["type"];
+
+					Developer newUser = new Developer(Id, FirstName, LastName, typeID);
+					Developers.Add(newUser);
+				}
+			}
+
+			return Developers;
+
+		}
+
+
 		public static new Developer Get(long Id) 
 		{
 			

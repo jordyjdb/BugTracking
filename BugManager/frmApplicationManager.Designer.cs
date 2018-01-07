@@ -54,8 +54,8 @@
 			this.cboActionName = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.btnApplicationSave = new System.Windows.Forms.Button();
 			this.btnClose = new System.Windows.Forms.Button();
+			this.btnApplicationSave = new System.Windows.Forms.Button();
 			this.grpApplication.SuspendLayout();
 			this.grpFormDetails.SuspendLayout();
 			this.grpControlDetails.SuspendLayout();
@@ -75,9 +75,9 @@
 			this.grpApplication.Controls.Add(this.panel1);
 			this.grpApplication.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grpApplication.Location = new System.Drawing.Point(0, 0);
-			this.grpApplication.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grpApplication.Margin = new System.Windows.Forms.Padding(2);
 			this.grpApplication.Name = "grpApplication";
-			this.grpApplication.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grpApplication.Padding = new System.Windows.Forms.Padding(2);
 			this.grpApplication.Size = new System.Drawing.Size(283, 401);
 			this.grpApplication.TabIndex = 0;
 			this.grpApplication.TabStop = false;
@@ -97,9 +97,10 @@
 			// 
 			this.cboDefaultUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.cboDefaultUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboDefaultUser.FormattingEnabled = true;
 			this.cboDefaultUser.Location = new System.Drawing.Point(99, 41);
-			this.cboDefaultUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cboDefaultUser.Margin = new System.Windows.Forms.Padding(2);
 			this.cboDefaultUser.Name = "cboDefaultUser";
 			this.cboDefaultUser.Size = new System.Drawing.Size(179, 21);
 			this.cboDefaultUser.TabIndex = 5;
@@ -110,7 +111,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.cboApplication.FormattingEnabled = true;
 			this.cboApplication.Location = new System.Drawing.Point(99, 15);
-			this.cboApplication.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cboApplication.Margin = new System.Windows.Forms.Padding(2);
 			this.cboApplication.Name = "cboApplication";
 			this.cboApplication.Size = new System.Drawing.Size(179, 21);
 			this.cboApplication.TabIndex = 1;
@@ -128,9 +129,9 @@
 			this.grpFormDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.grpFormDetails.Enabled = false;
 			this.grpFormDetails.Location = new System.Drawing.Point(2, 63);
-			this.grpFormDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grpFormDetails.Margin = new System.Windows.Forms.Padding(2);
 			this.grpFormDetails.Name = "grpFormDetails";
-			this.grpFormDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grpFormDetails.Padding = new System.Windows.Forms.Padding(2);
 			this.grpFormDetails.Size = new System.Drawing.Size(279, 103);
 			this.grpFormDetails.TabIndex = 1;
 			this.grpFormDetails.TabStop = false;
@@ -140,7 +141,7 @@
 			// 
 			this.chkFormActive.AutoSize = true;
 			this.chkFormActive.Location = new System.Drawing.Point(96, 67);
-			this.chkFormActive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.chkFormActive.Margin = new System.Windows.Forms.Padding(2);
 			this.chkFormActive.Name = "chkFormActive";
 			this.chkFormActive.Size = new System.Drawing.Size(56, 17);
 			this.chkFormActive.TabIndex = 8;
@@ -152,7 +153,7 @@
 			this.txtFormLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtFormLabel.Location = new System.Drawing.Point(96, 45);
-			this.txtFormLabel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtFormLabel.Margin = new System.Windows.Forms.Padding(2);
 			this.txtFormLabel.Name = "txtFormLabel";
 			this.txtFormLabel.Size = new System.Drawing.Size(180, 20);
 			this.txtFormLabel.TabIndex = 7;
@@ -171,7 +172,7 @@
 			// 
 			this.btnFormDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnFormDetails.Location = new System.Drawing.Point(219, 80);
-			this.btnFormDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnFormDetails.Margin = new System.Windows.Forms.Padding(2);
 			this.btnFormDetails.Name = "btnFormDetails";
 			this.btnFormDetails.Size = new System.Drawing.Size(56, 19);
 			this.btnFormDetails.TabIndex = 5;
@@ -185,7 +186,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.cboFormName.FormattingEnabled = true;
 			this.cboFormName.Location = new System.Drawing.Point(96, 20);
-			this.cboFormName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cboFormName.Margin = new System.Windows.Forms.Padding(2);
 			this.cboFormName.Name = "cboFormName";
 			this.cboFormName.Size = new System.Drawing.Size(180, 21);
 			this.cboFormName.TabIndex = 4;
@@ -222,9 +223,9 @@
 			this.grpControlDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.grpControlDetails.Enabled = false;
 			this.grpControlDetails.Location = new System.Drawing.Point(2, 166);
-			this.grpControlDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grpControlDetails.Margin = new System.Windows.Forms.Padding(2);
 			this.grpControlDetails.Name = "grpControlDetails";
-			this.grpControlDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grpControlDetails.Padding = new System.Windows.Forms.Padding(2);
 			this.grpControlDetails.Size = new System.Drawing.Size(279, 105);
 			this.grpControlDetails.TabIndex = 2;
 			this.grpControlDetails.TabStop = false;
@@ -234,7 +235,7 @@
 			// 
 			this.chkControlActive.AutoSize = true;
 			this.chkControlActive.Location = new System.Drawing.Point(97, 66);
-			this.chkControlActive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.chkControlActive.Margin = new System.Windows.Forms.Padding(2);
 			this.chkControlActive.Name = "chkControlActive";
 			this.chkControlActive.Size = new System.Drawing.Size(56, 17);
 			this.chkControlActive.TabIndex = 10;
@@ -246,7 +247,7 @@
 			this.txtControlLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtControlLabel.Location = new System.Drawing.Point(97, 43);
-			this.txtControlLabel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtControlLabel.Margin = new System.Windows.Forms.Padding(2);
 			this.txtControlLabel.Name = "txtControlLabel";
 			this.txtControlLabel.Size = new System.Drawing.Size(180, 20);
 			this.txtControlLabel.TabIndex = 9;
@@ -265,7 +266,7 @@
 			// 
 			this.btnControlDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnControlDetails.Location = new System.Drawing.Point(219, 81);
-			this.btnControlDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnControlDetails.Margin = new System.Windows.Forms.Padding(2);
 			this.btnControlDetails.Name = "btnControlDetails";
 			this.btnControlDetails.Size = new System.Drawing.Size(56, 19);
 			this.btnControlDetails.TabIndex = 5;
@@ -279,7 +280,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.cboControlName.FormattingEnabled = true;
 			this.cboControlName.Location = new System.Drawing.Point(97, 20);
-			this.cboControlName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cboControlName.Margin = new System.Windows.Forms.Padding(2);
 			this.cboControlName.Name = "cboControlName";
 			this.cboControlName.Size = new System.Drawing.Size(179, 21);
 			this.cboControlName.TabIndex = 4;
@@ -305,9 +306,9 @@
 			this.grpActionDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.grpActionDetails.Enabled = false;
 			this.grpActionDetails.Location = new System.Drawing.Point(2, 271);
-			this.grpActionDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grpActionDetails.Margin = new System.Windows.Forms.Padding(2);
 			this.grpActionDetails.Name = "grpActionDetails";
-			this.grpActionDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grpActionDetails.Padding = new System.Windows.Forms.Padding(2);
 			this.grpActionDetails.Size = new System.Drawing.Size(279, 93);
 			this.grpActionDetails.TabIndex = 3;
 			this.grpActionDetails.TabStop = false;
@@ -318,7 +319,7 @@
 			this.txtActionDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtActionDescription.Location = new System.Drawing.Point(97, 44);
-			this.txtActionDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtActionDescription.Margin = new System.Windows.Forms.Padding(2);
 			this.txtActionDescription.Name = "txtActionDescription";
 			this.txtActionDescription.Size = new System.Drawing.Size(179, 20);
 			this.txtActionDescription.TabIndex = 11;
@@ -337,7 +338,7 @@
 			// 
 			this.btnActionDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnActionDetails.Location = new System.Drawing.Point(219, 69);
-			this.btnActionDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnActionDetails.Margin = new System.Windows.Forms.Padding(2);
 			this.btnActionDetails.Name = "btnActionDetails";
 			this.btnActionDetails.Size = new System.Drawing.Size(56, 19);
 			this.btnActionDetails.TabIndex = 5;
@@ -351,7 +352,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.cboActionName.FormattingEnabled = true;
 			this.cboActionName.Location = new System.Drawing.Point(97, 20);
-			this.cboActionName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cboActionName.Margin = new System.Windows.Forms.Padding(2);
 			this.cboActionName.Name = "cboActionName";
 			this.cboActionName.Size = new System.Drawing.Size(179, 21);
 			this.cboActionName.TabIndex = 4;
@@ -373,28 +374,14 @@
 			this.panel1.Controls.Add(this.btnApplicationSave);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel1.Location = new System.Drawing.Point(2, 364);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel1.Margin = new System.Windows.Forms.Padding(2);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(279, 35);
 			this.panel1.TabIndex = 4;
 			// 
-			// btnApplicationSave
-			// 
-			this.btnApplicationSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnApplicationSave.Enabled = false;
-			this.btnApplicationSave.Location = new System.Drawing.Point(154, 7);
-			this.btnApplicationSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.btnApplicationSave.Name = "btnApplicationSave";
-			this.btnApplicationSave.Size = new System.Drawing.Size(56, 19);
-			this.btnApplicationSave.TabIndex = 2;
-			this.btnApplicationSave.Text = "Save";
-			this.btnApplicationSave.UseVisualStyleBackColor = true;
-			this.btnApplicationSave.Click += new System.EventHandler(this.btnApplicationSave_Click);
-			// 
 			// btnClose
 			// 
 			this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnClose.Enabled = false;
 			this.btnClose.Location = new System.Drawing.Point(214, 7);
 			this.btnClose.Margin = new System.Windows.Forms.Padding(2);
 			this.btnClose.Name = "btnClose";
@@ -404,14 +391,27 @@
 			this.btnClose.UseVisualStyleBackColor = true;
 			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
 			// 
-			// frmApplicationManager
+			// btnApplicationSave
+			// 
+			this.btnApplicationSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnApplicationSave.Enabled = false;
+			this.btnApplicationSave.Location = new System.Drawing.Point(154, 7);
+			this.btnApplicationSave.Margin = new System.Windows.Forms.Padding(2);
+			this.btnApplicationSave.Name = "btnApplicationSave";
+			this.btnApplicationSave.Size = new System.Drawing.Size(56, 19);
+			this.btnApplicationSave.TabIndex = 2;
+			this.btnApplicationSave.Text = "Save";
+			this.btnApplicationSave.UseVisualStyleBackColor = true;
+			this.btnApplicationSave.Click += new System.EventHandler(this.btnApplicationSave_Click);
+			// 
+			// FrmApplicationManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(283, 401);
 			this.Controls.Add(this.grpApplication);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.Name = "frmApplicationManager";
+			this.Margin = new System.Windows.Forms.Padding(2);
+			this.Name = "FrmApplicationManager";
 			this.Text = "frmApplicationManager";
 			this.Load += new System.EventHandler(this.frmApplicationManager_Load);
 			this.grpApplication.ResumeLayout(false);

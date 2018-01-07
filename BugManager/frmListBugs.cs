@@ -133,5 +133,18 @@ namespace BugManager
 					break;
 			}
 		}
+
+		private void FrmListBugs_FormClosed(object sender, FormClosedEventArgs e)
+		{
+
+			FormCollection fc = Application.OpenForms;
+
+			if(fc.Count == 0)
+			{
+				Application.Exit();
+			}
+			
+
+		}
 	}
 }

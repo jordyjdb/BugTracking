@@ -36,9 +36,9 @@ namespace BugManager
 					break;
 				case "Developer":
 					//(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
-					BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.SelectedValue, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtLineNumber.Text));
+					BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.SelectedValue, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text),(long)Convert.ToDouble(txtEndLineNumber.Text));
 
-					BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), chkOpen.Checked);
+					BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), chkOpen.Checked,Code);
 
 
 					DeveloperBug.Save();
@@ -64,6 +64,8 @@ namespace BugManager
                     grpBugdetails.Enabled = true;
                     grpCodeDetails.Enabled = false;
                     grpManagement.Enabled = false;
+
+					grdBugHistory.Enabled = false;
                     break;
                 case "Black Box Tester":
                     grpBugdetails.Enabled = true;
@@ -89,13 +91,29 @@ namespace BugManager
             cboApplication.DisplayMember = "Name";
             cboApplication.DataSource = BugTracking.App.Get();
 
+			populateBugDetails(BugID);
 
+
+
+
+
+
+
+		}
+
+		private void populateHistoryGrid(BugTracking.DeveloperBug bug)
+		{
+
+		}
+
+		private void populateBugDetails(long BugID)
+		{
 			if (BugID != 0)
 			{
 
-				BugTracking.DeveloperBug newBug = new BugTracking.DeveloperBug();
+				BugTracking.DeveloperBug newBug = BugTracking.DeveloperBug.Get(BugID);
 
-				if (newBug.Get(BugID))
+				if (newBug != null)
 				{
 					txtTitle.Text = newBug.Title;
 					txtComment.Text = newBug.Comment;
@@ -106,18 +124,41 @@ namespace BugManager
 					cboApplication.SelectedValue = newBug.Location.application.Id;
 					cboFormName.SelectedValue = newBug.Location.form.Id;
 					cboControlName.SelectedValue = newBug.Location.control.Id;
-					cboAction.SelectedValue =  newBug.Location.action;
+					cboAction.SelectedValue = newBug.Location.action;
 					txtRelatedMethod.Text = newBug.Location.relatedMethod;
 
 					txtParameter.Text = newBug.Location.relatedParameter;
-					txtLineNumber.Text =  newBug.Location.lineNumber.ToString();
+					txtEndLineNumber.Text = newBug.Location.EndlineNumber.ToString();
+					txtStartLineNumber.Text = newBug.Location.StartlineNumber.ToString();
+
+					grdBugHistory.DataSource = BugTracking.DeveloperBug.getBugHistory(newBug.Id);
+
+					foreach (DataGridViewRow row in grdBugHistory.Rows)
+					{
+						if ((long)row.Cells["id"].Value == newBug.Id)
+						{
+							grdBugHistory.CurrentCell = row.Cells[0];
+							row.Selected = true;
+						}
+      
+					}
 
 
-					chkOpen.Checked = newBug.BugOpen;
+					chkOpen.Checked = !newBug.BugOpen;
 
 					btnSave.Enabled = newBug.BugOpen;
 
 					getColourCode();
+
+
+
+
+					if (!newBug.BugOpen)
+					{
+						grpBugdetails.Enabled = false;
+						grpCodeDetails.Enabled = false;
+						grpManagement.Enabled = false;
+					}
 				}
 				else
 				{
@@ -133,9 +174,6 @@ namespace BugManager
 
 
 			}
-
-
-            
 		}
 
 		private void cboApplication_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,28 +205,39 @@ namespace BugManager
 
 		public void getColourCode()
 		{
-			String htmlColouredCode = new ColorCode.CodeColorizer().Colorize(Code, ColorCode.Languages.CSharp);
-			StringBuilder html = new StringBuilder();
-			html.AppendFormat("<!doctype html><head><meta charset=\"utf-8\"</head> <body>{1}</body></html>", htmlColouredCode);
+			String htmlColouredCode = "";
+			if (Code != null)
+			{
+				htmlColouredCode = new ColorCode.CodeColorizer().Colorize(Code, ColorCode.Languages.CSharp);
 
-			webBrowser1.DocumentText = html.ToString();
+			}
+
+				StringBuilder html = new StringBuilder();
+				html.AppendFormat("<!doctype html><head><meta charset=\"utf-8\"</head> <body>{0}</body></html>", htmlColouredCode);
+
+				webBrowser1.DocumentText = html.ToString();
+
+			
 		}
 
-
-
-		private void btnAddCode_Click(object sender, EventArgs e)
+		public void CommitCode(Boolean commit,String code)
 		{
-			frmCode frmCode = new frmCode(Code);
-
-			frmCode.ShowDialog();
-			//frmCode.FormClosed();
-
-			if (frmCode.commit == true)
+			if (commit == true)
 			{
-				Code = frmCode.rtfCode.Text;
+				this.Code = code;
 			}
 
 			getColourCode();
+		}
+		frmCode frmCode;
+		private void btnAddCode_Click(object sender, EventArgs e)
+		{
+			frmCode = new frmCode(Code, this);
+
+			frmCode.ShowDialog(this);
+			//frmCode.FormClosed();
+
+			
 		}
 
 
@@ -197,6 +246,27 @@ namespace BugManager
 		{
 
 		}
-				
+
+		private void FrmCreateBug_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			if (frmCode != null)
+			{
+				frmCode.Close();
+			}
+		}
+
+		private void grdBugHistory_SelectionChanged(object sender, EventArgs e)
+		{
+
+			long ID = (long) grdBugHistory.Rows[0]["ID"].Value;
+			if ( ID> 0)
+		{
+				populateBugDetails(ID);
+
+
+		}
+
+
+		}
 	}
 }
