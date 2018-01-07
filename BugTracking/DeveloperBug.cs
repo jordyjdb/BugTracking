@@ -72,16 +72,15 @@ namespace BugTracking
 
 
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			String insertDeveloperBug = "INSERT INTO DEVELOPERBUG(BugId,Priority,BugOpen,Code,PreviousBugID,Archived) VALUES (@Id,@Priority,@BugOpen,@Code,@PreviousBugID,@newArchived); SELECT SCOPE_IDENTITY()";
-			String UpdatePreviousBug = "UPDATE DEVELOPERBUG set Archived = @oldArchived, NextBugId = @NextId where BugId = @PreviousBugId; SELECT @@Rowcount";
+			String insertDeveloperBug = "INSERT INTO DEVELOPERBUG(BugId,Priority,BugOpen,Code,PreviousBugID) VALUES (@Id,@Priority,@BugOpen,@Code,@PreviousBugID); SELECT SCOPE_IDENTITY()";
+			String UpdatePreviousBug = "UPDATE DEVELOPERBUG set  NextBugId = @NextId where BugId = @PreviousBugId; SELECT @@Rowcount";
 			SqlCommand sqlCom = new SqlCommand(insertDeveloperBug, sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
 			sqlCom.Parameters.Add(new SqlParameter("@PreviousBugId", PreviousBugID));
 			sqlCom.Parameters.Add(new SqlParameter("@Priority", Priority));
 			sqlCom.Parameters.Add(new SqlParameter("@BugOpen", BugOpen));
 			sqlCom.Parameters.Add(new SqlParameter("@Code", Code));
-			sqlCom.Parameters.Add(new SqlParameter("@oldArchived", true));
-			sqlCom.Parameters.Add(new SqlParameter("@newArchived", false));
+			
 
 
 
@@ -125,7 +124,7 @@ namespace BugTracking
 				List<DeveloperBug> BugList = new List<DeveloperBug>();
 				DataSet ds = new DataSet();
 				SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-				SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.DeveloperBug.BugOpen, dbo.DeveloperBug.Archived, dbo.DeveloperBug.NextBugId, dbo.Bugs.CreatedById, dbo.Bugs.previousBugID, dbo.Bugs.Priority, dbo.Bugs.AssignedUserID FROM dbo.DeveloperBug LEFT OUTER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id", sqlCon);
+				SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.DeveloperBug.BugOpen, dbo.Bugs.Archived, dbo.DeveloperBug.NextBugId, dbo.Bugs.CreatedById, dbo.Bugs.previousBugID, dbo.Bugs.Priority, dbo.Bugs.AssignedUserID FROM dbo.DeveloperBug LEFT OUTER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id", sqlCon);
 
 				try
 				{
@@ -211,7 +210,7 @@ namespace BugTracking
 			List<DeveloperBug> BugList = new List<DeveloperBug>();
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.DeveloperBug.BugOpen,dbo.Bugs.CreatedDate,dbo.DeveloperBug.Code, dbo.DeveloperBug.Archived, dbo.DeveloperBug.NextBugId, dbo.Bugs.CreatedById, dbo.DeveloperBug.previousBugID, dbo.DeveloperBug.Priority, dbo.Bugs.AssignedUserID FROM dbo.DeveloperBug LEFT OUTER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id where AssignedUserID = @Id and dbo.DeveloperBug.NextBugId is null", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.DeveloperBug.BugOpen,dbo.Bugs.CreatedDate,dbo.DeveloperBug.Code, dbo.Bugs.Archived, dbo.DeveloperBug.NextBugId, dbo.Bugs.CreatedById, dbo.DeveloperBug.previousBugID, dbo.DeveloperBug.Priority, dbo.Bugs.AssignedUserID FROM dbo.DeveloperBug LEFT OUTER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id where (AssignedUserID = @Id or CreatedByID = @Id ) and dbo.DeveloperBug.NextBugId is null", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@Id", DeveloperID));
 			if (openOnly == true)
 			{
@@ -331,7 +330,7 @@ namespace BugTracking
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.Bugs.CreatedDate, dbo.DeveloperBug.BugOpen,dbo.DeveloperBug.Code, dbo.DeveloperBug.Archived, dbo.DeveloperBug.NextBugId, dbo.Bugs.CreatedById, dbo.DeveloperBug.previousBugID, dbo.DeveloperBug.Priority, dbo.Bugs.AssignedUserID FROM dbo.DeveloperBug LEFT OUTER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id where Id = @ID", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID, dbo.Bugs.CreatedDate, dbo.DeveloperBug.BugOpen,dbo.DeveloperBug.Code, dbo.Bugs.Archived, dbo.DeveloperBug.NextBugId, dbo.Bugs.CreatedById, dbo.DeveloperBug.previousBugID, dbo.DeveloperBug.Priority, dbo.Bugs.AssignedUserID FROM dbo.DeveloperBug LEFT OUTER JOIN dbo.Bugs ON dbo.DeveloperBug.BugID = dbo.Bugs.id where Id = @ID", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@ID", id));
 			try
 			{
@@ -449,8 +448,15 @@ namespace BugTracking
 			while (hasPreviousBugID)
 			{
 				PreviousBug = DeveloperBug.Get(PreviousBug.PreviousBugID);
-				developerBugs.Add(PreviousBug);
-				hasPreviousBugID = (PreviousBug.PreviousBugID != 0);
+				if (PreviousBug != null)
+				{
+					developerBugs.Add(PreviousBug);
+					hasPreviousBugID = (PreviousBug.PreviousBugID != 0);
+				}
+				else
+				{
+					hasPreviousBugID = false;
+				}
 
 			}
 

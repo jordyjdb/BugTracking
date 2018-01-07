@@ -394,7 +394,6 @@
 			// btnApplicationSave
 			// 
 			this.btnApplicationSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnApplicationSave.Enabled = false;
 			this.btnApplicationSave.Location = new System.Drawing.Point(154, 7);
 			this.btnApplicationSave.Margin = new System.Windows.Forms.Padding(2);
 			this.btnApplicationSave.Name = "btnApplicationSave";

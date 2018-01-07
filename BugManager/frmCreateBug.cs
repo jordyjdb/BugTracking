@@ -27,22 +27,43 @@ namespace BugManager
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			long DefaultUserID;
-			long createdByID = LoggedInUser.Id;
-
+		
 			switch (LoggedInUser.UserType)
 			{
+				
 				case "White Box Tester":
 
+
+					BugTracking.BugLocation locationWB= new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, "", "", (long)Convert.ToDouble(0), (long)Convert.ToDouble(0));
+
+					BugTracking.DeveloperBug BlackBoxBug = new BugTracking.DeveloperBug(BugID, txtTitle.Text, txtComment.Text, locationWB, (long)0, 0, true, Code);
+
+					BlackBoxBug.createdByID = LoggedInUser.Id;
+
 					DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
-					//Bug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
+					BlackBoxBug.AssignedUserID = DefaultUserID;
+
+					BlackBoxBug.Save();
+
+					BugID = BlackBoxBug.Id;
+					populateBugDetails();
+				
+					//Bug.createdByID = createdByID;
+					//DeveloperBug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
 					break;
 				case "Black Box Tester":
 
+					BugTracking.BugLocation locationBB = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text), (long)Convert.ToDouble(txtEndLineNumber.Text));
 
+					BugTracking.Bug WhiteBoxBug = new BugTracking.Bug(BugID, txtTitle.Text, txtComment.Text);
+					WhiteBoxBug.createdByID = LoggedInUser.Id;
 
-					 DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
-					//Bug.createdByID = createdByID;
-					//DeveloperBug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
+					DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
+					WhiteBoxBug.AssignedUserID = DefaultUserID;
+					//Bug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
+					WhiteBoxBug.Save();
+					BugID = WhiteBoxBug.Id;
+					populateBugDetails();
 					break;
 				case "Developer":
 					//(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
@@ -51,7 +72,7 @@ namespace BugManager
 					BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(BugID,txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), !chkOpen.Checked,Code);
 					DefaultUserID = (long)cboAssignedUser.SelectedValue;
 
-					DeveloperBug.createdByID = createdByID;
+					DeveloperBug.createdByID = LoggedInUser.Id;
 					DeveloperBug.AssignedUserID = DefaultUserID;
 
 					DeveloperBug.Save();
@@ -68,39 +89,63 @@ namespace BugManager
 			
 		}
 
+		public void UserFormSettup()
+		{
+			long LoggedInID = Properties.Settings.Default.LoggedInID;
+
+			LoggedInUser = BugTracking.User.Get(LoggedInID);
+
+			switch (LoggedInUser.UserType)
+			{
+
+				case "Black Box Tester":
+					btnSave.Enabled = true;
+					grpBugdetails.Enabled = true;
+					grpCodeDetails.Enabled = false;
+					grpManagement.Enabled = false;
+					grpCodeSnippet.Enabled = false;
+					splitContainer1.Panel2Collapsed = true;
+					splitContainer1.Panel2.Hide();
+					grdBugHistory.Enabled = false;
+
+
+					break;
+				case "White Box Tester":
+					
+					btnSave.Enabled = true;
+
+					grpCodeSnippet.Enabled = true;
+					splitContainer1.Panel2Collapsed = false;
+					splitContainer1.Panel2.Show();
+					grpBugdetails.Enabled = true;
+					grpCodeDetails.Enabled = true;
+					grpManagement.Enabled = false;
+					break;
+				case "Developer":
+					grpBugdetails.Enabled = true;
+					btnSave.Enabled = true;
+					grpCodeSnippet.Enabled = true;
+					splitContainer1.Panel2Collapsed = false;
+					splitContainer1.Panel2.Show();
+					grpManagement.Enabled = true;
+					grpCodeDetails.Enabled = true;
+					grpManagement.Enabled = true;
+					break;
+				default:
+					btnSave.Enabled = true;
+					grpBugdetails.Enabled = false;
+					grpCodeDetails.Enabled = false;
+					grpManagement.Enabled = false;
+
+
+					break;
+			}
+		}
+
+
 		private void frmCreateBug_Load(object sender, EventArgs e)
 		{
-            long LoggedInID = Properties.Settings.Default.LoggedInID;
-
-            LoggedInUser = BugTracking.User.Get(LoggedInID);
-
-            switch (LoggedInUser.UserType)
-            {
-                case "White Box Tester":
-                    grpBugdetails.Enabled = true;
-                    grpCodeDetails.Enabled = false;
-                    grpManagement.Enabled = false;
-
-					grdBugHistory.Enabled = false;
-                    break;
-                case "Black Box Tester":
-                    grpBugdetails.Enabled = true;
-                    grpCodeDetails.Enabled = true;
-                    grpManagement.Enabled = false;
-                    break;
-                case "Developer":
-                    grpManagement.Enabled = true;
-                    grpCodeDetails.Enabled = true;
-                    grpManagement.Enabled = true;
-                    break;
-                default:
-                    grpBugdetails.Enabled = false;
-                    grpCodeDetails.Enabled = false;
-                    grpManagement.Enabled = false;
-
-
-                    break;
-            }
+           
 
             BugTracking.App.Get();
             cboApplication.ValueMember = "Id";
@@ -115,7 +160,7 @@ namespace BugManager
 			cboAssignedUser.SelectedItem = null;
 
 
-
+			UserFormSettup();
 
 
 			populateBugDetails();
@@ -166,7 +211,7 @@ namespace BugManager
 					grdBugHistory.DataSource = BugTracking.DeveloperBug.getBugHistory(newBug.Id);
 
 
-				
+
 					foreach (DataGridViewRow row in grdBugHistory.Rows)
 					{
 						if ((long)row.Cells["id"].Value == newBug.Id)
@@ -177,7 +222,7 @@ namespace BugManager
 						{
 							row.Selected = false;
 						}
-      
+
 					}
 
 					Code = newBug.Code;
@@ -210,24 +255,90 @@ namespace BugManager
 					}
 					else
 					{
-						grpBugdetails.Enabled = true;
-						grpCodeDetails.Enabled = true;
-						grpManagement.Enabled = true;
-						btnSave.Enabled = true;
+						UserFormSettup();
 					}
 				}
 				else
 				{
-					//bug with bugID not found!
+					BugTracking.Bug bug = new BugTracking.Bug(BugID);
 
-					MessageBox.Show("Unable to open bug with Id: " + BugID);
+					if (bug != null)
+					{
+						txtTitle.Text = bug.Title;
+						txtComment.Text = bug.Comment;
+						txtPriority.Text = "0";
+
+						cboApplication.SelectedValue = bug.Location.application.Id;
+						cboFormName.SelectedValue = bug.Location.form.Id;
+						cboControlName.SelectedValue = bug.Location.control.Id;
+						cboAction.Text = bug.Location.action;
+						
+
+						txtRelatedMethod.Text = "";
+
+						txtParameter.Text = "";
+						txtEndLineNumber.Text = "";
+						txtStartLineNumber.Text = "";
+
+						cboAssignedUser.SelectedValue = bug.AssignedUserID;
+						txtDateCreated.Text = bug.CreatedDate.ToShortDateString();
+
+
+
+						grdBugHistory.DataSource = null;
+
+
+
+						foreach (DataGridViewRow row in grdBugHistory.Rows)
+						{
+							if ((long)row.Cells["id"].Value == bug.Id)
+							{
+								row.Selected = true;
+							}
+							else
+							{
+								row.Selected = false;
+							}
+
+						}
+
+						Code = "";
+						if (grdBugHistory.Columns.Count > 0)
+						{
+							grdBugHistory.Columns["Id"].Visible = false;
+							grdBugHistory.Columns["previousBugID"].Visible = false;
+							grdBugHistory.Columns["NextBugID"].Visible = false;
+							grdBugHistory.Columns["BugOpen"].Visible = false;
+							grdBugHistory.Columns["AssignedUserID"].Visible = false;
+							grdBugHistory.Columns["createdByID"].Visible = false;
+						}
+
+						chkOpen.Checked = true;
+
+
+						if (LoggedInUser.UserType == "Black Box Tester")
+						{
+							btnSave.Enabled = false;
+						}
+						else
+						{
+							btnSave.Enabled = true;
+						}
+
+
+						getColourCode();
+
+
+
+
+
+						UserFormSettup();
+
+					}
+
 
 
 				}
-
-
-
-
 
 			}
 		}

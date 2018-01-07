@@ -25,19 +25,19 @@ namespace BugManager
 			List<String> FilterList = new List<string>();
 			switch (user.UserType)
 			{
-				case "White Box Tester":
-					FilterList.Add("WhiteBox Bugs Only");
+				case "Black Box Tester":
+					FilterList.Add("BlackBox Bugs Only");
 					comboBox1.Enabled = false;
 
 					break;
-				case "Black Box Tester":
-					FilterList.Add("WhiteBox Bugs Only");
-					FilterList.Add("BlackBox & WhiteBox Bugs");
+				case "White Box Tester":
+					FilterList.Add("BlackBox Bugs Only");
+					FilterList.Add("WhiteBox & BlackBox Bugs");
 
 					break;
 				case "Developer":
-					FilterList.Add("WhiteBox Bugs Only");
-					FilterList.Add("BlackBox & WhiteBox Bugs");
+					FilterList.Add("BlackBox Bugs Only");
+					FilterList.Add("WhiteBox & BlackBox Bugs");
 					FilterList.Add("Developer Bugs Only");
 
 
@@ -85,9 +85,13 @@ namespace BugManager
 
 		private void btnUpdateSelected_Click(object sender, EventArgs e)
 		{
-			FrmCreateBug frmCreateBug = new FrmCreateBug();
-			frmCreateBug.BugID = (long)grdBugs.SelectedRows[0].Cells["Id"].Value;
-			frmCreateBug.ShowDialog();
+			if (grdBugs.SelectedRows.Count > 0)
+			{
+				FrmCreateBug frmCreateBug = new FrmCreateBug();
+				frmCreateBug.BugID = (long)grdBugs.SelectedRows[0].Cells["Id"].Value;
+				frmCreateBug.ShowDialog();
+			}
+			
 		}
 
 		private void helpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,17 +152,8 @@ namespace BugManager
 			switch (user.UserType)
 			{
 				case "White Box Tester":
-					grdBugs.DataSource = BugTracking.Bug.GetCreatedBugs(user.Id, false);
-					
-					if (grdBugs.Columns.Count > 0)
-					{
-						grdBugs.Columns["Id"].Visible = false;
-						grdBugs.Columns["previousBugID"].Visible = false;
-						grdBugs.Columns["NextBugID"].Visible = false;
-						grdBugs.Columns["BugOpen"].Visible = false;
-						grdBugs.Columns["AssignedUserID"].Visible = false;
-						grdBugs.Columns["createdByID"].Visible = false;
-					}
+					grdBugs.DataSource = BugTracking.Bug.GetCreatedBugs(user.Id);
+				
 
 					break;
 				case "Black Box Tester":
@@ -167,15 +162,15 @@ namespace BugManager
 
 					switch (comboBox1.SelectedIndex)
 					{
-						case 1:
-							//whiteBoxTester
-							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked,false);
+						case 0:
+							//BlackBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(false);
 
 							break;
 
-						case 2:
-							//BlackBoxTester
-							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked, true);
+						case 1:
+							//WhiteBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(true);
 							break;
 
 					}
@@ -183,41 +178,42 @@ namespace BugManager
 
 					grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedDevloperBugs(user.Id, chkOpen.Checked);
 
-					if (grdBugs.Columns.Count > 0)
-					{
-						grdBugs.Columns["Id"].Visible = false;
-						grdBugs.Columns["previousBugID"].Visible = false;
-						grdBugs.Columns["NextBugID"].Visible = false;
-						grdBugs.Columns["BugOpen"].Visible = false;
-						grdBugs.Columns["AssignedUserID"].Visible = false;
-						grdBugs.Columns["createdByID"].Visible = false;
-					}
-
+				
 					break;
 				case "Developer":
 
 					switch (comboBox1.SelectedIndex)
 					{
-						case 1:
-							//whiteBoxTester
-							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked, false);
+						case 0:
+							//BlackBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(false);
 
+							break;
+
+						case 1:
+							//WhiteBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(true);
 							break;
 
 						case 2:
-							//BlackBoxTester
-							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked, true);
-							break;
-
-						case 3:
 							//DeveloperBugsOnly
 						
+
 							grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedDevloperBugs(user.Id, chkOpen.Checked);
+
+							if (grdBugs.Columns.Count > 0)
+							{
+
+								grdBugs.Columns["previousBugID"].Visible = false;
+								grdBugs.Columns["NextBugID"].Visible = false;
+								grdBugs.Columns["BugOpen"].Visible = false;
+
+							}
 							break;
 
 						default:
 							//whiteBoxTester
-							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked, false);
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked);
 							break;
 					}
 
@@ -229,15 +225,6 @@ namespace BugManager
 
 					
 
-					if (grdBugs.Columns.Count > 0)
-					{
-						grdBugs.Columns["Id"].Visible = false;
-						grdBugs.Columns["previousBugID"].Visible = false;
-						grdBugs.Columns["NextBugID"].Visible = false;
-						grdBugs.Columns["BugOpen"].Visible = false;
-						grdBugs.Columns["AssignedUserID"].Visible = false;
-						grdBugs.Columns["createdByID"].Visible = false;
-					}
 
 					break;
 				default:
@@ -246,6 +233,15 @@ namespace BugManager
 
 					break;
 			}
+
+			
+					if (grdBugs.Columns.Count > 0)
+					{
+						grdBugs.Columns["Id"].Visible = false;
+						
+						grdBugs.Columns["AssignedUserID"].Visible = false;
+						grdBugs.Columns["createdByID"].Visible = false;
+					}
 			RefreshingTable = false;
 		}
 
@@ -264,7 +260,7 @@ namespace BugManager
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			
+			gridRefresh();
 		}
 	}
 }

@@ -36,14 +36,14 @@ namespace BugTracking
 		#region initialize Bug
 		public Bug() {  }
 		
-	private Bug(long Id, String Title, String Comment, BugLocation location)
+	public Bug(long Id, String Title, String Comment, BugLocation location)
 		{
 			this.Title = Title;
 			this.Comment = Comment;
 			this.Id = Id;
 			this.Location = location;
 		}
-		private Bug(long Id, String Title, String Comment)
+		public Bug(long Id, String Title, String Comment)
 		{
 			this.Title = Title;
 			this.Comment = Comment;
@@ -57,7 +57,14 @@ namespace BugTracking
 			this.Id = 0;
 
 		}
+		public Bug(long Id)
+		{
+			
+			this.Id = Id;
+			Get(Id);
 
+
+		}
 		public Bug(string Title, string Comment, BugLocation location) : this(Title, Comment)
 		{
 			Location = location;
@@ -80,13 +87,15 @@ namespace BugTracking
 
 		}
 
+		
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
-		public Boolean Get(long id)
+
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <param name="id"></param>
+			/// <returns></returns>
+			public Boolean Get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
@@ -182,27 +191,27 @@ namespace BugTracking
 		/// <param name="Id">Users ID</param>
 		/// <param name="open"> filters Bugs based on if the bug is open or closed</param>
 		/// <returns></returns>
-		public static List<Bug> GetBoxBugs(Boolean open,Boolean includeBlackBox)
+		public static List<Bug> GetBoxBugs(Boolean includeWhiteBox)
 		{
 			List<Bug> BugList = new List<Bug>();
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 
 
-			String sqlString = "SELECT Bugs.*, dbo.UserTypes.Type FROM dbo.Bugs INNER JOIN dbo.Users ON dbo.Bugs.CreatedById = dbo.Users.id INNER JOIN dbo.UserTypes ON dbo.Users.typeID = dbo.UserTypes.id WHERE dbo.UserTypes.Type = WhiteBoxTester ";
+			String sqlString = "SELECT Bugs.*, dbo.UserTypes.Type FROM dbo.Bugs INNER JOIN dbo.Users ON dbo.Bugs.CreatedById = dbo.Users.id INNER JOIN dbo.UserTypes ON dbo.Users.typeID = dbo.UserTypes.id WHERE dbo.UserTypes.Type = 'Black Box Tester' and archived = @Archived";
 
-			if (includeBlackBox)
+			if (includeWhiteBox)
 			{
-				sqlString += " or dbo.UserTypes.Type = BlackBoxTester";
+				sqlString += " or dbo.UserTypes.Type = 'White Box Tester'";
 				
 			}
 			
 
 			sqlString += " ORDER BY CreatedDate DESC";
 			SqlCommand sqlCom = new SqlCommand(sqlString, sqlCon);
-			
-			sqlCom.Parameters.Add(new SqlParameter("@open", open));
 
+			sqlCom.Parameters.Add(new SqlParameter( "@Archived", false));
+			
 
 
 
@@ -214,6 +223,9 @@ namespace BugTracking
 				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
 
 				sqlDa.Fill(ds);
+
+			}catch(Exception e)
+			{
 
 			}
 			finally
@@ -253,21 +265,21 @@ namespace BugTracking
 		/// <param name="Id">Users ID</param>
 		/// <param name="open"> filters Bugs based on if the bug is open or closed</param>
 		/// <returns></returns>
-		public static List<Bug> GetCreatedBugs(long Id, Boolean open)
+		public static List<Bug> GetCreatedBugs(long Id)
 		{
 			List<Bug> BugList = new List<Bug>();
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
 
 
-			String sqlString = "Select * From Bugs where CreatedByID = @Id and open = @open";
+			String sqlString = "Select * From Bugs where CreatedByID = @Id";
 
 
 
 			sqlString += " ORDER BY CreatedDate DESC";
 			SqlCommand sqlCom = new SqlCommand(sqlString, sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
-			sqlCom.Parameters.Add(new SqlParameter("@open", open));
+	
 
 
 
@@ -320,8 +332,11 @@ namespace BugTracking
 		/// <returns>ID of new row in table buglist</returns>
 		public long Save()
 		{
-
-			Location.Save();
+			if (Location != null)
+			{
+				Location.Save();
+			}
+			
 			Id = SaveBug();
 
 
@@ -338,19 +353,34 @@ namespace BugTracking
 			//if ID == 0 
 			//new bug with no previous link
 
+
+			long previousBugID = 0;
+			if (Id != 0)
+			{
+				previousBugID = Id;
+
+			}
+
 			//if ID != 0 
 			//ID = previuosBugID and create new bug with link
 			CreatedDate = DateTime.Now;
 
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("Insert into Bugs(Title, Comment,createdByID,AssignedUserID,LocationID,CreatedDate) values (@Title, @Comment,@createdByID,@AssignedUserID,@LocationID,@CreatedDate);SELECT SCOPE_IDENTITY() ", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("Insert into Bugs(Title, Comment,createdByID,AssignedUserID,LocationID,CreatedDate,Archived) values (@Title, @Comment,@createdByID,@AssignedUserID,@LocationID,@CreatedDate,@NewArchived);SELECT SCOPE_IDENTITY() ", sqlCon);
+			String UpdatePreviousBug = "UPDATE Bugs set Archived = @NewArchived where Id = @PreviousBugId; SELECT @@Rowcount";
 			sqlCom.Parameters.Add(new SqlParameter("@Title", Title));
 			sqlCom.Parameters.Add(new SqlParameter("@Comment", Comment));
 
 			sqlCom.Parameters.Add(new SqlParameter("@createdByID", createdByID));
 			sqlCom.Parameters.Add(new SqlParameter("@AssignedUserID", AssignedUserID));
+			sqlCom.Parameters.Add(new SqlParameter("@NewArchived", false));
+			long LocationID = 0;
+			if (Location != null)
+			{
+				LocationID=  Location.Id;
+			}
 
-			sqlCom.Parameters.Add(new SqlParameter("@LocationID", Location.Id));
+			sqlCom.Parameters.Add(new SqlParameter("@LocationID", LocationID));
 			sqlCom.Parameters.Add(new SqlParameter("@CreatedDate", CreatedDate));
 			//createdByID
 			//Priority
@@ -363,9 +393,18 @@ namespace BugTracking
 				sqlCon.Open();
 
 				decimal id = (decimal)sqlCom.ExecuteScalar();
-				CreatedDate = DateTime.Now;
 
 				Id = (long)id;
+
+				if (previousBugID != 0)
+				{
+					sqlCom.CommandText = UpdatePreviousBug;
+					sqlCom.Parameters.Add(new SqlParameter("@OldArchived", true));
+					sqlCom.Parameters.Add(new SqlParameter("@PreviousBugId", previousBugID));
+					sqlCom.ExecuteScalar();
+
+				}
+
 
 
 			}
@@ -400,9 +439,9 @@ namespace BugTracking
 		/// gets latest bugs in chains
 		/// </summary>
 		/// <param name="DeveloperID"></param>
-		/// <param name="openOnly">parameter to show only open if true, else show open and close</param>
+		/// <param name="notArchived">parameter to show only not Archived Bugs, that do not have a new version</param>
 		/// <returns>list of bugs that Assigned user's ID = Developer ID</returns>
-		public static List<Bug> GetAssignedBugs(long DeveloperID, Boolean openOnly)
+		public static List<Bug> GetAssignedBugs(long DeveloperID, Boolean notArchived)
 		{
 
 			List<Bug> BugList = new List<Bug>();
@@ -411,6 +450,12 @@ namespace BugTracking
 			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID ,dbo.Bugs.CreatedDate, dbo.Bugs.CreatedById, dbo.Bugs.AssignedUserID FROM Bugs where AssignedUserID = @Id", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@Id", DeveloperID));
 			
+			if (notArchived)
+			{
+				sqlCom.CommandText += " AND Bugs.Archived = @Archived";
+				sqlCom.Parameters.Add(new SqlParameter("@Archived", false));
+
+			}
 
 			try
 			{

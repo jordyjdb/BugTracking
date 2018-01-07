@@ -30,7 +30,7 @@ namespace BugTracking
 			List<Developer> Developers = new List<Developer>();
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("Select Users.*, UserTypes.Type From Users inner join UserTypes on Users.typeId = UserTypes.Id", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Users.id, dbo.Users.firstName, dbo.Users.lastName, dbo.Users.accountCreationDate, dbo.Users.typeID, UserTypes.Type FROM dbo.Users INNER JOIN dbo.UserTypes ON Users.typeId = UserTypes.Id WHERE(dbo.Users.Type = 'Developer')", sqlCon);
 
 			try
 			{

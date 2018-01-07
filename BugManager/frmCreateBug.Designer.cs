@@ -42,9 +42,9 @@
 			this.cboControlName = new System.Windows.Forms.ComboBox();
 			this.grpBugdetails = new System.Windows.Forms.GroupBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.grpCodeSnippet = new System.Windows.Forms.GroupBox();
 			this.btnAddCode = new System.Windows.Forms.Button();
 			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -52,6 +52,9 @@
 			this.grdBugHistory = new System.Windows.Forms.DataGridView();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.label13 = new System.Windows.Forms.Label();
+			this.txtDateCreated = new System.Windows.Forms.TextBox();
 			this.grpManagement = new System.Windows.Forms.GroupBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
@@ -67,15 +70,12 @@
 			this.label9 = new System.Windows.Forms.Label();
 			this.txtEndLineNumber = new System.Windows.Forms.TextBox();
 			this.txtParameter = new System.Windows.Forms.TextBox();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.label13 = new System.Windows.Forms.Label();
-			this.txtDateCreated = new System.Windows.Forms.TextBox();
 			this.grpBugdetails.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
+			this.grpCodeSnippet.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
@@ -84,9 +84,9 @@
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdBugHistory)).BeginInit();
+			this.panel3.SuspendLayout();
 			this.grpManagement.SuspendLayout();
 			this.grpCodeDetails.SuspendLayout();
-			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -240,10 +240,22 @@
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
+			this.splitContainer1.Panel2.Controls.Add(this.grpCodeSnippet);
 			this.splitContainer1.Size = new System.Drawing.Size(414, 356);
 			this.splitContainer1.SplitterDistance = 204;
 			this.splitContainer1.TabIndex = 36;
+			// 
+			// grpCodeSnippet
+			// 
+			this.grpCodeSnippet.Controls.Add(this.btnAddCode);
+			this.grpCodeSnippet.Controls.Add(this.webBrowser1);
+			this.grpCodeSnippet.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.grpCodeSnippet.Location = new System.Drawing.Point(0, 0);
+			this.grpCodeSnippet.Name = "grpCodeSnippet";
+			this.grpCodeSnippet.Size = new System.Drawing.Size(206, 356);
+			this.grpCodeSnippet.TabIndex = 37;
+			this.grpCodeSnippet.TabStop = false;
+			this.grpCodeSnippet.Text = "Code snippet";
 			// 
 			// btnAddCode
 			// 
@@ -266,18 +278,6 @@
 			this.webBrowser1.Name = "webBrowser1";
 			this.webBrowser1.Size = new System.Drawing.Size(203, 309);
 			this.webBrowser1.TabIndex = 35;
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Controls.Add(this.btnAddCode);
-			this.groupBox2.Controls.Add(this.webBrowser1);
-			this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox2.Location = new System.Drawing.Point(0, 0);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(206, 356);
-			this.groupBox2.TabIndex = 37;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Code snippet";
 			// 
 			// splitContainer2
 			// 
@@ -367,6 +367,33 @@
 			this.btnSave.Text = "Save";
 			this.btnSave.UseVisualStyleBackColor = true;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+			// 
+			// panel3
+			// 
+			this.panel3.Controls.Add(this.label13);
+			this.panel3.Controls.Add(this.txtDateCreated);
+			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel3.Enabled = false;
+			this.panel3.Location = new System.Drawing.Point(0, 183);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(213, 34);
+			this.panel3.TabIndex = 37;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(5, 11);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(70, 13);
+			this.label13.TabIndex = 31;
+			this.label13.Text = "Time Created";
+			// 
+			// txtDateCreated
+			// 
+			this.txtDateCreated.Location = new System.Drawing.Point(106, 8);
+			this.txtDateCreated.Name = "txtDateCreated";
+			this.txtDateCreated.Size = new System.Drawing.Size(100, 20);
+			this.txtDateCreated.TabIndex = 32;
 			// 
 			// grpManagement
 			// 
@@ -512,33 +539,6 @@
 			this.txtParameter.Size = new System.Drawing.Size(100, 20);
 			this.txtParameter.TabIndex = 29;
 			// 
-			// panel3
-			// 
-			this.panel3.Controls.Add(this.label13);
-			this.panel3.Controls.Add(this.txtDateCreated);
-			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel3.Enabled = false;
-			this.panel3.Location = new System.Drawing.Point(0, 183);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(213, 34);
-			this.panel3.TabIndex = 37;
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(5, 11);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(70, 13);
-			this.label13.TabIndex = 31;
-			this.label13.Text = "Time Created";
-			// 
-			// txtDateCreated
-			// 
-			this.txtDateCreated.Location = new System.Drawing.Point(106, 8);
-			this.txtDateCreated.Name = "txtDateCreated";
-			this.txtDateCreated.Size = new System.Drawing.Size(100, 20);
-			this.txtDateCreated.TabIndex = 32;
-			// 
 			// FrmCreateBug
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,7 +557,7 @@
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
-			this.groupBox2.ResumeLayout(false);
+			this.grpCodeSnippet.ResumeLayout(false);
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			this.splitContainer2.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -566,12 +566,12 @@
 			this.panel1.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdBugHistory)).EndInit();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
 			this.grpManagement.ResumeLayout(false);
 			this.grpManagement.PerformLayout();
 			this.grpCodeDetails.ResumeLayout(false);
 			this.grpCodeDetails.PerformLayout();
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -594,7 +594,7 @@
 		private System.Windows.Forms.WebBrowser webBrowser1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.Button btnAddCode;
-		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.GroupBox grpCodeSnippet;
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel panel1;
