@@ -10,6 +10,8 @@ namespace BugTracking
 {
 	public class Action
 	{
+
+
         public Action(string name, String Description, long ApplicationId)
         {
             Name = name;
@@ -27,6 +29,10 @@ namespace BugTracking
         public long ApplicationId { get; set; }
 
 
+		/// <summary>
+		/// Saves Action to database
+		/// </summary>
+		/// <returns>new Action ID</returns>
         public long Save()
         {
             SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
@@ -63,7 +69,11 @@ namespace BugTracking
 
 
 
-    //TODO add ApplicationID to table
+   /// <summary>
+   /// Gets actions relating to Application
+   /// </summary>
+   /// <param name="AppID"></param>
+   /// <returns>List of actions</returns>
     public static List<BugTracking.Action> Get(long AppID)
 		{
 			List<Action> formControls = new List<Action>();

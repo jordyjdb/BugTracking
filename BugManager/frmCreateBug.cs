@@ -26,22 +26,38 @@ namespace BugManager
 
 		private void btnSave_Click(object sender, EventArgs e)
 		{
+			long DefaultUserID;
+			long createdByID = LoggedInUser.Id;
+
 			switch (LoggedInUser.UserType)
 			{
 				case "White Box Tester":
-					
+
+					DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
+					//Bug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
 					break;
 				case "Black Box Tester":
-				
+
+
+
+					 DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
+					//Bug.createdByID = createdByID;
+					//DeveloperBug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
 					break;
 				case "Developer":
 					//(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
-					BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.SelectedValue, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text),(long)Convert.ToDouble(txtEndLineNumber.Text));
+					BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text),(long)Convert.ToDouble(txtEndLineNumber.Text));
 
-					BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), chkOpen.Checked,Code);
+					BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(BugID,txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), !chkOpen.Checked,Code);
+					DefaultUserID = (long)cboAssignedUser.SelectedValue;
 
+					DeveloperBug.createdByID = createdByID;
+					DeveloperBug.AssignedUserID = DefaultUserID;
 
 					DeveloperBug.Save();
+
+					BugID = DeveloperBug.Id;
+					populateBugDetails();
 					break;
 				default:
 					
@@ -90,8 +106,19 @@ namespace BugManager
             cboApplication.ValueMember = "Id";
             cboApplication.DisplayMember = "Name";
             cboApplication.DataSource = BugTracking.App.Get();
+			List<BugTracking.User> users = BugTracking.User.Get();
 
-			populateBugDetails(BugID);
+			cboAssignedUser.DisplayMember = "FullName";
+			cboAssignedUser.ValueMember = "Id";
+
+			cboAssignedUser.DataSource = users;
+			cboAssignedUser.SelectedItem = null;
+
+
+
+
+
+			populateBugDetails();
 
 
 
@@ -106,7 +133,7 @@ namespace BugManager
 
 		}
 
-		private void populateBugDetails(long BugID)
+		private void populateBugDetails()
 		{
 			if (BugID != 0)
 			{
@@ -124,25 +151,45 @@ namespace BugManager
 					cboApplication.SelectedValue = newBug.Location.application.Id;
 					cboFormName.SelectedValue = newBug.Location.form.Id;
 					cboControlName.SelectedValue = newBug.Location.control.Id;
-					cboAction.SelectedValue = newBug.Location.action;
+					cboAction.Text = newBug.Location.action;
 					txtRelatedMethod.Text = newBug.Location.relatedMethod;
 
 					txtParameter.Text = newBug.Location.relatedParameter;
 					txtEndLineNumber.Text = newBug.Location.EndlineNumber.ToString();
 					txtStartLineNumber.Text = newBug.Location.StartlineNumber.ToString();
 
+					cboAssignedUser.SelectedValue = newBug.AssignedUserID;
+					txtDateCreated.Text = newBug.CreatedDate.ToShortDateString();
+
+
+
 					grdBugHistory.DataSource = BugTracking.DeveloperBug.getBugHistory(newBug.Id);
 
+
+				
 					foreach (DataGridViewRow row in grdBugHistory.Rows)
 					{
 						if ((long)row.Cells["id"].Value == newBug.Id)
 						{
-							grdBugHistory.CurrentCell = row.Cells[0];
 							row.Selected = true;
+						}
+						else
+						{
+							row.Selected = false;
 						}
       
 					}
 
+					Code = newBug.Code;
+					if (grdBugHistory.Columns.Count > 0)
+					{
+						grdBugHistory.Columns["Id"].Visible = false;
+						grdBugHistory.Columns["previousBugID"].Visible = false;
+						grdBugHistory.Columns["NextBugID"].Visible = false;
+						grdBugHistory.Columns["BugOpen"].Visible = false;
+						grdBugHistory.Columns["AssignedUserID"].Visible = false;
+						grdBugHistory.Columns["createdByID"].Visible = false;
+					}
 
 					chkOpen.Checked = !newBug.BugOpen;
 
@@ -153,11 +200,20 @@ namespace BugManager
 
 
 
-					if (!newBug.BugOpen)
+					if ((!newBug.BugOpen) || (newBug.NextBugId > 0))
 					{
 						grpBugdetails.Enabled = false;
 						grpCodeDetails.Enabled = false;
 						grpManagement.Enabled = false;
+						btnSave.Enabled = false;
+
+					}
+					else
+					{
+						grpBugdetails.Enabled = true;
+						grpCodeDetails.Enabled = true;
+						grpManagement.Enabled = true;
+						btnSave.Enabled = true;
 					}
 				}
 				else
@@ -175,7 +231,7 @@ namespace BugManager
 
 			}
 		}
-
+	
 		private void cboApplication_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (cboApplication.SelectedValue != null)
@@ -258,15 +314,26 @@ namespace BugManager
 		private void grdBugHistory_SelectionChanged(object sender, EventArgs e)
 		{
 
-			long ID = (long) grdBugHistory.Rows[0]["ID"].Value;
-			if ( ID> 0)
-		{
-				populateBugDetails(ID);
-
+			
 
 		}
 
+		private void grdBugHistory_DoubleClick(object sender, EventArgs e)
+		{
+			long ID = (long)grdBugHistory.SelectedRows[0].Cells["ID"].Value;
+			if (ID > 0 && ID != BugID)
+			{
+				BugID = ID;
+				populateBugDetails();
 
+
+			}
+
+		}
+
+		private void btnCancel_Click_1(object sender, EventArgs e)
+		{
+			this.Close();
 		}
 	}
 }

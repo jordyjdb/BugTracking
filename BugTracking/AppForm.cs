@@ -1,7 +1,6 @@
 
 ﻿using BugTracking;
 using System;
-
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,33 +32,38 @@ namespace BugTracking
 
 
 
-        
 
-		#region controls
-		//controls on the form
-		public List<FormControl> controls()
-		{
-			return null;
-		}
+
+		//#region controls
+		////controls on the form
+		//public List<FormControl> controls()
+		//{
+		//	return null;
+		//}
+		///// <summary>
+		///// 
+		///// </summary>
+		///// <param name="control"></param>
+		///// <returns>returns controlID</returns>
+
+		//public int addControl(FormControl control)
+		//{
+
+		//	return -1;
+		//}
+
+
+		//public int removeControl(FormControl control)
+		//{
+		//	return -1;
+		//}
+		//#endregion
+
 		/// <summary>
-		/// 
+		/// Saves Form to database
 		/// </summary>
-		/// <param name="control"></param>
-		/// <returns>returns controlID</returns>
-
-		public int addControl(FormControl control)
-		{
-
-			return -1;
-		}
-
-
-		public int removeControl(FormControl control)
-		{
-			return -1;
-		}
-
-        public long Save()
+		/// <returns>new Form ID</returns>
+		public long Save()
         {
           
 
@@ -105,7 +109,7 @@ namespace BugTracking
         }
 
 
-        #endregion
+     
 
         //methods in form
         public List<String> methods;
@@ -113,6 +117,11 @@ namespace BugTracking
 		//methods in form
 		public List<String> parameters;
 
+
+		/// <summary>
+		/// gets App information
+		/// </summary>
+		/// <param name="Id"> App Id</param>
 		public AppForm(long Id)
 		{
 			this.Id = Id;
@@ -122,9 +131,9 @@ namespace BugTracking
 
 		public AppForm( string label, string name, bool active, long applicationID)
         {
-          
-            this.Label = label ?? throw new ArgumentNullException(nameof(label));
-            this.Name = name ?? throw new ArgumentNullException(nameof(name));
+
+			this.Label = label;
+			this.Name = name;
             this.Active = active;
             this.ApplicationID = applicationID;
         }
@@ -134,6 +143,10 @@ namespace BugTracking
             this.Id = id;
         }
 
+		/// <summary>
+		/// gets Form details were Form.Id = Id
+		/// </summary>
+		/// <returns>if get successful</returns>
 		public Boolean Get()
 		{
 			List<AppForm> AppForm = new List<AppForm>();

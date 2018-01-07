@@ -39,7 +39,11 @@ namespace BugTracking
             this.Name = Name;
         }
 
-        public long Save()
+		/// <summary>
+		/// Saves Application to database
+		/// </summary>
+		/// <returns>new Application ID</returns>
+		public long Save()
         {
 
      
@@ -82,6 +86,12 @@ namespace BugTracking
             
         }
 
+
+		/// <summary>
+		/// retreives saved Application
+		/// </summary>
+		/// <param name="id">Wanted application's ID</param>
+		/// <returns></returns>
         public Boolean Get(long id)
 		{
 			//retreives information about bug with ID
@@ -121,9 +131,9 @@ namespace BugTracking
 		}
 
 		/// <summary>
-		/// returns list of all applications
+		/// Lists Applications assigned to user
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>returns list of all applications</returns>
 		public static List<App> GetUserAssignedApps(Developer user)
 		{
 			List<App> applications = new List<App>();

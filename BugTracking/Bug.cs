@@ -27,8 +27,11 @@ namespace BugTracking
 		/// </summary>
 		public BugLocation Location;
 
-		public DateTime CreationDate;
-		
+		public DateTime CreatedDate { get; set; }
+
+		public long AssignedUserID { get; set; }
+
+		public long createdByID { get; set; }
 
 		#region initialize Bug
 		public Bug() {  }
@@ -110,11 +113,9 @@ namespace BugTracking
 				this.Id = id;
 				this.Title = (String)ds.Tables[0].Rows[0]["Title"];
 				this.Comment = (String)ds.Tables[0].Rows[0]["Comment"];
-				//this. = (String)ds.Tables[0].Rows[0]["previousBugId"];
-
 				this.Location = new BugLocation((long)ds.Tables[0].Rows[0]["LocationID"]);
 
-			
+				this.CreatedDate = (DateTime)ds.Tables[0].Rows[0]["CreatedDate"];
 
 
 				return true;
@@ -160,10 +161,11 @@ namespace BugTracking
 					long Id = (long) row["Id"];
 					String Title = (String) row["Title"];
 					String Comment = (String) row["Comment"];
-					long previousBugId = (long) row["previousBugId"];
+					DateTime CreatedDate = (DateTime)row["CreatedDate"];
 
 
 					Bug newBug = new Bug(Id, Title, Comment);
+					newBug.CreatedDate = CreatedDate;
 					BugList.Add(newBug);
 				}
 		} else{
@@ -173,17 +175,38 @@ namespace BugTracking
 
 			return BugList;
 		}
+
 		/// <summary>
-		/// gets all bugs
+		/// Get list of bugs created by user
 		/// </summary>
-		public static List<Bug> GetCreatedBugs(long Id, Boolean open)
+		/// <param name="Id">Users ID</param>
+		/// <param name="open"> filters Bugs based on if the bug is open or closed</param>
+		/// <returns></returns>
+		public static List<Bug> GetBoxBugs(Boolean open,Boolean includeBlackBox)
 		{
 			List<Bug> BugList = new List<Bug>();
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("Select * From Bugs where CreatedByID = @Id and open = @open", sqlCon);
-			sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
+
+
+			String sqlString = "SELECT Bugs.*, dbo.UserTypes.Type FROM dbo.Bugs INNER JOIN dbo.Users ON dbo.Bugs.CreatedById = dbo.Users.id INNER JOIN dbo.UserTypes ON dbo.Users.typeID = dbo.UserTypes.id WHERE dbo.UserTypes.Type = WhiteBoxTester ";
+
+			if (includeBlackBox)
+			{
+				sqlString += " or dbo.UserTypes.Type = BlackBoxTester";
+				
+			}
+			
+
+			sqlString += " ORDER BY CreatedDate DESC";
+			SqlCommand sqlCom = new SqlCommand(sqlString, sqlCon);
+			
 			sqlCom.Parameters.Add(new SqlParameter("@open", open));
+
+
+
+
+
 			try
 			{
 				sqlCon.Open();
@@ -206,10 +229,78 @@ namespace BugTracking
 					long id = (long)row["Id"];
 					String Title = (String)row["Title"];
 					String Comment = (String)row["Comment"];
-					long previousBugId = (long)row["previousBugId"];
+
+					DateTime CreatedDate = (DateTime)row["CreatedDate"];
 
 
 					Bug newBug = new Bug(id, Title, Comment);
+					newBug.CreatedDate = CreatedDate;
+					BugList.Add(newBug);
+				}
+			}
+			else
+			{
+				//throw exeption
+				return null;
+			}
+
+			return BugList;
+		}
+
+		/// <summary>
+		/// Get list of bugs created by user
+		/// </summary>
+		/// <param name="Id">Users ID</param>
+		/// <param name="open"> filters Bugs based on if the bug is open or closed</param>
+		/// <returns></returns>
+		public static List<Bug> GetCreatedBugs(long Id, Boolean open)
+		{
+			List<Bug> BugList = new List<Bug>();
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+
+
+			String sqlString = "Select * From Bugs where CreatedByID = @Id and open = @open";
+
+
+
+			sqlString += " ORDER BY CreatedDate DESC";
+			SqlCommand sqlCom = new SqlCommand(sqlString, sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
+			sqlCom.Parameters.Add(new SqlParameter("@open", open));
+
+
+
+
+
+			try
+			{
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				foreach (DataRow row in ds.Tables[0].Rows)
+				{
+					long id = (long)row["Id"];
+					String Title = (String)row["Title"];
+					String Comment = (String)row["Comment"];
+
+					DateTime CreatedDate = (DateTime)row["CreatedDate"];
+
+
+					Bug newBug = new Bug(id, Title, Comment);
+					newBug.CreatedDate = CreatedDate;
 					BugList.Add(newBug);
 				}
 			}
@@ -230,10 +321,17 @@ namespace BugTracking
 		public long Save()
 		{
 
+			Location.Save();
 			Id = SaveBug();
+
+
+
 			return Id;
 
 		}
+
+
+
 
 		protected long SaveBug()
 		{
@@ -242,13 +340,22 @@ namespace BugTracking
 
 			//if ID != 0 
 			//ID = previuosBugID and create new bug with link
-
+			CreatedDate = DateTime.Now;
 
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("Insert into Bugs(Title, Comment, previousBugId) values (@Title, @Comment, @previousBugId);SELECT SCOPE_IDENTITY() ", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("Insert into Bugs(Title, Comment,createdByID,AssignedUserID,LocationID,CreatedDate) values (@Title, @Comment,@createdByID,@AssignedUserID,@LocationID,@CreatedDate);SELECT SCOPE_IDENTITY() ", sqlCon);
 			sqlCom.Parameters.Add(new SqlParameter("@Title", Title));
 			sqlCom.Parameters.Add(new SqlParameter("@Comment", Comment));
-			sqlCom.Parameters.Add(new SqlParameter("@previousBugId", Id));
+
+			sqlCom.Parameters.Add(new SqlParameter("@createdByID", createdByID));
+			sqlCom.Parameters.Add(new SqlParameter("@AssignedUserID", AssignedUserID));
+
+			sqlCom.Parameters.Add(new SqlParameter("@LocationID", Location.Id));
+			sqlCom.Parameters.Add(new SqlParameter("@CreatedDate", CreatedDate));
+			//createdByID
+			//Priority
+			//AssignedUserID
+			//LocationID
 
 
 			try
@@ -256,7 +363,7 @@ namespace BugTracking
 				sqlCon.Open();
 
 				decimal id = (decimal)sqlCom.ExecuteScalar();
-
+				CreatedDate = DateTime.Now;
 
 				Id = (long)id;
 
@@ -289,6 +396,69 @@ namespace BugTracking
 
 
 
+		/// <summary>
+		/// gets latest bugs in chains
+		/// </summary>
+		/// <param name="DeveloperID"></param>
+		/// <param name="openOnly">parameter to show only open if true, else show open and close</param>
+		/// <returns>list of bugs that Assigned user's ID = Developer ID</returns>
+		public static List<Bug> GetAssignedBugs(long DeveloperID, Boolean openOnly)
+		{
+
+			List<Bug> BugList = new List<Bug>();
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Bugs.id, dbo.Bugs.Title, dbo.Bugs.Comment, dbo.Bugs.LocationID ,dbo.Bugs.CreatedDate, dbo.Bugs.CreatedById, dbo.Bugs.AssignedUserID FROM Bugs where AssignedUserID = @Id", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@Id", DeveloperID));
+			
+
+			try
+			{
+				sqlCon.Open();
+
+				SqlDataAdapter sqlDa = new SqlDataAdapter(sqlCom);
+
+				sqlDa.Fill(ds);
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+
+			if (ds.Tables[0].Rows.Count > 0)
+			{
+				foreach (DataRow row in ds.Tables[0].Rows)
+				{
+					long Id = (long)row["Id"];
+					String Title = (String)row["Title"];
+					String Comment = (String)row["Comment"];
+					
+					long locationID = (long)Settings.iif(Convert.IsDBNull(row["locationID"]), (long)row["locationID"], (long)0);
+					BugLocation bugLocation = new BugLocation(locationID);
+
+
+					DateTime CreatedDate = (DateTime)row["CreatedDate"];
+					
+					
+					Bug newBug = new Bug(Id, Title, Comment, bugLocation);
+
+					newBug.CreatedDate = CreatedDate;
+					Developer developer = Developer.Get((long)row["CreatedById"]);
+					
+					BugList.Add(newBug);
+				}
+			}
+			else
+			{
+				//throw exeption
+				return null;
+			}
+
+			return BugList;
+
+		}
 	}
 
 

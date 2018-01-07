@@ -39,6 +39,7 @@
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnUser = new System.Windows.Forms.Button();
 			this.chkOpen = new System.Windows.Forms.CheckBox();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.grdBugs)).BeginInit();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -50,6 +51,7 @@
 			this.grdBugs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.grdBugs.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.grdBugs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.grdBugs.Location = new System.Drawing.Point(247, 26);
 			this.grdBugs.Name = "grdBugs";
@@ -154,11 +156,26 @@
 			this.chkOpen.UseVisualStyleBackColor = true;
 			this.chkOpen.CheckedChanged += new System.EventHandler(this.chkOpen_CheckedChanged);
 			// 
+			// comboBox1
+			// 
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Items.AddRange(new object[] {
+            "New From WhiteBox Testers",
+            "New From BlackBox Testers",
+            "Developer Bugs"});
+			this.comboBox1.Location = new System.Drawing.Point(167, 51);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(74, 21);
+			this.comboBox1.TabIndex = 7;
+			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+			// 
 			// FrmListBugs
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(840, 331);
+			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.chkOpen);
 			this.Controls.Add(this.btnUser);
 			this.Controls.Add(this.btnUpdateSelected);
@@ -192,5 +209,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button btnUser;
 		private System.Windows.Forms.CheckBox chkOpen;
+		private System.Windows.Forms.ComboBox comboBox1;
 	}
 }

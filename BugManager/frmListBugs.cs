@@ -22,25 +22,31 @@ namespace BugManager
 		private void frmListBugs_Load(object sender, EventArgs e)
 		{
 			user = new BugTracking.User(Properties.Settings.Default.LoggedInID);
-
+			List<String> FilterList = new List<string>();
 			switch (user.UserType)
 			{
 				case "White Box Tester":
-					grdBugs.Enabled = false;
+					FilterList.Add("WhiteBox Bugs Only");
+					comboBox1.Enabled = false;
+
 					break;
 				case "Black Box Tester":
-					grdBugs.Enabled = false;
+					FilterList.Add("WhiteBox Bugs Only");
+					FilterList.Add("BlackBox & WhiteBox Bugs");
 
 					break;
 				case "Developer":
+					FilterList.Add("WhiteBox Bugs Only");
+					FilterList.Add("BlackBox & WhiteBox Bugs");
+					FilterList.Add("Developer Bugs Only");
 
 
-					RefreshingTable = true;
-					grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedBugs(user.Id, chkOpen.Checked);
-					RefreshingTable = false;
+					gridRefresh();
+
+
 					break;
 				default:
-					
+
 
 
 					break;
@@ -50,62 +56,62 @@ namespace BugManager
 
 
 
-			
-
-	
 
 
 
 
 
+
+
+			comboBox1.DataSource = FilterList;
 
 		}
 
 
 
-        private void btnApplication_Click(object sender, EventArgs e)
-        {
-            FrmApplicationManager frmApplicationManager = new FrmApplicationManager();
-            frmApplicationManager.ShowDialog();
+		private void btnApplication_Click(object sender, EventArgs e)
+		{
+			FrmApplicationManager frmApplicationManager = new FrmApplicationManager();
+			frmApplicationManager.ShowDialog();
 
-        }
+		}
 
-        private void btnCreateBug_Click(object sender, EventArgs e)
-        {
-            FrmCreateBug frmCreateBug = new FrmCreateBug();
-            frmCreateBug.ShowDialog();
-        }
-
-
-        private void btnUpdateSelected_Click(object sender, EventArgs e)
-        {
+		private void btnCreateBug_Click(object sender, EventArgs e)
+		{
 			FrmCreateBug frmCreateBug = new FrmCreateBug();
-			frmCreateBug.BugID = (long) grdBugs.SelectedRows[0].Cells["Id"].Value;
 			frmCreateBug.ShowDialog();
 		}
 
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
+		private void btnUpdateSelected_Click(object sender, EventArgs e)
+		{
+			FrmCreateBug frmCreateBug = new FrmCreateBug();
+			frmCreateBug.BugID = (long)grdBugs.SelectedRows[0].Cells["Id"].Value;
+			frmCreateBug.ShowDialog();
+		}
 
-        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+		private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+		{
 
-        }
+		}
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Application.Exit();
-        }
+		private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+		{
 
-        private void btnUser_Click(object sender, EventArgs e)
-        {
-            FrmUserManagement frmUserManagement = new FrmUserManagement();
-            frmUserManagement.ShowDialog();
+		}
 
-        }
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Close();
+			Application.Exit();
+		}
+
+		private void btnUser_Click(object sender, EventArgs e)
+		{
+			FrmUserManagement frmUserManagement = new FrmUserManagement();
+			frmUserManagement.ShowDialog();
+
+		}
 
 		private void chkOpen_CheckedChanged(object sender, EventArgs e)
 		{
@@ -114,17 +120,15 @@ namespace BugManager
 			{
 				case "White Box Tester":
 					grdBugs.Enabled = false;
+					gridRefresh();
 					break;
 				case "Black Box Tester":
 					grdBugs.Enabled = false;
-
+					gridRefresh();
 					break;
 				case "Developer":
 
-
-
-					grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedBugs(user.Id, chkOpen.Checked);
-
+					gridRefresh();
 					break;
 				default:
 
@@ -134,17 +138,133 @@ namespace BugManager
 			}
 		}
 
+		public void gridRefresh()
+		{
+			RefreshingTable = true;
+
+
+
+
+			switch (user.UserType)
+			{
+				case "White Box Tester":
+					grdBugs.DataSource = BugTracking.Bug.GetCreatedBugs(user.Id, false);
+					
+					if (grdBugs.Columns.Count > 0)
+					{
+						grdBugs.Columns["Id"].Visible = false;
+						grdBugs.Columns["previousBugID"].Visible = false;
+						grdBugs.Columns["NextBugID"].Visible = false;
+						grdBugs.Columns["BugOpen"].Visible = false;
+						grdBugs.Columns["AssignedUserID"].Visible = false;
+						grdBugs.Columns["createdByID"].Visible = false;
+					}
+
+					break;
+				case "Black Box Tester":
+
+
+
+					switch (comboBox1.SelectedIndex)
+					{
+						case 1:
+							//whiteBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked,false);
+
+							break;
+
+						case 2:
+							//BlackBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked, true);
+							break;
+
+					}
+					
+
+					grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedDevloperBugs(user.Id, chkOpen.Checked);
+
+					if (grdBugs.Columns.Count > 0)
+					{
+						grdBugs.Columns["Id"].Visible = false;
+						grdBugs.Columns["previousBugID"].Visible = false;
+						grdBugs.Columns["NextBugID"].Visible = false;
+						grdBugs.Columns["BugOpen"].Visible = false;
+						grdBugs.Columns["AssignedUserID"].Visible = false;
+						grdBugs.Columns["createdByID"].Visible = false;
+					}
+
+					break;
+				case "Developer":
+
+					switch (comboBox1.SelectedIndex)
+					{
+						case 1:
+							//whiteBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked, false);
+
+							break;
+
+						case 2:
+							//BlackBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked, true);
+							break;
+
+						case 3:
+							//DeveloperBugsOnly
+						
+							grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedDevloperBugs(user.Id, chkOpen.Checked);
+							break;
+
+						default:
+							//whiteBoxTester
+							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(chkOpen.Checked, false);
+							break;
+					}
+
+
+
+
+
+
+
+					
+
+					if (grdBugs.Columns.Count > 0)
+					{
+						grdBugs.Columns["Id"].Visible = false;
+						grdBugs.Columns["previousBugID"].Visible = false;
+						grdBugs.Columns["NextBugID"].Visible = false;
+						grdBugs.Columns["BugOpen"].Visible = false;
+						grdBugs.Columns["AssignedUserID"].Visible = false;
+						grdBugs.Columns["createdByID"].Visible = false;
+					}
+
+					break;
+				default:
+
+
+
+					break;
+			}
+			RefreshingTable = false;
+		}
+
 		private void FrmListBugs_FormClosed(object sender, FormClosedEventArgs e)
 		{
 
 			FormCollection fc = Application.OpenForms;
 
-			if(fc.Count == 0)
+			if (fc.Count == 0)
 			{
 				Application.Exit();
 			}
-			
 
+
+		}
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			
 		}
 	}
 }
