@@ -260,5 +260,19 @@ namespace BugManager
 		{
 			gridRefresh();
 		}
+
+		private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+
+			
+			System.Diagnostics.Process.Start(Properties.Settings.Default.HelpfileLocation);
+		}
+
+		private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+			FrmHelpSettings frmHelpSettings = new FrmHelpSettings();
+			frmHelpSettings.ShowDialog();
+		}
 	}
 }

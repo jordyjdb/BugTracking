@@ -5,5 +5,8 @@
     <Setting Name="LoggedInID" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="HelpfileLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/Users/jordyjdb/Source/Repos/BugTracking/VSdoc/index.html</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

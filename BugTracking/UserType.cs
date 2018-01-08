@@ -10,7 +10,12 @@ namespace BugTracking
 {
     public class UserType
     {
+		/// <summary>
+		/// Breif Desciption of bug
+		/// </summary>
         public String Description { get; set; }
+
+		
         public long Id { get; set; }
 
         public UserType(long Id, String Description)
@@ -19,6 +24,10 @@ namespace BugTracking
             this.Description = Description;
         }
 
+		/// <summary>
+		/// Gets a list of Bug Types
+		/// </summary>
+		/// <returns></returns>
         public static List<UserType> Get()
         {
             List<UserType> UserType = new List<UserType>();

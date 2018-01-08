@@ -360,7 +360,7 @@ namespace BugTracking
 		/// </summary>
 		/// <param name="id">Id of developer bug</param>
 		/// <returns>returns bug</returns>
-		public static new DeveloperBug  Get(long id)
+		public static new DeveloperBug Get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();

@@ -31,6 +31,10 @@ namespace BugManager
 		{
 			SaveBug(true);
 		}
+		/// <summary>
+		/// Saves the bug.
+		/// </summary>
+		/// <param name="messsagebox">if set to <c>true</c> [messsagebox].</param>
 		public void SaveBug(Boolean messsagebox)
 		{
 	

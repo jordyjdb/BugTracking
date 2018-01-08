@@ -40,6 +40,8 @@
 			this.btnUser = new System.Windows.Forms.Button();
 			this.chkOpen = new System.Windows.Forms.CheckBox();
 			this.cboFilters = new System.Windows.Forms.ComboBox();
+			this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.grdBugs)).BeginInit();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -128,6 +130,9 @@
 			// 
 			// helpToolStripMenuItem
 			// 
+			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem1,
+            this.settingsToolStripMenuItem});
 			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
 			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.helpToolStripMenuItem.Text = "Help";
@@ -165,6 +170,20 @@
 			this.cboFilters.Size = new System.Drawing.Size(74, 21);
 			this.cboFilters.TabIndex = 7;
 			this.cboFilters.SelectedIndexChanged += new System.EventHandler(this.cboFilter_SelectedIndexChanged);
+			// 
+			// helpToolStripMenuItem1
+			// 
+			this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+			this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+			this.helpToolStripMenuItem1.Text = "Help";
+			this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
+			// 
+			// settingsToolStripMenuItem
+			// 
+			this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.settingsToolStripMenuItem.Text = "Settings";
+			this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
 			// 
 			// FrmListBugs
 			// 
@@ -206,5 +225,7 @@
         private System.Windows.Forms.Button btnUser;
 		private System.Windows.Forms.CheckBox chkOpen;
 		private System.Windows.Forms.ComboBox cboFilters;
+		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
 	}
 }

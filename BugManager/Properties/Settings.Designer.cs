@@ -34,5 +34,17 @@ namespace BugManager.Properties {
                 this["LoggedInID"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:/Users/jordyjdb/Source/Repos/BugTracking/VSdoc/index.html")]
+        public string HelpfileLocation {
+            get {
+                return ((string)(this["HelpfileLocation"]));
+            }
+            set {
+                this["HelpfileLocation"] = value;
+            }
+        }
     }
 }

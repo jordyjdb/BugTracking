@@ -3,9 +3,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BugTests
 {
+	/// <summary>
+	/// Test for App
+	/// </summary>
 	[TestClass]
 	public class AppTest
 	{
+		/// <summary>
+		/// Tests the application create.
+		/// </summary>
 		[TestMethod]
 		public void TestAppCreate()
 		{

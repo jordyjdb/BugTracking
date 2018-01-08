@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Index</title>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+	<style>
+		html,body {
+			margin: 0; padding: 0px;
+			height:100%; 
+			min-height:100%;
+			background-color: rgb(233,232,220);
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-style: normal;
+			font-weight: normal;
+			color: black;
+		}
+
+		body {font-size:75%;position:relative; margin-top:-1px; border-style: solid solid solid solid;	border-color: rgb(172,168,153);	border-width: 0px 0px 1px 0px;}
+		a { text-decoration:none; color:#06c }
+		form {padding:5px; margin:0px;}
+	</style>
+</head>
+<body style="direction: ltr;">
+	<form>
+	Look for:<br /><input style="width:100%" onKeyDown="check_input(this.value,get_match)" onKeyUp="check_input(this.value,get_match)"/>
+	</form>
+
+	<script>
+		var words = new Array(
+"AccountCreationDate Property","Action (Int64, String, String, Int64) Constructor","Action (String, String, Int64) Constructor","Action Class","Active Property {BugTracking.AppForm}","Active Property {BugTracking.FormControl}","App (Int64) Constructor","App (Int64, String) Constructor","App (String) Constructor","App (String, User) Constructor","App Class","AppForm (Int64) Constructor","AppForm (Int64, String, String, Boolean, Int64) Constructor","AppForm (String, String, Boolean, Int64) Constructor","AppForm Class","AppFormTest Class","AppTest Class","ApplicationID Property {BugTracking.AppForm}","ApplicationID Property {BugTracking.FormControl}","ApplicationId Property","AssignedUserID Property","Bug  Constructor","Bug (Int64) Constructor","Bug (Int64, String, String) Constructor","Bug (Int64, String, String, BugLocation) Constructor","Bug (String, String) Constructor","Bug (String, String, BugLocation) Constructor","Bug Class","BugID Property","BugLocation (Int64) Constructor","BugLocation (Int64, Int64, Int64, String, String, String, Int64, Int64) Constructor","BugLocation Class","BugManager Namespace","BugOpen Property","BugTest Class","BugTests Namespace","BugTracking Namespace","Code Field","Code Property","Comment Property","CommitCode Method","ControlType Property","CreatedDate Property","DefaultUser Field","Delete  Method {BugTracking.DeveloperBug}","Delete  Method {BugTracking.User}","Delete (Int64) Method {BugTracking.DeveloperBug}","Delete (Int64) Method {BugTracking.User}","Delete Method {BugTracking.AppForm}","Delete Method {BugTracking.App}","Delete Method {BugTracking.BugLocation}","Delete Method {BugTracking.Bug}","Delete Method {BugTracking.FormControl}","Description Property {BugTracking.Action}","Description Property {BugTracking.UserType}","Developer (Int64, String, String, String) Constructor","Developer (String, String, String) Constructor","Developer Class","DeveloperBug  Constructor","DeveloperBug (Int64, String, String, BugLocation, Int64, Int64, Boolean, String) Constructor","DeveloperBug (String, String, BugLocation, Int64, Int64, Boolean, String) Constructor","DeveloperBug Class","DeveloperTest Class","EndlineNumber Property","FirstName Property","FormControl (Int64) Constructor","FormControl (String, String, Boolean, Int64) Constructor","FormControl Class","FormControlTest Class","FrmApplicationManager Class","FrmApplicationManager Constructor","FrmCreateBug Class","FrmCreateBug Constructor","FrmListBugs Class","FrmListBugs Constructor","FrmLogin Class","FrmLogin Constructor","FrmUserManagement Class","FrmUserManagement Constructor","FullDeveloperBugTest Class","FullName Property","Get  Method {BugTracking.AppForm}","Get  Method {BugTracking.App}","Get  Method {BugTracking.BugLocation}","Get  Method {BugTracking.Bug}","Get  Method {BugTracking.DeveloperBug}","Get  Method {BugTracking.Developer}","Get  Method {BugTracking.FormControl}","Get  Method {BugTracking.User}","Get (Int64) Method {BugTracking.AppForm}","Get (Int64) Method {BugTracking.App}","Get (Int64) Method {BugTracking.BugLocation}","Get (Int64) Method {BugTracking.Bug}","Get (Int64) Method {BugTracking.DeveloperBug}","Get (Int64) Method {BugTracking.Developer}","Get (Int64) Method {BugTracking.FormControl}","Get (Int64) Method {BugTracking.User}","Get Method {BugTracking.Action}","Get Method {BugTracking.UserType}","GetAssignedBugs Method","GetAssignedDevloperBugs Method","GetBoxBugs Method","GetCreatedBugs Method","GetDefaultedUser Method","GetUserAssignedApps Method","Id Property {BugTracking.Action}","Id Property {BugTracking.AppForm}","Id Property {BugTracking.App}","Id Property {BugTracking.BugLocation}","Id Property {BugTracking.Bug}","Id Property {BugTracking.FormControl}","Id Property {BugTracking.UserType}","Id Property {BugTracking.User}","Label Property {BugTracking.AppForm}","Label Property {BugTracking.FormControl}","LastName Property","Location Field","LoggedInUser Field","Name Property {BugTracking.Action}","Name Property {BugTracking.AppForm}","Name Property {BugTracking.App}","Name Property {BugTracking.FormControl}","NextBugId Property","NoPreviousBugException Class","NoPreviousBugException Constructor","PreviousBugID Property","Priority Field","SOLUTION-WIDE PROPERTIES Reference","Save Method {BugTracking.Action}","Save Method {BugTracking.AppForm}","Save Method {BugTracking.App}","Save Method {BugTracking.BugLocation}","Save Method {BugTracking.Bug}","Save Method {BugTracking.DeveloperBug}","Save Method {BugTracking.FormControl}","Save Method {BugTracking.User}","SaveBug  Method {BugManager.FrmCreateBug}","SaveBug (Boolean) Method {BugManager.FrmCreateBug}","SaveBug Method {BugTracking.Bug}","StartlineNumber Property","TestAppCreate Method","TestAppFormCreate Method","TestBugCreate Method","TestControlCreate Method","TestDeveloperBugCreate Method","TestDeveloperCreate Method","TestListDeveloperBugCreate Method","TestMinimuInput Method","TestUserCreate Method","Title Property","UnitTesting Field","User (Int64) Constructor","User (Int64, String, String, String) Constructor","User (String, String, String) Constructor","User Class","UserBugs Field","UserFormSettup Method","UserTest Class","UserType Class","UserType Constructor","UserType Field","action Field","application Field","commit Field","control Field","createdByID Property","form Field","frmCode Class","frmCode Constructor","frmCreateBugTest Class","getAssignedApplicationList Method","getAssignedBugs Method","getBugHistory Method","getColourCode Method","gridRefresh Method","methods Field","parameters Field","relatedMethod Field","relatedParameter Field"
+		);
+		
+		
+		var oldHighlight = 0;
+		var oldKey = "";
+		
+		function get_match(text) {
+		    var ltext = text.toLowerCase();
+		    for(i in words) {
+		        if(words[i].toLowerCase().indexOf(ltext) == "0") {
+		            return words[i];
+		        }
+		    }
+		    return "";
+		}
+		
+		function highlight(keyword) {
+		    if(oldHighlight) oldHighlight.className = "";
+		    var el = parent.frames['zindex'].document.getElementById("w_"+keyword);
+		    el.className="highlighted";
+		    oldHighlight = el;
+		}
+		
+		function check_input(text, matchfun) {
+		    if(text!=oldKey) {
+		        var keyword = matchfun(text);
+		        if(keyword) {       
+		            highlight(keyword);
+		            parent.frames['zindex'].document.getElementById('w_'+keyword).scrollIntoView();
+		        }
+		        oldKey = text;
+		    }
+		}
+	</script>
+</body>
+</html>
+

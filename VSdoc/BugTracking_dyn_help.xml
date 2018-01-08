@@ -1,0 +1,1750 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DynamicHelp xmlns="http://msdn.microsoft.com/vsdata/xsd/vsdh.xsd" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xsi:schemaLocation="http://msdn.microsoft.com/vsdata/xsd/vsdh.xsd">	
+   <LINKGROUP ID="BugTracking" Title="SOLUTION-WIDE PROPERTIES Reference Help" Priority="2100">
+      <GLYPH Expanded="vs:/ctxhelp_show.gif" Collapsed="vs:/ctxhelp_hide.gif"/>
+   </LINKGROUP>
+
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.AccountCreationDate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000007A.html" LinkGroup="BugTracking">AccountCreationDate Property</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action.Action" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000003_overloads--.html" LinkGroup="BugTracking">Action Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action.Action" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000002_overloads--.html" LinkGroup="BugTracking">Action Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000001.html" LinkGroup="BugTracking">Action Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.Active" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000001B.html" LinkGroup="BugTracking">Active Property {BugTracking.AppForm}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.Active" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000006E.html" LinkGroup="BugTracking">Active Property {BugTracking.FormControl}</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.App" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000000E_overloads--.html" LinkGroup="BugTracking">App Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.App" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000000F_overloads--.html" LinkGroup="BugTracking">App Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.App" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000011_overloads--.html" LinkGroup="BugTracking">App Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.App" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000010_overloads--.html" LinkGroup="BugTracking">App Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000000A.html" LinkGroup="BugTracking">App Class</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.AppForm" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000021_overloads--.html" LinkGroup="BugTracking">AppForm Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.AppForm" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000023_overloads--.html" LinkGroup="BugTracking">AppForm Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.AppForm" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000022_overloads--.html" LinkGroup="BugTracking">AppForm Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000017.html" LinkGroup="BugTracking">AppForm Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.AppFormTest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A3.html" LinkGroup="BugTracking">AppFormTest Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.AppTest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A5.html" LinkGroup="BugTracking">AppTest Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.ApplicationID" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000001C.html" LinkGroup="BugTracking">ApplicationID Property {BugTracking.AppForm}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.ApplicationID" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000006F.html" LinkGroup="BugTracking">ApplicationID Property {BugTracking.FormControl}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action.ApplicationId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000007.html" LinkGroup="BugTracking">ApplicationId Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.AssignedUserID" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000002C.html" LinkGroup="BugTracking">AssignedUserID Property</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Bug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000002E_overloads--.html" LinkGroup="BugTracking">Bug Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Bug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000032_overloads--.html" LinkGroup="BugTracking">Bug Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Bug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000030_overloads--.html" LinkGroup="BugTracking">Bug Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Bug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000002F_overloads--.html" LinkGroup="BugTracking">Bug Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Bug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000031_overloads--.html" LinkGroup="BugTracking">Bug Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Bug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000033_overloads--.html" LinkGroup="BugTracking">Bug Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000026.html" LinkGroup="BugTracking">Bug Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.BugID" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000091.html" LinkGroup="BugTracking">BugID Property</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.BugLocation" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000047_overloads--.html" LinkGroup="BugTracking">BugLocation Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.BugLocation" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000049_overloads--.html" LinkGroup="BugTracking">BugLocation Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000003F.html" LinkGroup="BugTracking">BugLocation Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000089.html" LinkGroup="BugTracking">BugManager Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.BugOpen" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000005B.html" LinkGroup="BugTracking">BugOpen Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.BugTest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A7.html" LinkGroup="BugTracking">BugTest Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A2.html" LinkGroup="BugTracking">BugTests Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000000.html" LinkGroup="BugTracking">BugTracking Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.Code" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000092.html" LinkGroup="BugTracking">Code Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.Code" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000005C.html" LinkGroup="BugTracking">Code Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Comment" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000029.html" LinkGroup="BugTracking">Comment Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.CommitCode" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000099.html" LinkGroup="BugTracking">CommitCode Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.ControlType" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000006D.html" LinkGroup="BugTracking">ControlType Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.CreatedDate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000002B.html" LinkGroup="BugTracking">CreatedDate Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.DefaultUser" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000000D.html" LinkGroup="BugTracking">DefaultUser Field</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000061_overloads--.html" LinkGroup="BugTracking">Delete Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000007E_overloads--.html" LinkGroup="BugTracking">Delete Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000060_overloads--.html" LinkGroup="BugTracking">Delete Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000007D_overloads--.html" LinkGroup="BugTracking">Delete Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000001E.html" LinkGroup="BugTracking">Delete Method {BugTracking.AppForm}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000013.html" LinkGroup="BugTracking">Delete Method {BugTracking.App}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000048.html" LinkGroup="BugTracking">Delete Method {BugTracking.BugLocation}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000034.html" LinkGroup="BugTracking">Delete Method {BugTracking.Bug}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.Delete" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000071.html" LinkGroup="BugTracking">Delete Method {BugTracking.FormControl}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action.Description" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000006.html" LinkGroup="BugTracking">Description Property {BugTracking.Action}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.UserType.Description" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000085.html" LinkGroup="BugTracking">Description Property {BugTracking.UserType}</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Developer.Developer" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000050_overloads--.html" LinkGroup="BugTracking">Developer Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Developer.Developer" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000051_overloads--.html" LinkGroup="BugTracking">Developer Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Developer" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000004F.html" LinkGroup="BugTracking">Developer Class</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.DeveloperBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000005E_overloads--.html" LinkGroup="BugTracking">DeveloperBug Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.DeveloperBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000005D_overloads--.html" LinkGroup="BugTracking">DeveloperBug Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.DeveloperBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000005F_overloads--.html" LinkGroup="BugTracking">DeveloperBug Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000056.html" LinkGroup="BugTracking">DeveloperBug Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.DeveloperTest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A9.html" LinkGroup="BugTracking">DeveloperTest Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.EndlineNumber" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000004A.html" LinkGroup="BugTracking">EndlineNumber Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.FirstName" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000078.html" LinkGroup="BugTracking">FirstName Property</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.FormControl" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000068_overloads--.html" LinkGroup="BugTracking">FormControl Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.FormControl" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000069_overloads--.html" LinkGroup="BugTracking">FormControl Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000067.html" LinkGroup="BugTracking">FormControl Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.FormControlTest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000AB.html" LinkGroup="BugTracking">FormControlTest Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmApplicationManager" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000008A.html" LinkGroup="BugTracking">FrmApplicationManager Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmApplicationManager.FrmApplicationManager" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000008B.html" LinkGroup="BugTracking">FrmApplicationManager Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000008F.html" LinkGroup="BugTracking">FrmCreateBug Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.FrmCreateBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000093.html" LinkGroup="BugTracking">FrmCreateBug Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmListBugs" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000009A.html" LinkGroup="BugTracking">FrmListBugs Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmListBugs.FrmListBugs" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000009B.html" LinkGroup="BugTracking">FrmListBugs Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmLogin" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000009D.html" LinkGroup="BugTracking">FrmLogin Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmLogin.FrmLogin" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000009E.html" LinkGroup="BugTracking">FrmLogin Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmUserManagement" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000009F.html" LinkGroup="BugTracking">FrmUserManagement Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmUserManagement.FrmUserManagement" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A0.html" LinkGroup="BugTracking">FrmUserManagement Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.FullDeveloperBugTest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000AF.html" LinkGroup="BugTracking">FullDeveloperBugTest Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.FullName" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000077.html" LinkGroup="BugTracking">FullName Property</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000024_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000016_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000004C_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000037_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000063_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Developer.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000052_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000070_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000082_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000025_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000014_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000004D_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000036_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000065_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Developer.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000053_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000072_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000081_overloads--.html" LinkGroup="BugTracking">Get Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000009.html" LinkGroup="BugTracking">Get Method {BugTracking.Action}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.UserType.Get" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000088.html" LinkGroup="BugTracking">Get Method {BugTracking.UserType}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.GetAssignedBugs" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000003E.html" LinkGroup="BugTracking">GetAssignedBugs Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.GetAssignedDevloperBugs" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000064.html" LinkGroup="BugTracking">GetAssignedDevloperBugs Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.GetBoxBugs" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000038.html" LinkGroup="BugTracking">GetBoxBugs Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.GetCreatedBugs" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000039.html" LinkGroup="BugTracking">GetCreatedBugs Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.GetDefaultedUser" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000035.html" LinkGroup="BugTracking">GetDefaultedUser Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.GetUserAssignedApps" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000015.html" LinkGroup="BugTracking">GetUserAssignedApps Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action.Id" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000004.html" LinkGroup="BugTracking">Id Property {BugTracking.Action}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.Id" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000018.html" LinkGroup="BugTracking">Id Property {BugTracking.AppForm}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.Id" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000000B.html" LinkGroup="BugTracking">Id Property {BugTracking.App}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.Id" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000040.html" LinkGroup="BugTracking">Id Property {BugTracking.BugLocation}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Id" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000027.html" LinkGroup="BugTracking">Id Property {BugTracking.Bug}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.Id" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000006A.html" LinkGroup="BugTracking">Id Property {BugTracking.FormControl}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.UserType.Id" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000086.html" LinkGroup="BugTracking">Id Property {BugTracking.UserType}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.Id" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000076.html" LinkGroup="BugTracking">Id Property {BugTracking.User}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.Label" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000019.html" LinkGroup="BugTracking">Label Property {BugTracking.AppForm}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.Label" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000006B.html" LinkGroup="BugTracking">Label Property {BugTracking.FormControl}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.LastName" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000079.html" LinkGroup="BugTracking">LastName Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Location" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000002A.html" LinkGroup="BugTracking">Location Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.LoggedInUser" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000090.html" LinkGroup="BugTracking">LoggedInUser Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action.Name" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000005.html" LinkGroup="BugTracking">Name Property {BugTracking.Action}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.Name" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000001A.html" LinkGroup="BugTracking">Name Property {BugTracking.AppForm}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.Name" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000000C.html" LinkGroup="BugTracking">Name Property {BugTracking.App}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.Name" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000006C.html" LinkGroup="BugTracking">Name Property {BugTracking.FormControl}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.NextBugId" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000058.html" LinkGroup="BugTracking">NextBugId Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.NoPreviousBugException" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000003C.html" LinkGroup="BugTracking">NoPreviousBugException Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.NoPreviousBugException.NoPreviousBugException" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000003D.html" LinkGroup="BugTracking">NoPreviousBugException Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.PreviousBugID" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000057.html" LinkGroup="BugTracking">PreviousBugID Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.Priority" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000005A.html" LinkGroup="BugTracking">Priority Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="SOLUTION-WIDE PROPERTIES Reference" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000B4.html" LinkGroup="BugTracking">SOLUTION-WIDE PROPERTIES Reference</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Action.Save" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000008.html" LinkGroup="BugTracking">Save Method {BugTracking.Action}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.Save" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000001D.html" LinkGroup="BugTracking">Save Method {BugTracking.AppForm}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.App.Save" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000012.html" LinkGroup="BugTracking">Save Method {BugTracking.App}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.Save" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000004E.html" LinkGroup="BugTracking">Save Method {BugTracking.BugLocation}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Save" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000003A.html" LinkGroup="BugTracking">Save Method {BugTracking.Bug}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.Save" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000062.html" LinkGroup="BugTracking">Save Method {BugTracking.DeveloperBug}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.FormControl.Save" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000073.html" LinkGroup="BugTracking">Save Method {BugTracking.FormControl}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.Save" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000083.html" LinkGroup="BugTracking">Save Method {BugTracking.User}</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.SaveBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000094_overloads--.html" LinkGroup="BugTracking">SaveBug Method</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.SaveBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000095_overloads--.html" LinkGroup="BugTracking">SaveBug Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.SaveBug" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000003B.html" LinkGroup="BugTracking">SaveBug Method {BugTracking.Bug}</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.StartlineNumber" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000004B.html" LinkGroup="BugTracking">StartlineNumber Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.AppTest.TestAppCreate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A6.html" LinkGroup="BugTracking">TestAppCreate Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.AppFormTest.TestAppFormCreate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A4.html" LinkGroup="BugTracking">TestAppFormCreate Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.BugTest.TestBugCreate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000A8.html" LinkGroup="BugTracking">TestBugCreate Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.FormControlTest.TestControlCreate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000AC.html" LinkGroup="BugTracking">TestControlCreate Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.FullDeveloperBugTest.TestDeveloperBugCreate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000B0.html" LinkGroup="BugTracking">TestDeveloperBugCreate Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.DeveloperTest.TestDeveloperCreate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000AA.html" LinkGroup="BugTracking">TestDeveloperCreate Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.FullDeveloperBugTest.TestListDeveloperBugCreate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000B1.html" LinkGroup="BugTracking">TestListDeveloperBugCreate Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.frmCreateBugTest.TestMinimuInput" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000AE.html" LinkGroup="BugTracking">TestMinimuInput Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.UserTest.TestUserCreate" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000B3.html" LinkGroup="BugTracking">TestUserCreate Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.Title" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000028.html" LinkGroup="BugTracking">Title Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.UnitTesting" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000096.html" LinkGroup="BugTracking">UnitTesting Field</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.User" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000007C_overloads--.html" LinkGroup="BugTracking">User Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.User" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000007F_overloads--.html" LinkGroup="BugTracking">User Constructor</LItem>
+      </Links>
+   </Context>
+   
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.User" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000080_overloads--.html" LinkGroup="BugTracking">User Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000075.html" LinkGroup="BugTracking">User Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.UserBugs" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000059.html" LinkGroup="BugTracking">UserBugs Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.UserFormSettup" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000097.html" LinkGroup="BugTracking">UserFormSettup Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.UserTest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000B2.html" LinkGroup="BugTracking">UserTest Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.UserType" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000084.html" LinkGroup="BugTracking">UserType Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.UserType.UserType" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000087.html" LinkGroup="BugTracking">UserType Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.User.UserType" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000007B.html" LinkGroup="BugTracking">UserType Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.action" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000044.html" LinkGroup="BugTracking">action Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.application" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000041.html" LinkGroup="BugTracking">application Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.frmCode.commit" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000008D.html" LinkGroup="BugTracking">commit Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.control" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000043.html" LinkGroup="BugTracking">control Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Bug.createdByID" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000002D.html" LinkGroup="BugTracking">createdByID Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.form" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000042.html" LinkGroup="BugTracking">form Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.frmCode" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000008C.html" LinkGroup="BugTracking">frmCode Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.frmCode.frmCode" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000008E.html" LinkGroup="BugTracking">frmCode Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTests.frmCreateBugTest" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_00000000000000AD.html" LinkGroup="BugTracking">frmCreateBugTest Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Developer.getAssignedApplicationList" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000055.html" LinkGroup="BugTracking">getAssignedApplicationList Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.Developer.getAssignedBugs" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000054.html" LinkGroup="BugTracking">getAssignedBugs Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.DeveloperBug.getBugHistory" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000066.html" LinkGroup="BugTracking">getBugHistory Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmCreateBug.getColourCode" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000098.html" LinkGroup="BugTracking">getColourCode Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugManager.FrmListBugs.gridRefresh" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000009C.html" LinkGroup="BugTracking">gridRefresh Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.methods" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_000000000000001F.html" LinkGroup="BugTracking">methods Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.AppForm.parameters" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000020.html" LinkGroup="BugTracking">parameters Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.relatedMethod" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000045.html" LinkGroup="BugTracking">relatedMethod Field</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="BugTracking.BugLocation.relatedParameter" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:BugTracking.chm::/topic_0000000000000046.html" LinkGroup="BugTracking">relatedParameter Field</LItem>
+      </Links>
+   </Context>
+   
+
+</DynamicHelp>
+

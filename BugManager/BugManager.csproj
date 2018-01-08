@@ -81,6 +81,12 @@
     <Compile Include="FrmCreateBug.Designer.cs">
       <DependentUpon>FrmCreateBug.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmHelpSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHelpSettings.Designer.cs">
+      <DependentUpon>FrmHelpSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmListBugs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCreateBug.resx">
       <DependentUpon>FrmCreateBug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHelpSettings.resx">
+      <DependentUpon>FrmHelpSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmListBugs.resx">
       <DependentUpon>FrmListBugs.cs</DependentUpon>
