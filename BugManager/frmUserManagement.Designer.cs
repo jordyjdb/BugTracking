@@ -45,7 +45,7 @@
 			// 
 			this.cboUser.FormattingEnabled = true;
 			this.cboUser.Location = new System.Drawing.Point(94, 16);
-			this.cboUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cboUser.Margin = new System.Windows.Forms.Padding(2);
 			this.cboUser.Name = "cboUser";
 			this.cboUser.Size = new System.Drawing.Size(118, 21);
 			this.cboUser.TabIndex = 0;
@@ -95,7 +95,7 @@
 			// 
 			this.chkNew.AutoSize = true;
 			this.chkNew.Location = new System.Drawing.Point(215, 18);
-			this.chkNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.chkNew.Margin = new System.Windows.Forms.Padding(2);
 			this.chkNew.Name = "chkNew";
 			this.chkNew.Size = new System.Drawing.Size(48, 17);
 			this.chkNew.TabIndex = 5;
@@ -106,7 +106,7 @@
 			// txtFirstName
 			// 
 			this.txtFirstName.Location = new System.Drawing.Point(94, 41);
-			this.txtFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtFirstName.Margin = new System.Windows.Forms.Padding(2);
 			this.txtFirstName.Name = "txtFirstName";
 			this.txtFirstName.Size = new System.Drawing.Size(165, 20);
 			this.txtFirstName.TabIndex = 6;
@@ -114,7 +114,7 @@
 			// txtLastName
 			// 
 			this.txtLastName.Location = new System.Drawing.Point(94, 64);
-			this.txtLastName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtLastName.Margin = new System.Windows.Forms.Padding(2);
 			this.txtLastName.Name = "txtLastName";
 			this.txtLastName.Size = new System.Drawing.Size(165, 20);
 			this.txtLastName.TabIndex = 7;
@@ -124,7 +124,7 @@
 			this.cboUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboUserType.FormattingEnabled = true;
 			this.cboUserType.Location = new System.Drawing.Point(94, 87);
-			this.cboUserType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cboUserType.Margin = new System.Windows.Forms.Padding(2);
 			this.cboUserType.Name = "cboUserType";
 			this.cboUserType.Size = new System.Drawing.Size(165, 21);
 			this.cboUserType.TabIndex = 8;
@@ -132,7 +132,7 @@
 			// btnSave
 			// 
 			this.btnSave.Location = new System.Drawing.Point(140, 125);
-			this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnSave.Margin = new System.Windows.Forms.Padding(2);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(56, 19);
 			this.btnSave.TabIndex = 9;
@@ -143,7 +143,7 @@
 			// btnCancel
 			// 
 			this.btnCancel.Location = new System.Drawing.Point(202, 125);
-			this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(56, 19);
 			this.btnCancel.TabIndex = 10;
@@ -151,7 +151,7 @@
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
-			// frmUserManagement
+			// FrmUserManagement
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -167,9 +167,9 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.cboUser);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.Name = "frmUserManagement";
-			this.Text = "frmUserManagement";
+			this.Margin = new System.Windows.Forms.Padding(2);
+			this.Name = "FrmUserManagement";
+			this.Text = "User Management";
 			this.Load += new System.EventHandler(this.frmUserManagement_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

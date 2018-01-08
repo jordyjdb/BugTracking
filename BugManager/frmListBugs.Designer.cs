@@ -156,12 +156,12 @@
 			this.chkOpen.UseVisualStyleBackColor = true;
 			this.chkOpen.CheckedChanged += new System.EventHandler(this.chkOpen_CheckedChanged);
 			// 
-			// comboBox1
+			// cboFilters
 			// 
 			this.cboFilters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboFilters.FormattingEnabled = true;
 			this.cboFilters.Location = new System.Drawing.Point(167, 51);
-			this.cboFilters.Name = "comboBox1";
+			this.cboFilters.Name = "cboFilters";
 			this.cboFilters.Size = new System.Drawing.Size(74, 21);
 			this.cboFilters.TabIndex = 7;
 			this.cboFilters.SelectedIndexChanged += new System.EventHandler(this.cboFilter_SelectedIndexChanged);
@@ -181,7 +181,7 @@
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "FrmListBugs";
-			this.Text = "frmListBugs";
+			this.Text = "Main Menu";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmListBugs_FormClosed);
 			this.Load += new System.EventHandler(this.frmListBugs_Load);
 			((System.ComponentModel.ISupportInitialize)(this.grdBugs)).EndInit();

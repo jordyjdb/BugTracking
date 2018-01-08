@@ -411,7 +411,7 @@
 			this.Controls.Add(this.grpApplication);
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "FrmApplicationManager";
-			this.Text = "frmApplicationManager";
+			this.Text = "Application Manager";
 			this.Load += new System.EventHandler(this.frmApplicationManager_Load);
 			this.grpApplication.ResumeLayout(false);
 			this.grpApplication.PerformLayout();
