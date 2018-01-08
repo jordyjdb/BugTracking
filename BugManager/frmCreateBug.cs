@@ -12,10 +12,13 @@ namespace BugManager
 {
 	public partial class FrmCreateBug : Form
 	{
-		BugTracking.User LoggedInUser;
+		public BugTracking.User LoggedInUser;
 
+
+		//ID of currently view bug
 		public long BugID { get; set; } = 0;
 
+		//Bug code value
 		public String Code;
 
 
@@ -24,71 +27,103 @@ namespace BugManager
 			InitializeComponent();
 		}
 
-		private void btnSave_Click(object sender, EventArgs e)
+		public void SaveBug()
 		{
-			long DefaultUserID;
-		
-			switch (LoggedInUser.UserType)
-			{
-				
-				case "White Box Tester":
+			SaveBug(true);
+		}
+		public void SaveBug(Boolean messsagebox)
+		{
+	
+				long DefaultUserID;
+
+				if (txtComment.Text == "" || txtTitle.Text == "")
+				{
+				if (messsagebox)
+				{
+					MessageBox.Show("A Bug entry must have a Comment and a title in order to commit!");
+
+				}
+				return;
+				}
+
+				switch (LoggedInUser.UserType)
+				{
+
+					case "White Box Tester":
+
+						//create new Developer Bug with limited values
+						BugTracking.BugLocation locationWB = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, "", "", (long)Convert.ToDouble(0), (long)Convert.ToDouble(0));
+
+						BugTracking.DeveloperBug BlackBoxBug = new BugTracking.DeveloperBug(BugID, txtTitle.Text, txtComment.Text, locationWB, (long)0, 0, true, Code);
+
+						BlackBoxBug.createdByID = LoggedInUser.Id;
+
+						DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
+						BlackBoxBug.AssignedUserID = DefaultUserID;
+
+						BlackBoxBug.Save();
+
+						//repopulates form with saved bug
+						BugID = BlackBoxBug.Id;
+						populateBugDetails();
+
+						//Bug.createdByID = createdByID;
+						//DeveloperBug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
+						break;
+					case "Black Box Tester":
+
+						//creates new Bug
+						BugTracking.BugLocation locationBB = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text), (long)Convert.ToDouble(txtEndLineNumber.Text));
+
+						BugTracking.Bug WhiteBoxBug = new BugTracking.Bug(BugID, txtTitle.Text, txtComment.Text);
+						WhiteBoxBug.createdByID = LoggedInUser.Id;
+
+						//gets default User for Appliocation selected
+						DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
+						WhiteBoxBug.AssignedUserID = DefaultUserID;
 
 
-					BugTracking.BugLocation locationWB= new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, "", "", (long)Convert.ToDouble(0), (long)Convert.ToDouble(0));
+						WhiteBoxBug.Save();
 
-					BugTracking.DeveloperBug BlackBoxBug = new BugTracking.DeveloperBug(BugID, txtTitle.Text, txtComment.Text, locationWB, (long)0, 0, true, Code);
+						//repopulates form with saved bug
+						BugID = WhiteBoxBug.Id;
+						populateBugDetails();
+						break;
+					case "Developer":
+						//creates Full developer bug
+						BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text), (long)Convert.ToDouble(txtEndLineNumber.Text));
 
-					BlackBoxBug.createdByID = LoggedInUser.Id;
+						BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(BugID, txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), !chkOpen.Checked, Code);
+						DefaultUserID = (long)cboAssignedUser.SelectedValue;
 
-					DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
-					BlackBoxBug.AssignedUserID = DefaultUserID;
+						DeveloperBug.createdByID = LoggedInUser.Id;
+						DeveloperBug.AssignedUserID = DefaultUserID;
 
-					BlackBoxBug.Save();
+						DeveloperBug.Save();
+						//repopulates form with saved bug
+						BugID = DeveloperBug.Id;
+						populateBugDetails();
+						break;
+					default:
 
-					BugID = BlackBoxBug.Id;
-					populateBugDetails();
-				
-					//Bug.createdByID = createdByID;
-					//DeveloperBug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
-					break;
-				case "Black Box Tester":
 
-					BugTracking.BugLocation locationBB = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text), (long)Convert.ToDouble(txtEndLineNumber.Text));
+						break;
+				}
 
-					BugTracking.Bug WhiteBoxBug = new BugTracking.Bug(BugID, txtTitle.Text, txtComment.Text);
-					WhiteBoxBug.createdByID = LoggedInUser.Id;
-
-					DefaultUserID = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
-					WhiteBoxBug.AssignedUserID = DefaultUserID;
-					//Bug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
-					WhiteBoxBug.Save();
-					BugID = WhiteBoxBug.Id;
-					populateBugDetails();
-					break;
-				case "Developer":
-					//(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long lineNumber)
-					BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text),(long)Convert.ToDouble(txtEndLineNumber.Text));
-
-					BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(BugID,txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), !chkOpen.Checked,Code);
-					DefaultUserID = (long)cboAssignedUser.SelectedValue;
-
-					DeveloperBug.createdByID = LoggedInUser.Id;
-					DeveloperBug.AssignedUserID = DefaultUserID;
-
-					DeveloperBug.Save();
-
-					BugID = DeveloperBug.Id;
-					populateBugDetails();
-					break;
-				default:
-					
-
-					break;
-			}
 
 			
 		}
+		private void btnSave_Click(object sender, EventArgs e)
+		{
+			SaveBug();
 
+
+
+		}
+
+		/// <summary>
+		/// given logged in user sets available controls and manages interaction-able controls
+		/// </summary>
 		public void UserFormSettup()
 		{
 			long LoggedInID = Properties.Settings.Default.LoggedInID;
@@ -146,16 +181,17 @@ namespace BugManager
 		private void frmCreateBug_Load(object sender, EventArgs e)
 		{
            
-
+			//gets App list
             BugTracking.App.Get();
             cboApplication.ValueMember = "Id";
             cboApplication.DisplayMember = "Name";
             cboApplication.DataSource = BugTracking.App.Get();
+
+			///gets user list
 			List<BugTracking.User> users = BugTracking.User.Get();
 
 			cboAssignedUser.DisplayMember = "FullName";
 			cboAssignedUser.ValueMember = "Id";
-
 			cboAssignedUser.DataSource = users;
 			cboAssignedUser.SelectedItem = null;
 
@@ -173,20 +209,23 @@ namespace BugManager
 
 		}
 
-		private void populateHistoryGrid(BugTracking.DeveloperBug bug)
-		{
-
-		}
-
+	
+		/// <summary>
+		/// populates form with bug details if not new Bug
+		/// </summary>
 		private void populateBugDetails()
 		{
+			//if not new bug
 			if (BugID != 0)
 			{
 
 				BugTracking.DeveloperBug newBug = BugTracking.DeveloperBug.Get(BugID);
 
+				//if developer bug then
 				if (newBug != null)
 				{
+
+					//assign bug details
 					txtTitle.Text = newBug.Title;
 					txtComment.Text = newBug.Comment;
 					txtPriority.Text = newBug.Priority.ToString();
@@ -208,10 +247,12 @@ namespace BugManager
 
 
 
+
+					//gets any bug history
 					grdBugHistory.DataSource = BugTracking.DeveloperBug.getBugHistory(newBug.Id);
 
 
-
+					//selects current bug from list
 					foreach (DataGridViewRow row in grdBugHistory.Rows)
 					{
 						if ((long)row.Cells["id"].Value == newBug.Id)
@@ -226,6 +267,8 @@ namespace BugManager
 					}
 
 					Code = newBug.Code;
+
+					//if there are columns to hide
 					if (grdBugHistory.Columns.Count > 0)
 					{
 						grdBugHistory.Columns["Id"].Visible = false;
@@ -244,7 +287,7 @@ namespace BugManager
 
 
 
-
+					//checks to see if bug already has solution or if not latest in Bug History
 					if ((!newBug.BugOpen) || (newBug.NextBugId > 0))
 					{
 						grpBugdetails.Enabled = false;
@@ -258,7 +301,7 @@ namespace BugManager
 						UserFormSettup();
 					}
 				}
-				else
+				else //if not developer bug yet
 				{
 					BugTracking.Bug bug = new BugTracking.Bug(BugID);
 
@@ -303,6 +346,8 @@ namespace BugManager
 						}
 
 						Code = "";
+
+						//if there are columns to hide
 						if (grdBugHistory.Columns.Count > 0)
 						{
 							grdBugHistory.Columns["Id"].Visible = false;
@@ -316,6 +361,7 @@ namespace BugManager
 						chkOpen.Checked = true;
 
 
+						//Black Box testers cannot update a bug
 						if (LoggedInUser.UserType == "Black Box Tester")
 						{
 							btnSave.Enabled = false;
@@ -343,6 +389,12 @@ namespace BugManager
 			}
 		}
 	
+
+		/// <summary>
+		/// update control, form and action list if Application has changed
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void cboApplication_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (cboApplication.SelectedValue != null)
@@ -362,6 +414,7 @@ namespace BugManager
 			}
 		}
 
+
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
 			this.Close();
@@ -369,7 +422,9 @@ namespace BugManager
 
 
 
-
+		/// <summary>
+		/// formats code colour
+		/// </summary>
 		public void getColourCode()
 		{
 			String htmlColouredCode = "";
@@ -380,23 +435,39 @@ namespace BugManager
 			}
 
 				StringBuilder html = new StringBuilder();
-				html.AppendFormat("<!doctype html><head><meta charset=\"utf-8\"</head> <body>{0}</body></html>", htmlColouredCode);
+			//wraps html around formatted code to display in web browser
+				html.AppendFormat("<!doctype html><head><meta charset=\"utf-8\"</head> <body>{0}</body></html>", htmlColouredCode); 
 
-				webBrowser1.DocumentText = html.ToString();
+			//set web browser text to formatted code
+				wbCode.DocumentText = html.ToString();
 
 			
 		}
 
+		/// <summary>
+		/// Called from frmCode to return responce
+		/// </summary>
+		/// <param name="commit">if code should be saved on next save or if code should be left as same</param>
+		/// <param name="code">Bug code</param>
 		public void CommitCode(Boolean commit,String code)
 		{
+
+			//if code is to be commited
 			if (commit == true)
 			{
 				this.Code = code;
-			}
+			}   //else do not change code
+
 
 			getColourCode();
 		}
 		frmCode frmCode;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btnAddCode_Click(object sender, EventArgs e)
 		{
 			frmCode = new frmCode(Code, this);
@@ -408,29 +479,24 @@ namespace BugManager
 		}
 
 
-		private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
-
-		{
-
-		}
-
 		private void FrmCreateBug_FormClosed(object sender, FormClosedEventArgs e)
 		{
+
+
 			if (frmCode != null)
 			{
+
+				//make sure frmCode is closed if other form is closed
 				frmCode.Close();
 			}
 		}
 
-		private void grdBugHistory_SelectionChanged(object sender, EventArgs e)
-		{
-
-			
-
-		}
+	
 
 		private void grdBugHistory_DoubleClick(object sender, EventArgs e)
 		{
+
+			//changes bug if different bug selected from history
 			long ID = (long)grdBugHistory.SelectedRows[0].Cells["ID"].Value;
 			if (ID > 0 && ID != BugID)
 			{

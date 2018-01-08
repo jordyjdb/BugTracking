@@ -13,21 +13,25 @@ namespace BugManager
 	public partial class FrmApplicationManager : Form
 	{
 
-        List<BugTracking.App> AppList;
-        List<BugTracking.AppForm> FormList;
+        List<BugTracking.App> AppList = BugTracking.App.Get();
+		List<BugTracking.AppForm> FormList;
         List<BugTracking.FormControl> ControlList;
         List<BugTracking.Action> ActionList;
+		List<BugTracking.Developer> UserList = BugTracking.Developer.Get();
 
-
-        public FrmApplicationManager()
+		public FrmApplicationManager()
 		{
 			InitializeComponent();
 		}
 
+
+		/// <summary>
+		/// Saves Application with form, controls and action.
+		/// </summary>
         private void btnApplicationSave_Click(object sender, EventArgs e)
         {
             BugTracking.App selectedApp;
-            //if application name is new
+            //if application is new then add to app list
             if (cboApplication.SelectedValue == null)
             {
 
@@ -38,10 +42,18 @@ namespace BugManager
 
             }
             else
-            {
+            {//else update exisiting app
+
+
                 selectedApp = (BugTracking.App)cboApplication.SelectedItem;
-            }
-                foreach(BugTracking.AppForm form in FormList)
+				selectedApp.DefaultUser =(BugTracking.Developer) cboDefaultUser.SelectedItem;
+				selectedApp.Save();
+
+
+			}
+
+			//save each form that has not been saved before
+			foreach (BugTracking.AppForm form in FormList)
                 {
                     if (form.Id == 0)
                     {
@@ -49,7 +61,8 @@ namespace BugManager
                         form.Save();
                     }
                 }
-                foreach (BugTracking.FormControl control in ControlList)
+			//save each control that has not been saved before
+			foreach (BugTracking.FormControl control in ControlList)
                 {
                     if (control.Id == 0)
                     {
@@ -57,7 +70,8 @@ namespace BugManager
 					control.Save();
                     }
                 }
-                foreach (BugTracking.Action action in ActionList)
+			//save each action that has not been saved before
+			foreach (BugTracking.Action action in ActionList)
                 {
                     if (action.Id == 0)
                     {
@@ -70,17 +84,18 @@ namespace BugManager
             
         }
 
+
         private void frmApplicationManager_Load(object sender, EventArgs e)
         {
             //Assigns Apps to combobox
-            AppList = BugTracking.App.Get();
+         
 
 			ComboMembers();
 
 
-			List<BugTracking.Developer> userList = BugTracking.Developer.Get();
+			
 			cboApplication.DataSource = AppList;
-			cboDefaultUser.DataSource = userList;
+			cboDefaultUser.DataSource = UserList;
 
         }
 
@@ -93,19 +108,22 @@ namespace BugManager
 
         private void cboApplication_SelectedValueChanged(object sender, EventArgs e)
         {
+		
             Boolean enableGroupBoxes = (cboApplication.SelectedValue != null);
           
                 grpActionDetails.Enabled = enableGroupBoxes;
                 grpControlDetails.Enabled = enableGroupBoxes;
                 grpFormDetails.Enabled = enableGroupBoxes;
-
-            if (enableGroupBoxes)
+			cboDefaultUser.DataSource = UserList;
+			if (enableGroupBoxes)
             {
+
+				//populate app details if not new app
+
                 FormList = BugTracking.AppForm.Get((long)cboApplication.SelectedValue);
                 ControlList = BugTracking.FormControl.Get((long)cboApplication.SelectedValue);
                 ActionList  = BugTracking.Action.Get((long)cboApplication.SelectedValue);
-
-                cboDefaultUser.SelectedValue = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
+				cboDefaultUser.SelectedValue = ((BugTracking.App)cboApplication.SelectedItem).DefaultUser.Id;
 
             } else
             {
@@ -135,6 +153,9 @@ namespace BugManager
 
         }
 
+		/// <summary>
+		/// sets display and value members of combo box
+		/// </summary>
 		private void ComboMembers()
 		{
 
@@ -159,21 +180,21 @@ namespace BugManager
 			cboActionName.DisplayMember = "Name";
 		}
 
-        private void cboFormName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
+       
 
        // private long FormSelectedValue = 0;
         private void cboFormName_TextChanged(object sender, EventArgs e)
         {
+
+			//populates details if not new
             if (cboFormName.SelectedValue != null)
             {
                 txtFormLabel.Text = ((BugTracking.AppForm)cboFormName.SelectedItem).Label;
                 chkFormActive.Enabled = ((BugTracking.AppForm)cboFormName.SelectedItem).Active;
             }
-            else
+            else 
             {
+				//else empties
                 txtFormLabel.Text = "";
                 chkFormActive.Enabled = true;
             }
@@ -185,27 +206,30 @@ namespace BugManager
 
         private void cboControlName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboControlName.SelectedValue != null)
+			//populates details if not new
+			if (cboControlName.SelectedValue != null)
             {
                 txtControlLabel.Text = ((BugTracking.FormControl)cboControlName.SelectedItem).Label;
                 chkControlActive.Enabled = ((BugTracking.FormControl)cboControlName.SelectedItem).Active;
             }else
             {
-                txtControlLabel.Text = "";
+				//else empties
+				txtControlLabel.Text = "";
                 chkControlActive.Enabled = true;
             }
         }
 
         private void cboActionName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // not needed?
-            if (cboActionName.SelectedValue != null)
+		{
+			//populates details if not new
+			if (cboActionName.SelectedValue != null)
             {
                 txtActionDescription.Text = ((BugTracking.Action)cboActionName.SelectedItem).Description;
             }
             else
             {
-                txtActionDescription.Text = "";
+				//else empties
+				txtActionDescription.Text = "";
             }
         }
 
@@ -213,7 +237,7 @@ namespace BugManager
         {
             if (cboFormName.SelectedValue == null)
             {
-                BugTracking.AppForm newApp = new BugTracking.AppForm(cboFormName.Text, txtFormLabel.Text,chkFormActive.Checked,(long) cboApplication.SelectedValue);
+                BugTracking.AppForm newApp = new BugTracking.AppForm(txtFormLabel.Text,cboFormName.Text,chkFormActive.Checked,(long) cboApplication.SelectedValue);
                 FormList.Add(newApp);
 
                 cboFormName.DataSource = FormList;
@@ -225,7 +249,7 @@ namespace BugManager
         {
             if (cboControlName.SelectedValue == null)
             {
-                BugTracking.FormControl newControl = new BugTracking.FormControl( cboControlName.Text, txtControlLabel.Text, chkControlActive.Checked, (long) cboApplication.SelectedValue);
+                BugTracking.FormControl newControl = new BugTracking.FormControl(  txtControlLabel.Text, cboControlName.Text, chkControlActive.Checked, (long) cboApplication.SelectedValue);
                 ControlList.Add(newControl);
 
 				cboControlName.DataSource = null;

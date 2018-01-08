@@ -33,8 +33,13 @@ namespace BugTracking
             this.Id = Id;
         }
 
+		public App(string Name,User DefaultUser)
+		{
+			this.Name = Name;
+			this.DefaultUser = DefaultUser;
+		}
 
-        public App(string Name)
+		public App(string Name)
         {
             this.Name = Name;
         }
@@ -45,18 +50,33 @@ namespace BugTracking
 		/// <returns>new Application ID</returns>
 		public long Save()
         {
+			String sqlCommand = "update Application set name = @name,defaultUserID = @defaultUserID where Id = @ID";
 
-     
-                //if ID == 0 
-                //new bug with no previous link
+			//if ID == 0 
+			//new bug with no previous link
 
-                //if ID != 0 
-                //ID = previuosBugID and create new bug with link
+			//if ID != 0 
+			//ID = previuosBugID and create new bug with link
 
 
-                SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-                SqlCommand sqlCom = new SqlCommand("Insert into Application(name, defaultUserID) values (@name, @defaultUserId);SELECT SCOPE_IDENTITY() ", sqlCon);
-                sqlCom.Parameters.Add(new SqlParameter("@name", Name));
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+
+
+
+			SqlCommand sqlCom = new SqlCommand(sqlCommand, sqlCon);
+			if (Id == 0)
+			{
+				sqlCommand = "Insert into Application(name, defaultUserID) values (@name, @defaultUserId);SELECT SCOPE_IDENTITY() ";
+				sqlCom.CommandText = sqlCommand;
+			} else
+			{
+				sqlCom.Parameters.Add(new SqlParameter("@Id", Id));
+			}
+                
+
+
+
+			sqlCom.Parameters.Add(new SqlParameter("@name", Name));
                 sqlCom.Parameters.Add(new SqlParameter("@defaultUserId", DefaultUser.Id));
             
 
@@ -65,11 +85,18 @@ namespace BugTracking
                 {
                     sqlCon.Open();
 
-                    decimal id = (decimal)sqlCom.ExecuteScalar();
 
+				if (Id == 0)
+				{
+					decimal id = (decimal)sqlCom.ExecuteScalar();
+					Id = (long)id;
 
-                    Id = (long)id;
-
+				}
+				else
+				{
+					sqlCom.ExecuteScalar();
+				}
+                  
 
                 }
                 catch (SqlException ex)
@@ -86,13 +113,37 @@ namespace BugTracking
             
         }
 
+		/// <summary>
+		/// delete Application, used for unit testing cleanup
+		/// </summary>
+		public void Delete()
+		{
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM Application WHERE Id = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
+
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
 
 		/// <summary>
 		/// retreives saved Application
 		/// </summary>
 		/// <param name="id">Wanted application's ID</param>
 		/// <returns></returns>
-        public Boolean Get(long id)
+		public Boolean Get(long id)
 		{
 			//retreives information about bug with ID
 			DataSet ds = new DataSet();
@@ -114,11 +165,12 @@ namespace BugTracking
 				sqlCon.Close();
 			}
 
-			if (ds.Tables[0].Rows.Count == 0)
+			if (ds.Tables[0].Rows.Count  > 0)
 			{
 				this.Name = (String)ds.Tables[0].Rows[0]["name"];
 				long defaultUserID = (long)ds.Tables[0].Rows[0]["defaultUserID"];
 
+				DefaultUser = Developer.Get(defaultUserID);
 				return true;
 			}
 			else

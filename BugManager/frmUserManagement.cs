@@ -22,8 +22,11 @@ namespace BugManager
 
         private void cboUser_SelectedIndexChanged(object sender, EventArgs e)
         {
+			//if exisiting user selected
+
             if(cboUser.SelectedItem != null)
             {
+				//populate user details
                 chkNew.Checked = false;
 
                 BugTracking.User selectedUser = (BugTracking.User) cboUser.SelectedItem;
@@ -31,6 +34,7 @@ namespace BugManager
                 txtFirstName.Text = selectedUser.FirstName;
                 txtLastName.Text = selectedUser.LastName;
 
+				//selects user type
 				foreach (BugTracking.UserType userType in userTypeList)
 				{
 					if (userType.Description == selectedUser.UserType)
@@ -56,6 +60,7 @@ namespace BugManager
         {
             if (cboUser.Enabled != false)
             {
+				//clears page if new user
                 cboUser.Enabled = false;
                 txtFirstName.Text = "";
                 txtLastName.Text = "";
@@ -73,6 +78,8 @@ namespace BugManager
 
         private void frmUserManagement_Load(object sender, EventArgs e)
         {
+
+			//loads users and userTypes
             cboUser.DisplayMember = "FullName";
             cboUser.ValueMember = "Id";
 
@@ -108,6 +115,7 @@ namespace BugManager
                 savedUser = new BugTracking.User(txtFirstName.Text,txtLastName.Text,cboUserType.Text);
             }
 
+			//commit changes
             savedUser.Save();
         }
 

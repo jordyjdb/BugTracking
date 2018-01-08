@@ -57,8 +57,16 @@ namespace BugTracking
 		/// </summary>
 		public Boolean Active { get; private set; }
 
+		/// <summary>
+		/// Id of Application control belongs too
+		/// </summary>
         public long ApplicationID { get;  set; }
 
+
+		/// <summary>
+		/// gets specific form control details
+		/// </summary>
+		/// <returns>if form found</returns>
 		public Boolean Get()
 		{
 			List<AppForm> AppForm = new List<AppForm>();
@@ -119,6 +127,36 @@ namespace BugTracking
 
 
 		}
+		/// <summary>
+		/// delete controls, used for unit testing cleanup
+		/// </summary>
+		public void Delete()
+		{
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM controls WHERE Id = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
+
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
+
+		/// <summary>
+		/// list of Controls from application
+		/// </summary>
+		/// <param name="AppID">Application ID</param>
+		/// <returns>list of controls</returns>
 		public static List<FormControl> Get(long AppID)
 		{
 			List<FormControl> formControls = new List<FormControl>();
@@ -179,6 +217,10 @@ namespace BugTracking
 			return formControls;
 		}
 
+		/// <summary>
+		/// inserts new form into database
+		/// </summary>
+		/// <returns>new form ID</returns>
         public long Save()
         {
             SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);

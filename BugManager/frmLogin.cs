@@ -21,6 +21,7 @@ namespace BugManager
 
 		private void frmLogin_Load(object sender, EventArgs e)
 		{
+			//gets list of all users
 			List<BugTracking.User> users = BugTracking.User.Get();
 
 			cboUsers.DisplayMember = "FullName";
@@ -41,18 +42,20 @@ namespace BugManager
 				Properties.Settings.Default.Save();
 			}
 
-            //opens 
+            //opens main form
 
             FrmListBugs listBugs = new FrmListBugs();
 
             listBugs.Show();
 
+			//closes frmLogin
             this.Close();
 
 		}
 
 		private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
 		{
+			//closes application if no other forms were open
 			FormCollection fc = Application.OpenForms;
 
 			if (fc.Count == 0)

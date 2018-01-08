@@ -14,23 +14,28 @@ namespace BugTracking
 
 		List<App> UserAppList = new List<App>();
 
-
 		public Developer(long Id, String FirstName, String LastName,String Usertype) : base(Id, FirstName,LastName,Usertype)
+		{
+
+		}
+		public Developer(String FirstName, String LastName, String Usertype) : base( FirstName, LastName, Usertype)
 		{
 
 		}
 
 
+
 		/// <summary>
-		/// applications that the client can choose when filling in bug information
+		/// Gets a list of all Developes
 		/// </summary>
+		/// <returns>Developer list</returns>
 		public static new List<Developer> Get()
 		{
 
 			List<Developer> Developers = new List<Developer>();
 			DataSet ds = new DataSet();
 			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
-			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Users.id, dbo.Users.firstName, dbo.Users.lastName, dbo.Users.accountCreationDate, dbo.Users.typeID, UserTypes.Type FROM dbo.Users INNER JOIN dbo.UserTypes ON Users.typeId = UserTypes.Id WHERE(dbo.Users.Type = 'Developer')", sqlCon);
+			SqlCommand sqlCom = new SqlCommand("SELECT dbo.Users.id, dbo.Users.firstName, dbo.Users.lastName, dbo.Users.accountCreationDate, dbo.Users.typeID, UserTypes.Type FROM dbo.Users INNER JOIN dbo.UserTypes ON Users.typeId = UserTypes.Id WHERE(dbo.UserTypes.Type = 'Developer')", sqlCon);
 
 			try
 			{
@@ -67,6 +72,11 @@ namespace BugTracking
 		}
 
 
+		/// <summary>
+		/// Gets Populated Developer
+		/// </summary>
+		/// <param name="Id">ID of developer</param>
+		/// <returns>developer object</returns>
 		public static new Developer Get(long Id) 
 		{
 			

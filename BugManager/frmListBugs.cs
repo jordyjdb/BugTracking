@@ -23,11 +23,13 @@ namespace BugManager
 		{
 			user = new BugTracking.User(Properties.Settings.Default.LoggedInID);
 			List<String> FilterList = new List<string>();
+
+			//sets appropriate filters for user type
 			switch (user.UserType)
 			{
 				case "Black Box Tester":
 					FilterList.Add("BlackBox Bugs Only");
-					comboBox1.Enabled = false;
+					cboFilters.Enabled = false;
 
 					break;
 				case "White Box Tester":
@@ -63,7 +65,7 @@ namespace BugManager
 
 
 
-			comboBox1.DataSource = FilterList;
+			cboFilters.DataSource = FilterList;
 
 		}
 
@@ -91,7 +93,7 @@ namespace BugManager
 				frmCreateBug.BugID = (long)grdBugs.SelectedRows[0].Cells["Id"].Value;
 				frmCreateBug.ShowDialog();
 			}
-			
+
 		}
 
 		private void helpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -152,55 +154,59 @@ namespace BugManager
 			switch (user.UserType)
 			{
 				case "White Box Tester":
+
+					//shows only bugs that have been created by logged in user
 					grdBugs.DataSource = BugTracking.Bug.GetCreatedBugs(user.Id);
-				
+
 
 					break;
 				case "Black Box Tester":
 
 
 
-					switch (comboBox1.SelectedIndex)
+					switch (cboFilters.SelectedIndex)
 					{
 						case 0:
-							//BlackBoxTester
+							//gets all open Bugs that are created by black box testers
 							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(false);
 
 							break;
 
 						case 1:
-							//WhiteBoxTester
+							//gets all open Bugs that are created by black box testers and white box testers
 							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(true);
 							break;
 
 					}
-					
 
-					grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedDevloperBugs(user.Id, chkOpen.Checked);
 
-				
+					//grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedDevloperBugs(user.Id, chkOpen.Checked);
+
+
 					break;
 				case "Developer":
 
-					switch (comboBox1.SelectedIndex)
+					switch (cboFilters.SelectedIndex)
 					{
 						case 0:
-							//BlackBoxTester
+							//gets all open Bugs that are created by black box testers
 							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(false);
 
 							break;
 
 						case 1:
-							//WhiteBoxTester
+							//gets all open Bugs that are created by black box testers and white box testers
 							grdBugs.DataSource = BugTracking.Bug.GetBoxBugs(true);
 							break;
 
 						case 2:
 							//DeveloperBugsOnly
-						
 
+							//gets developer bugs assigned to logged in user where open = chkOpen.checked
 							grdBugs.DataSource = BugTracking.DeveloperBug.GetAssignedDevloperBugs(user.Id, chkOpen.Checked);
 
+
+							//hide if has any data
 							if (grdBugs.Columns.Count > 0)
 							{
 
@@ -217,37 +223,26 @@ namespace BugManager
 							break;
 					}
 
-
-
-
-
-
-
-					
-
-
 					break;
 				default:
-
-
 
 					break;
 			}
 
-			
-					if (grdBugs.Columns.Count > 0)
-					{
-						grdBugs.Columns["Id"].Visible = false;
-						
-						grdBugs.Columns["AssignedUserID"].Visible = false;
-						grdBugs.Columns["createdByID"].Visible = false;
-					}
+			//hide if has any data
+			if (grdBugs.Columns.Count > 0)
+			{
+				grdBugs.Columns["Id"].Visible = false;
+
+				grdBugs.Columns["AssignedUserID"].Visible = false;
+				grdBugs.Columns["createdByID"].Visible = false;
+			}
 			RefreshingTable = false;
 		}
 
 		private void FrmListBugs_FormClosed(object sender, FormClosedEventArgs e)
 		{
-
+			//shuts down application if no other forms are open
 			FormCollection fc = Application.OpenForms;
 
 			if (fc.Count == 0)
@@ -258,7 +253,10 @@ namespace BugManager
 
 		}
 
-		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		/// <summary>
+		/// Refreshes on filter change
+		/// </summary>
+		private void cboFilter_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			gridRefresh();
 		}

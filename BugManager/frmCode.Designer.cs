@@ -85,7 +85,7 @@
 			this.Controls.Add(this.panel1);
 			this.Name = "frmCode";
 			this.Text = "Bug Code";
-			this.Load += new System.EventHandler(this.frmCode_Load);
+	
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 

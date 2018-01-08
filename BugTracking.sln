@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracking", "BugTracking\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugManager", "BugManager\BugManager.csproj", "{D78C02FF-C240-4F42-AAB4-1F4A88F89704}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTests", "BugTests\BugTests.csproj", "{5448548B-7E31-4104-A321-EE58C28C5645}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D78C02FF-C240-4F42-AAB4-1F4A88F89704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D78C02FF-C240-4F42-AAB4-1F4A88F89704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D78C02FF-C240-4F42-AAB4-1F4A88F89704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5448548B-7E31-4104-A321-EE58C28C5645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5448548B-7E31-4104-A321-EE58C28C5645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5448548B-7E31-4104-A321-EE58C28C5645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5448548B-7E31-4104-A321-EE58C28C5645}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

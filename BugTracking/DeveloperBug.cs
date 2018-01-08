@@ -32,17 +32,15 @@ namespace BugTracking
 		public long Priority;
 
 		/// <summary>
-		/// developers/user who are subscribed to this bug for updates.
-		/// </summary>
-		public List<User> AlertList;
-
-		/// <summary>
 		/// if the bug is open then it can be added to
 		/// </summary>
 		public Boolean BugOpen { get; private set; }
 
-		public String Code { get; private set; }
 
+		/// <summary>
+		/// Code related to Bug
+		/// </summary>
+		public String Code { get; set; }
 		public DeveloperBug(long Id,String title, String comment, BugLocation location, long PreviousBugId, long Priority, Boolean BugOpen, String Code) :this(title, comment, location, PreviousBugId, Priority, BugOpen,Code)
 		{
 			this.Id = Id;
@@ -58,6 +56,64 @@ namespace BugTracking
 
 		}
 
+		/// <summary>
+		/// delete developerBug, used for unit testing cleanup
+		/// </summary>
+		/// <param name="ID">LocationID</param>
+		public static void Delete(long ID)
+		{
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM DEVELOPERBUG WHERE Id = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", ID));
+
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
+
+		/// <summary>
+		/// delete developerBug, used for unit testing cleanup
+		/// </summary>
+		public new void  Delete()
+		{
+			base.Delete();
+
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM DEVELOPERBUG WHERE BugId = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
+
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
+
+
+		/// <summary>
+		/// Saves Developer Bug
+		/// </summary>
+		/// <returns>new Id of developer</returns>
 		public new long Save() 
 		{
 			long newPreviousID = Id;
@@ -118,6 +174,10 @@ namespace BugTracking
 			return Id;
 		}
 
+		/// <summary>
+		/// Lists all Developer Bugs
+		/// </summary>
+		/// <returns>List of Developer Bugs</returns>
 		public static new List<DeveloperBug> Get()
 		{
 			
@@ -295,36 +355,11 @@ namespace BugTracking
 
 		
 
-		public Bug GetLatestBug()
-		{
-			//TODO Select top(1) * from Bug where PreviousBug = 
-
-
-
-			return null;
-		}
-
-
-
-
-		public Bug GetNextBug()
-		{
-			//TODO Select top(1) * from Bug where CreationDate > @CreationDate order by CreationDate ASC
-
-
-
-			return null;
-		}
-
-		public Bug GetFirstBug()
-		{
-			//TODO Select top(1) * from Bug where firstBugID = @FirstbugID ish order by CreationDate DESC
-
-
-
-			return null;
-		}
-
+		/// <summary>
+		/// Get single developer Bug details
+		/// </summary>
+		/// <param name="id">Id of developer bug</param>
+		/// <returns>returns bug</returns>
 		public static new DeveloperBug  Get(long id)
 		{
 			//retreives information about bug with ID
@@ -420,20 +455,29 @@ namespace BugTracking
 		}
 
 
+		/// <summary>
+		/// gets All newer and older records of Bug
+		/// </summary>
+		/// <param name="developerBugID"> Bug from Chain of Developer bugs</param>
+		/// <returns>List<DeveloperBug></returns>
 		public static List<DeveloperBug> getBugHistory(long developerBugID)
 		{
 			List<DeveloperBug> developerBugs = new List<DeveloperBug>();
 
 			List<DeveloperBug> nextDeveloperBugs = new List<DeveloperBug>();
+
+			//gets bug which can be at top, middle or bottum of the chain
 			DeveloperBug firstBug = DeveloperBug.Get(developerBugID);
 
-			
+			//checks to see if bug has previous
 			Boolean hasPreviousBugID = (firstBug.PreviousBugID != 0);
 
+			//checks to see if bug has next
 			Boolean hasNextBugID = (firstBug.NextBugId != 0);
 			DeveloperBug nextBug = firstBug;
 			DeveloperBug PreviousBug = firstBug;
 
+			//if bug has next, add to bug list
 			while (hasNextBugID)
 			{
 				nextBug = DeveloperBug.Get(nextBug.NextBugId);
@@ -442,9 +486,11 @@ namespace BugTracking
 
 			}
 
+			//add next bugs in correct order
 			developerBugs.AddRange(nextDeveloperBugs.Reverse<DeveloperBug>());
 			developerBugs.Add(firstBug);
 
+			//if has previous bug, add to bug list
 			while (hasPreviousBugID)
 			{
 				PreviousBug = DeveloperBug.Get(PreviousBug.PreviousBugID);

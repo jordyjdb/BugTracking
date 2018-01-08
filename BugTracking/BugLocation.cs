@@ -49,12 +49,43 @@ namespace BugTracking
 			this.Id = id;
 			Get();
 		}
-	
+
+		/// <summary>
+		/// delete BugLocation, used for unit testing cleanup
+		/// </summary>
+		public void Delete()
+		{
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM BugLocations WHERE Id = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
+
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
+
+
+
+
 		public BugLocation(long applicationID, long formID, long controlID, string action, string relatedMethod, string relatedParameter, long startLineNumber, long endlineNumber)
 		{
 			this.applicationID = applicationID;
+			application = new App(applicationID);
 			this.formID = formID;
+			form = new AppForm(formID);
 			this.controlID = controlID;
+			control = new FormControl(controlID);
 			this.action = action;
 			this.relatedMethod = relatedMethod;
 			this.relatedParameter = relatedParameter;
@@ -62,8 +93,8 @@ namespace BugTracking
 			this.StartlineNumber = startLineNumber;
 		}
 
-		public long EndlineNumber { get; private set; }
-		public long StartlineNumber { get; private set; }
+		public long EndlineNumber { get; set; }
+		public long StartlineNumber { get; set; }
 		
 
 		public Boolean Get()
@@ -98,7 +129,7 @@ namespace BugTracking
 
 
 
-	EndlineNumber = 0;
+				EndlineNumber = 0;
 
 				if (ds.Tables[0].Rows[0]["EndlineNumber"] != DBNull.Value)
 				{
@@ -144,6 +175,12 @@ namespace BugTracking
 
 		}
 
+
+
+		/// <summary>
+		/// Commits buglocation to database
+		/// </summary>
+		/// <returns>new bugLocationID</returns>
 		public long Save()
 		{
 			String insertLocation = "INSERT INTO BUGLOCATIONS(applicationID,formID,controlID,action,relatedMethod,relatedParameter,StartlineNumber,EndLineNumber) values (@applicationID,@formID,@controlID,@action,@relatedMethod,@relatedParameter,@StartLineNumber,@EndLineNumber); SELECT SCOPE_IDENTITY()";

@@ -74,7 +74,32 @@ namespace BugTracking
 
 		#endregion
 
+		/// <summary>
+		/// delete Bugs, used for unit testing cleanup
+		/// </summary>
+		public void Delete()
+		{
 
+			Location.Delete();
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM Bugs WHERE Id = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
+
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
 
 		/// <summary>
 		/// gets defaulted user based on location
@@ -123,9 +148,9 @@ namespace BugTracking
 				this.Title = (String)ds.Tables[0].Rows[0]["Title"];
 				this.Comment = (String)ds.Tables[0].Rows[0]["Comment"];
 				this.Location = new BugLocation((long)ds.Tables[0].Rows[0]["LocationID"]);
-
+				this.AssignedUserID = (long)ds.Tables[0].Rows[0]["AssignedUserID"];
 				this.CreatedDate = (DateTime)ds.Tables[0].Rows[0]["CreatedDate"];
-
+				this.createdByID = (long)ds.Tables[0].Rows[0]["CreatedByID"];
 
 				return true;
 			}else {

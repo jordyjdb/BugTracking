@@ -109,10 +109,33 @@ namespace BugTracking
         }
 
 
-     
+		/// <summary>
+		/// delete Form, used for unit testing cleanup
+		/// </summary>
+		public void Delete()
+		{
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM Form WHERE Id = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
 
-        //methods in form
-        public List<String> methods;
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
+
+		//methods in form
+		public List<String> methods;
 
 		//methods in form
 		public List<String> parameters;

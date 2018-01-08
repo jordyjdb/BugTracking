@@ -39,7 +39,7 @@
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnUser = new System.Windows.Forms.Button();
 			this.chkOpen = new System.Windows.Forms.CheckBox();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.cboFilters = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.grdBugs)).BeginInit();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -158,20 +158,20 @@
 			// 
 			// comboBox1
 			// 
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(167, 51);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(74, 21);
-			this.comboBox1.TabIndex = 7;
-			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+			this.cboFilters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cboFilters.FormattingEnabled = true;
+			this.cboFilters.Location = new System.Drawing.Point(167, 51);
+			this.cboFilters.Name = "comboBox1";
+			this.cboFilters.Size = new System.Drawing.Size(74, 21);
+			this.cboFilters.TabIndex = 7;
+			this.cboFilters.SelectedIndexChanged += new System.EventHandler(this.cboFilter_SelectedIndexChanged);
 			// 
 			// FrmListBugs
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(840, 331);
-			this.Controls.Add(this.comboBox1);
+			this.Controls.Add(this.cboFilters);
 			this.Controls.Add(this.chkOpen);
 			this.Controls.Add(this.btnUser);
 			this.Controls.Add(this.btnUpdateSelected);
@@ -205,6 +205,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button btnUser;
 		private System.Windows.Forms.CheckBox chkOpen;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox cboFilters;
 	}
 }

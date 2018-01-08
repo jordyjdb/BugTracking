@@ -16,6 +16,12 @@ namespace BugManager
 		public Boolean commit = false;
 		String initilCode;
 		FrmCreateBug FrmCreateBug;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="code">Current Code</param>
+		/// <param name="frmCreateBug">needed to return value</param>
 		public frmCode(String code, FrmCreateBug frmCreateBug)
 		{
 			InitializeComponent();
@@ -27,12 +33,13 @@ namespace BugManager
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-
+			//if new code then commit flag set
 			if (!rtfCode.Text.Equals(initilCode))
 			{
 				commit = true;
 			}
 
+			//call back to calling form with new value
 			FrmCreateBug.CommitCode(commit, rtfCode.Text);
 
 			Close();
@@ -54,19 +61,20 @@ namespace BugManager
 					commit = true;
 					break;
 				case DialogResult.No:
-					Close();
+						commit = false;
+	
 					break;
 				default:
 					break;
 			}
-				
+				//call back to calling form with new value
+				FrmCreateBug.CommitCode(commit, rtfCode.Text);
+
+				Close();
 			}
 
 		}
 
-		private void frmCode_Load(object sender, EventArgs e)
-		{
-
-		}
+	
 	}
 }

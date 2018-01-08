@@ -34,10 +34,65 @@ namespace BugTracking
 
 		}
 
+
+		/// <summary>
+		/// delete User, used for unit testing cleanup
+		/// </summary>
+		/// <param name="ID">User ID</param>
+		public static void Delete(long ID)
+		{
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM Users WHERE Id = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", ID));
+
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
+
+		/// <summary>
+		/// delete developerBug, used for unit testing cleanup
+		/// </summary>
+		public void Delete()
+		{
+			//retreives information about bug with ID
+			DataSet ds = new DataSet();
+			SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);
+			SqlCommand sqlCom = new SqlCommand("DELETE FROM DEVELOPERBUG WHERE BugId = @ID", sqlCon);
+			sqlCom.Parameters.Add(new SqlParameter("@ID", Id));
+
+			try
+			{
+				sqlCon.Open();
+
+				sqlCom.ExecuteNonQuery();
+
+			}
+			finally
+			{
+				sqlCon.Close();
+			}
+
+		}
+
 		protected User(long Id, String FirstName, String LastName, String Usertype) :this(FirstName,  LastName,  Usertype)
 		{
 			this.Id = Id;
 		}
+
+
+
 		public User(String FirstName, String LastName, String Usertype)
 		{
 			this.FirstName = FirstName;
@@ -91,6 +146,11 @@ namespace BugTracking
 
 		//}
 
+			/// <summary>
+			/// Gets User details
+			/// </summary>
+			/// <param name="id">Id of user</param>
+			/// <returns>User details</returns>
         public static User Get(long id)
         {
             //retreives information about bug with ID
@@ -174,6 +234,9 @@ namespace BugTracking
 
 		}
 
+		/// <summary>
+		/// saves User to database
+		/// </summary>
         public void Save()
         {
             SqlConnection sqlCon = new SqlConnection(Settings.AzureBugTrackingConnectionString);

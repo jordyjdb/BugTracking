@@ -44,7 +44,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.grpCodeSnippet = new System.Windows.Forms.GroupBox();
 			this.btnAddCode = new System.Windows.Forms.Button();
-			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+			this.wbCode = new System.Windows.Forms.WebBrowser();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -70,6 +70,8 @@
 			this.label9 = new System.Windows.Forms.Label();
 			this.txtEndLineNumber = new System.Windows.Forms.TextBox();
 			this.txtParameter = new System.Windows.Forms.TextBox();
+			this.label14 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
 			this.grpBugdetails.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -168,6 +170,7 @@
 			// cboAction
 			// 
 			this.cboAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.cboAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboAction.FormattingEnabled = true;
 			this.cboAction.Location = new System.Drawing.Point(373, 427);
 			this.cboAction.Name = "cboAction";
@@ -177,6 +180,7 @@
 			// cboApplication
 			// 
 			this.cboApplication.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.cboApplication.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboApplication.FormattingEnabled = true;
 			this.cboApplication.Location = new System.Drawing.Point(106, 402);
 			this.cboApplication.Name = "cboApplication";
@@ -187,6 +191,7 @@
 			// cboFormName
 			// 
 			this.cboFormName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.cboFormName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboFormName.FormattingEnabled = true;
 			this.cboFormName.Location = new System.Drawing.Point(106, 427);
 			this.cboFormName.Name = "cboFormName";
@@ -196,6 +201,7 @@
 			// cboControlName
 			// 
 			this.cboControlName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.cboControlName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboControlName.FormattingEnabled = true;
 			this.cboControlName.Location = new System.Drawing.Point(373, 402);
 			this.cboControlName.Name = "cboControlName";
@@ -204,6 +210,8 @@
 			// 
 			// grpBugdetails
 			// 
+			this.grpBugdetails.Controls.Add(this.label15);
+			this.grpBugdetails.Controls.Add(this.label14);
 			this.grpBugdetails.Controls.Add(this.splitContainer1);
 			this.grpBugdetails.Controls.Add(this.label1);
 			this.grpBugdetails.Controls.Add(this.label2);
@@ -248,7 +256,7 @@
 			// grpCodeSnippet
 			// 
 			this.grpCodeSnippet.Controls.Add(this.btnAddCode);
-			this.grpCodeSnippet.Controls.Add(this.webBrowser1);
+			this.grpCodeSnippet.Controls.Add(this.wbCode);
 			this.grpCodeSnippet.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.grpCodeSnippet.Location = new System.Drawing.Point(0, 0);
 			this.grpCodeSnippet.Name = "grpCodeSnippet";
@@ -268,16 +276,16 @@
 			this.btnAddCode.UseVisualStyleBackColor = true;
 			this.btnAddCode.Click += new System.EventHandler(this.btnAddCode_Click);
 			// 
-			// webBrowser1
+			// wbCode
 			// 
-			this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.wbCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.webBrowser1.Location = new System.Drawing.Point(0, 44);
-			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(203, 309);
-			this.webBrowser1.TabIndex = 35;
+			this.wbCode.Location = new System.Drawing.Point(0, 44);
+			this.wbCode.MinimumSize = new System.Drawing.Size(20, 20);
+			this.wbCode.Name = "wbCode";
+			this.wbCode.Size = new System.Drawing.Size(203, 309);
+			this.wbCode.TabIndex = 35;
 			// 
 			// splitContainer2
 			// 
@@ -539,6 +547,24 @@
 			this.txtParameter.Size = new System.Drawing.Size(100, 20);
 			this.txtParameter.TabIndex = 29;
 			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(89, 17);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(11, 13);
+			this.label14.TabIndex = 37;
+			this.label14.Text = "*";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(89, 43);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(11, 13);
+			this.label15.TabIndex = 38;
+			this.label15.Text = "*";
+			// 
 			// FrmCreateBug
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -584,14 +610,14 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.TextBox txtTitle;
-		private System.Windows.Forms.TextBox txtComment;
+		public System.Windows.Forms.TextBox txtTitle;
+		public System.Windows.Forms.TextBox txtComment;
 		private System.Windows.Forms.ComboBox cboAction;
 		private System.Windows.Forms.ComboBox cboApplication;
 		private System.Windows.Forms.ComboBox cboFormName;
 		private System.Windows.Forms.ComboBox cboControlName;
         private System.Windows.Forms.GroupBox grpBugdetails;
-		private System.Windows.Forms.WebBrowser webBrowser1;
+		private System.Windows.Forms.WebBrowser wbCode;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.Button btnAddCode;
 		private System.Windows.Forms.GroupBox grpCodeSnippet;
@@ -601,7 +627,7 @@
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.DataGridView grdBugHistory;
 		private System.Windows.Forms.Button btnCancel;
-		private System.Windows.Forms.Button btnSave;
+		public System.Windows.Forms.Button btnSave;
 		private System.Windows.Forms.GroupBox grpManagement;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label11;
@@ -620,5 +646,7 @@
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.TextBox txtDateCreated;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.Label label14;
 	}
 }
