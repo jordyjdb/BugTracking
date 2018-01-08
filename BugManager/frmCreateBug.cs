@@ -71,9 +71,23 @@ namespace BugManager
 						//DeveloperBug.AssignedUserID = (long)cboAssignedUser.SelectedValue;
 						break;
 					case "Black Box Tester":
+					if (txtStartLineNumber.Text == "")
+					{
+						txtStartLineNumber.Text = "0";
 
-						//creates new Bug
-						BugTracking.BugLocation locationBB = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text), (long)Convert.ToDouble(txtEndLineNumber.Text));
+					}
+					if (txtEndLineNumber.Text == "")
+					{
+						txtEndLineNumber.Text = "0";
+
+					}
+
+					if (Code == null)
+					{
+						Code = "";
+					}
+					//creates new Bug
+					BugTracking.BugLocation locationBB = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text), (long)Convert.ToDouble(txtEndLineNumber.Text));
 
 						BugTracking.Bug WhiteBoxBug = new BugTracking.Bug(BugID, txtTitle.Text, txtComment.Text);
 						WhiteBoxBug.createdByID = LoggedInUser.Id;
@@ -90,8 +104,29 @@ namespace BugManager
 						populateBugDetails();
 						break;
 					case "Developer":
-						//creates Full developer bug
-						BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text), (long)Convert.ToDouble(txtEndLineNumber.Text));
+
+
+					if(txtStartLineNumber.Text == "")
+					{
+						txtStartLineNumber.Text = "0";
+
+					}
+					if (txtEndLineNumber.Text == "")
+					{
+						txtEndLineNumber.Text = "0";
+
+					}
+
+					if(Code == null)
+					{
+						Code = "";
+					}
+					if (txtPriority.Text == "")
+					{
+						txtPriority.Text = "0";
+					}
+					//creates Full developer bug
+					BugTracking.BugLocation location = new BugTracking.BugLocation((long)cboApplication.SelectedValue, (long)cboFormName.SelectedValue, (long)cboControlName.SelectedValue, (String)cboAction.Text, txtRelatedMethod.Text, txtParameter.Text, (long)Convert.ToDouble(txtStartLineNumber.Text), (long)Convert.ToDouble(txtEndLineNumber.Text));
 
 						BugTracking.DeveloperBug DeveloperBug = new BugTracking.DeveloperBug(BugID, txtTitle.Text, txtComment.Text, location, (long)0, Convert.ToInt64(txtPriority.Text), !chkOpen.Checked, Code);
 						DefaultUserID = (long)cboAssignedUser.SelectedValue;
@@ -121,14 +156,19 @@ namespace BugManager
 
 		}
 
+		public Boolean UnitTesting = false;
 		/// <summary>
 		/// given logged in user sets available controls and manages interaction-able controls
 		/// </summary>
 		public void UserFormSettup()
 		{
-			long LoggedInID = Properties.Settings.Default.LoggedInID;
+			if (!UnitTesting)
+			{
+				long LoggedInID = Properties.Settings.Default.LoggedInID;
 
-			LoggedInUser = BugTracking.User.Get(LoggedInID);
+				LoggedInUser = BugTracking.User.Get(LoggedInID);
+			}
+			
 
 			switch (LoggedInUser.UserType)
 			{

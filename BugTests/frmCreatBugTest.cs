@@ -10,13 +10,15 @@ namespace BugTests
 		public void TestMinimuInput()
 		{
 
-			//first in List
 			BugTracking.DeveloperBug bug = DeveloperBugSetup.getBug();
 
 			BugManager.FrmCreateBug frmCreateBug = new BugManager.FrmCreateBug();
-
+			frmCreateBug.UnitTesting = true;
 			frmCreateBug.LoggedInUser = bug.Location.application.DefaultUser;
 			frmCreateBug.BugID = 0;
+			frmCreateBug.Show();
+			frmCreateBug.Hide();
+			frmCreateBug.cboAssignedUser.SelectedValue = bug.Location.application.DefaultUser.Id;
 			frmCreateBug.SaveBug(false);
 			Boolean bugPassed = true;
 			if (frmCreateBug.BugID != 0)
@@ -24,25 +26,32 @@ namespace BugTests
 				bugPassed = false;
 			}
 
-			frmCreateBug.txtComment.Text = "TestComment";
+			frmCreateBug.txtComment.Text = "Test Comment";
+			
+			frmCreateBug.txtTitle.Text = "Test Title";
+			frmCreateBug.SaveBug(false);
 
-			frmCreateBug.txtTitle.Text = "TestTitle";
-			frmCreateBug.SaveBug();
 
+			//Assert
 			if (frmCreateBug.BugID == 0)
 			{
 				bugPassed = false;
 			}
 
+			//check that save was valid
 			BugTracking.DeveloperBug checkBug = BugTracking.DeveloperBug.Get(bug.Id);
 
-
-			if(checkBug.Title != "TestTitle" || checkBug.Title != "TestComment")
+			//Assert
+			if(checkBug.Title != "Test Title" )
 			{
 				bugPassed = false;
 			}
 
-
+			if (checkBug.Comment != "Test Comment")
+			{
+				bugPassed = false;
+			}
+			
 
 			DeveloperBugSetup.deleteAllBug(bug);
 			Assert.AreEqual(bugPassed, true);

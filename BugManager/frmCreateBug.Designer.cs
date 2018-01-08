@@ -632,7 +632,7 @@
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.CheckBox chkOpen;
-		private System.Windows.Forms.ComboBox cboAssignedUser;
+		public System.Windows.Forms.ComboBox cboAssignedUser;
 		private System.Windows.Forms.TextBox txtPriority;
 		private System.Windows.Forms.GroupBox grpCodeDetails;
 		private System.Windows.Forms.Label label12;
