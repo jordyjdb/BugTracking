@@ -237,7 +237,7 @@ namespace BugManager
 			cboAssignedUser.DisplayMember = "FullName";
 			cboAssignedUser.ValueMember = "Id";
 			cboAssignedUser.DataSource = users;
-			cboAssignedUser.SelectedItem = null;
+		
 
 
 			UserFormSettup();

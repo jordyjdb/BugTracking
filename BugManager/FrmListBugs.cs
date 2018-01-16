@@ -30,12 +30,13 @@ namespace BugManager
 				case "Black Box Tester":
 					FilterList.Add("BlackBox Bugs Only");
 					cboFilters.Enabled = false;
-
-					break;
+                    btnUpdateSelected.Enabled = false;
+                    btnUser.Enabled = false;
+                    break;
 				case "White Box Tester":
 					FilterList.Add("BlackBox Bugs Only");
 					FilterList.Add("WhiteBox & BlackBox Bugs");
-
+                    btnUser.Enabled = false;
 					break;
 				case "Developer":
 					FilterList.Add("BlackBox Bugs Only");
@@ -103,7 +104,9 @@ namespace BugManager
 
 		private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.ShowDialog();
+            this.Close();
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
